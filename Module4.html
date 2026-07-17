@@ -1,0 +1,1819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 4 - CCNP 350-701 Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7fafc;
+            color: #2d3748;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #1a365d;
+            color: white;
+            padding: 5px;
+            padding-top: 0.02px;
+            padding-bottom: 10px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .quiz-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border-top: 5px solid #2b6cb0;
+            display: none;
+        }
+        .quiz-card.active {
+            display: block;
+        }
+        .domain-badge {
+            display: inline-block;
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question-text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .option-label {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-label:hover {
+            background: #edf2f7;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+        .btn {
+            background-color: #2b6cb0;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background-color: #2c5282;
+        }
+        .action-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .nav-container {
+            display: flex;
+            gap: 10px;
+        }
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0fff4;
+            border-left: 4px solid #38a169;
+            border-radius: 4px;
+            display: none;
+        }
+        .wrong-ans {
+            background-color: #fff5f5 !important;
+            border-color: #feb2b2 !important;
+        }
+        .right-ans {
+            background-color: #f0fff4 !important;
+            border-color: #9ae6b4 !important;
+        }
+        .exhibit-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #cbd5e0;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+    </style>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+        if (localStorage.getItem('scor_session') !== 'authenticated') {
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CCNP Security 350-701</h1>
+            <h2>Module 4 Practice Exam</h2>
+            <button class="btn" style="background-color: #4a5568;" onclick="window.location.href='index.html'"> Portal Home </button>
+        </header>
+        <div id="quiz-area"></div>
+        <div class="action-container">
+            <!-- Exit and Finish Quiz grouped together on the left -->
+            <div class="nav-container">
+                <button class="btn" style="background-color: #e53e3e;" onclick="window.location.href='index.html'">Exit</button>
+                <button class="btn" id="finish-btn" style="background-color: #38a169;" onclick="gradeQuiz()">Finish Quiz</button>
+            </div>
+            
+            <div class="nav-container">
+                <button class="btn" id="prev-btn" style="background-color: #4a5568;" onclick="changeQuestion(-1)">Previous</button>
+                <button class="btn" id="next-btn" onclick="changeQuestion(1)">Next</button>
+            </div>
+            <button class="btn" id="submit-btn" style="background-color: #38a169;" onclick="gradeQuiz()">Submit & Review</button>
+        </div>
+    </div>
+    <script id="quiz-data" type="application/json">
+
+[
+
+
+  {
+    "number": 301,
+    "domain": "Security Concepts",
+    "question": "Which posture assessment requirement provides options to the client for remediation and requires the remediation within a certain timeframe?",
+    "options": [
+      { "letter": "A", "text": "Audit" },
+      { "letter": "B", "text": "Mandatory" },
+      { "letter": "C", "text": "Optional" },
+      { "letter": "D", "text": "Visibility" }
+    ],
+    "answer": "Qg==",
+    "explanation": "Mandatory requirements in Cisco ISE require the endpoint to meet specific posture conditions. If the endpoint fails, the agent provides remediation options and forces compliance within a specified remediation timer.",
+    "has_image": false
+  },
+  {
+    "number": 302,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which attribute has the ability to change during the RADIUS CoA?",
+    "options": [
+      { "letter": "A", "text": "NTP" },
+      { "letter": "B", "text": "Authorization" },
+      { "letter": "C", "text": "Accessibility" },
+      { "letter": "D", "text": "Membership" }
+    ],
+    "answer": "Qg==",
+    "explanation": "RADIUS Change of Authorization (CoA) allows for the dynamic modification of session attributes, such as authorization levels, re-authentication, or session termination, after the initial authentication process is complete.",
+    "has_image": false
+  },
+  {
+    "number": 303,
+    "domain": "Endpoint Protection and Detection",
+    "question": "With Cisco AMP for Endpoints, which option shows a list of all files that have been executed in your environment?",
+    "options": [
+      { "letter": "A", "text": "Prevalence" },
+      { "letter": "B", "text": "File analysis" },
+      { "letter": "C", "text": "Detections" },
+      { "letter": "D", "text": "Vulnerable software" },
+      { "letter": "E", "text": "Threat root cause" }
+    ],
+    "answer": "QQ==",
+    "explanation": "The Prevalence feature in Cisco Secure Endpoint (formerly AMP) displays a list of files that have been executed across the deployment, allowing administrators to track file activity and identify commonalities.",
+    "has_image": false
+  },
+  {
+    "number": 304,
+    "domain": "Endpoint Protection and Detection",
+    "question": "A company discovered an attack propagating through their network via a file. A custom file policy was created in order to track this in the future and ensure no other endpoints execute the infected file. In addition, it was discovered during testing that the scans are not detecting the file as an indicator of compromise. What must be done in order to ensure that the created policy is functioning as it should?",
+    "options": [
+      { "letter": "A", "text": "Create an IP block list for the website from which the file was downloaded" },
+      { "letter": "B", "text": "Block the application that the file was using to open" },
+      { "letter": "C", "text": "Upload the hash for the file into the policy" },
+      { "letter": "D", "text": "Send the file to Cisco Threat Grid for dynamic analysis" }
+    ],
+    "answer": "RA==",
+    "explanation": "Sending the file to Cisco Threat Grid allows for dynamic behavioral analysis. Threat Grid helps generate the necessary indicators to identify the file as malicious when static detection (signatures) is failing.",
+    "has_image": false
+  },
+  {
+    "number": 305,
+    "domain": "Network Security",
+    "question": "A network engineer is trying to figure out whether FlexVPN or DMVPN would fit better in their environment. They have a requirement for more stringent security, multiple security associations for the connections, and more efficient VPN establishment as well as consuming less bandwidth. Which solution would be best for this and why?",
+    "options": [
+      { "letter": "A", "text": "DMVPN because it supports IKEv2 and FlexVPN does not" },
+      { "letter": "B", "text": "FlexVPN because it supports IKEv2 and DMVPN does not" },
+      { "letter": "C", "text": "FlexVPN because it uses multiple SAs and DMVPN does not" },
+      { "letter": "D", "text": "DMVPN because it uses multiple SAs and FlexVPN does not" }
+    ],
+    "answer": "Qg==",
+    "explanation": "FlexVPN is the more modern architecture based on IKEv2, which provides better efficiency, multiple security associations, and more granular control compared to traditional DMVPN.",
+    "has_image": false
+  },
+  {
+    "number": 306,
+    "domain": "Security Concepts",
+    "question": "How does Cisco Workload Optimization Manager help mitigate application performance issues?",
+    "options": [
+      { "letter": "A", "text": "It deploys an AWS Lambda system" },
+      { "letter": "B", "text": "It automates resource resizing" },
+      { "letter": "C", "text": "It optimizes a flow path" },
+      { "letter": "D", "text": "It sets up a workload forensic score" }
+    ],
+    "answer": "Qg==",
+    "explanation": "Cisco Workload Optimization Manager (CWOM) ensures application performance by continuously analyzing workload demand and automating resource resizing to match supply.",
+    "has_image": false
+  },
+  {
+    "number": 307,
+    "domain": "Endpoint Protection and Detection",
+    "question": "An organization configures Cisco Umbrella to be used for its DNS services. The organization must be able to block traffic based on the subnet that the endpoint is on, but it sees only the requests from its public IP address instead of each internal IP address. What must be done to resolve this issue?",
+    "options": [
+      { "letter": "A", "text": "Set up a Cisco Umbrella virtual appliance to internally field the requests and see the traffic of each" },
+      { "letter": "B", "text": "Use the tenant control features to identify each subnet being used and track the connections" },
+      { "letter": "C", "text": "Install the Microsoft Active Directory Connector to give IP address information stitched to the" },
+      { "letter": "D", "text": "Configure an internal domain within Cisco Umbrella to help identify each address and create" }
+    ],
+    "answer": "QQ==",
+    "explanation": "The Cisco Umbrella Virtual Appliance (VA) acts as a local DNS forwarder. It enables Umbrella to see the internal IP address of the originating client, allowing for granular policy application based on internal subnets.",
+    "has_image": false
+  },
+  {
+    "number": 308,
+    "domain": "Security Concepts",
+    "question": "What is a difference between a DoS attack and a DDoS attack?",
+    "options": [
+      { "letter": "A", "text": "A DoS attack is where a computer is used to flood a server with TCP and UDP packets whereas a" },
+      { "letter": "B", "text": "A DoS attack is where a computer is used to flood a server with TCP and UDP packets whereas a" },
+      { "letter": "C", "text": "A DoS attack is where a computer is used to flood a server with UDP packets whereas a DDoS" },
+      { "letter": "D", "text": "A DoS attack is where a computer is used to flood a server with TCP packets whereas a DDoS" }
+    ],
+    "answer": "QQ==",
+    "explanation": "The primary difference is scale and source. A DoS attack originates from a single source, whereas a DDoS attack utilizes a distributed botnet to overwhelm a target from multiple sources simultaneously.",
+    "has_image": false
+  },
+  {
+    "number": 309,
+    "domain": "Security Concepts",
+    "question": "Which two capabilities of Integration APIs are utilized with Cisco DNA center? (Choose two)",
+    "options": [
+      { "letter": "A", "text": "Upgrade software on switches and routers" },
+      { "letter": "B", "text": "Third party reporting" },
+      { "letter": "C", "text": "Connect to ITSM platforms" },
+      { "letter": "D", "text": "Create new SSIDs on a wireless LAN controller" },
+      { "letter": "E", "text": "Automatically deploy new virtual routers" }
+    ],
+    "answer": "QywD",
+    "explanation": "Cisco DNA Center Integration APIs are primarily used for outbound notifications and integrations, such as connecting to ITSM platforms (like ServiceNow) for ticket management and enabling third-party reporting.",
+    "has_image": false
+  },
+  {
+    "number": 310,
+    "domain": "Security Concepts",
+    "question": "Which kind of API that is used with Cisco DNA Center provisions SSIDs, QoS policies, and updates software versions on switches?",
+    "options": [
+      { "letter": "A", "text": "Integration" },
+      { "letter": "B", "text": "Intent" },
+      { "letter": "C", "text": "Event" },
+      { "letter": "D", "text": "Multivendor" }
+    ],
+    "answer": "Qg==",
+    "explanation": "Intent APIs in Cisco DNA Center allow administrators to define the desired state, which the controller then translates into specific device configurations (like provisioning SSIDs or software updates) and applies automatically.",
+    "has_image": true
+  },
+  {
+    "number": 311,
+    "domain": "Security Concepts",
+    "question": "What is the purpose of CA in a PKI?",
+    "options": [
+      { "letter": "A", "text": "To issue and revoke digital certificates" },
+      { "letter": "B", "text": "To validate the authenticity of a digital certificate" },
+      { "letter": "C", "text": "To create the private key for a digital certificate" },
+      { "letter": "D", "text": "To certify the ownership of a public key by the named subject" }
+    ],
+    "answer": "QQ==",
+    "explanation": "A Certificate Authority (CA) acts as a trusted third party that verifies the identity of an entity and binds that identity to a public key by issuing a digitally signed certificate.",
+    "has_image": false
+  },
+  {
+    "number": 312,
+    "domain": "Security Concepts",
+    "question": "Which DevSecOps implementation process gives a weekly or daily update instead of monthly or quarterly in the applications?",
+    "options": [
+      { "letter": "A", "text": "Orchestration" },
+      { "letter": "B", "text": "CI/CD pipeline" },
+      { "letter": "C", "text": "Container" },
+      { "letter": "D", "text": "Security" }
+    ],
+    "answer": "Qg==",
+    "explanation": "Continuous Integration and Continuous Deployment (CI/CD) pipelines automate the testing and deployment process, enabling rapid and frequent software releases compared to traditional waterfall delivery cycles.",
+    "has_image": false
+  },
+  {
+    "number": 313,
+    "domain": "Core Security Concepts",
+    "question": "[Security Operations] Which parameter is required when configuring a Netflow exporter on a Cisco Router?",
+    "options": [
+      { "letter": "A", "text": "DSCP value" },
+      { "letter": "B", "text": "Source interface" },
+      { "letter": "C", "text": "Exporter name" },
+      { "letter": "D", "text": "Exporter description" }
+    ],
+    "answer": "Qw==",
+    "explanation": "When configuring a NetFlow exporter, the exporter name must be defined to uniquely identify the exporter configuration in the Cisco IOS command structure.",
+    "has_image": false
+  },
+  {
+    "number": 314,
+    "domain": "Security Concepts",
+    "question": "Which category includes DoS Attacks?",
+    "options": [
+      { "letter": "A", "text": "Virus attacks" },
+      { "letter": "B", "text": "Trojan attacks" },
+      { "letter": "C", "text": "Flood attacks" },
+      { "letter": "D", "text": "Phishing attacks" }
+    ],
+    "answer": "Qw==",
+    "explanation": "Flood attacks (such as SYN floods, UDP floods, or ICMP floods) are the primary mechanism used to execute Denial of Service (DoS) attacks by exhausting network bandwidth or device resources.",
+    "has_image": false
+  },
+  {
+    "number": 315,
+    "domain": "Network Security",
+    "question": "What are two advantages of using Cisco AnyConnect over DMVPN? (Choose two)",
+    "options": [
+      { "letter": "A", "text": "It provides spoke-to-spoke communications without traversing the hub" },
+      { "letter": "B", "text": "It allows different routing protocols to work over the tunnel" },
+      { "letter": "C", "text": "It allows customization of access policies based on user identity" },
+      { "letter": "D", "text": "It allows multiple sites to connect to the data center" },
+      { "letter": "E", "text": "It enables VPN access for individual users from their machines" }
+    ],
+    "answer": "QyE=",
+    "explanation": "Cisco AnyConnect excels in providing remote access for individual mobile/remote users and allows for granular access policies based on the specific identity of the authenticated user.",
+    "has_image": false
+  },
+  {
+    "number": 316,
+    "domain": "Security Concepts",
+    "question": "When choosing an algorithm to use, what should be considered about Diffie Hellman and RSA for key establishment?",
+    "options": [
+      { "letter": "A", "text": "RSA is an asymmetric key establishment algorithm intended to output symmetric keys" },
+      { "letter": "B", "text": "RSA is a symmetric key establishment algorithm intended to output asymmetric keys" },
+      { "letter": "C", "text": "DH is a symmetric key establishment algorithm intended to output asymmetric keys" },
+      { "letter": "D", "text": "DH is an asymmetric key establishment algorithm intended to output symmetric keys" }
+    ],
+    "answer": "RA==",
+    "explanation": "Diffie-Hellman (DH) is an asymmetric algorithm used specifically to establish a shared secret over an insecure channel, which is then typically used as a foundation for symmetric key encryption.",
+    "has_image": false
+  },
+  {
+    "number": 317,
+    "domain": "Security Concepts",
+    "question": "Which type of DNS abuse exchanges data between two computers even when there is no direct connection?",
+    "options": [
+      { "letter": "A", "text": "Malware installation" },
+      { "letter": "B", "text": "Command-and-control communication" },
+      { "letter": "C", "text": "Network footprinting" },
+      { "letter": "D", "text": "Data exfiltration" }
+    ],
+    "answer": "RA==",
+    "explanation": "DNS Tunneling is used for data exfiltration. Attackers encode data within DNS queries/responses to bypass firewalls, as DNS traffic is often permitted and not inspected.",
+    "has_image": false
+  },
+  {
+    "number": 318,
+    "domain": "Network Security",
+    "question": "What is a difference between GETVPN and IPsec?",
+    "options": [
+      { "letter": "A", "text": "GETVPN reduces latency and provides encryption over MPLS without the use of a central hub" },
+      { "letter": "B", "text": "GETVPN provides key management and security association management" },
+      { "letter": "C", "text": "GETVPN is based on IKEv2 and does not support IKEv1" },
+      { "letter": "D", "text": "GETVPN is used to build a VPN network with multiple sites without having to statically configure" }
+    ],
+    "answer": "QQ==",
+    "explanation": "GETVPN (Group Encrypted Transport VPN) is designed to provide full-mesh connectivity without the need for point-to-point tunnels, which reduces latency and overhead.",
+    "has_image": false
+  },
+  {
+    "number": 319,
+    "domain": "Core Security Concepts",
+    "question": "[Security Operations] What is a benefit of using telemetry over SNMP to configure new routers for monitoring purposes?",
+    "options": [
+      { "letter": "A", "text": "Telemetry uses a pull method, which makes it more reliable than SNMP" },
+      { "letter": "B", "text": "Telemetry uses push and pull, which makes it more scalable than SNMP" },
+      { "letter": "C", "text": "Telemetry uses push and pull which makes it more secure than SNMP" },
+      { "letter": "D", "text": "Telemetry uses a push method which makes it faster than SNMP" }
+    ],
+    "answer": "RA==",
+    "explanation": "Model-Driven Telemetry uses a push model, allowing network devices to stream operational data continuously to a collector in near real-time, which is faster and more scalable than the traditional SNMP pull/polling method.",
+    "has_image": false
+  },
+  {
+    "number": 320,
+    "domain": "Network Security",
+    "question": "An organization wants to use Cisco FTD or Cisco ASA devices. Specific URLs must be blocked from being accessed via the firewall which requires that the administrator input the bad URL categories that the organization wants blocked into the access policy. Which solution should be used to meet this requirement?",
+    "options": [
+      { "letter": "A", "text": "Cisco ASA because it enables URL filtering and blocks malicious URLs by default, whereas Cisco" },
+      { "letter": "B", "text": "Cisco ASA because it includes URL filtering in the access control policy capabilities, whereas Cisco" },
+      { "letter": "C", "text": "Cisco FTD because it includes URL filtering in the access control policy capabilities, whereas Cisco" },
+      { "letter": "D", "text": "Cisco FTD because it enables URL filtering and blocks malicious URLs by default, whereas Cisco" }
+    ],
+    "answer": "Qw==",
+    "explanation": "Cisco Firepower Threat Defense (FTD) includes integrated URL filtering capabilities within its Access Control Policies, allowing administrators to block or allow traffic based on specific URL categories.",
+    "has_image": false
+  },
+  {
+    "number": 321,
+    "domain": "Content Security",
+    "question": "An administrator configures a Cisco WSA to receive redirected traffic over ports 80 and 443. The organization requires that a network device with specific WSA integration capabilities be configured to send the traffic to the WSA to proxy the requests and increase visibility, while making this invisible to the users. What must be done on the Cisco WSA to support these requirements?",
+    "options": [
+      { "letter": "A", "text": "Configure transparent traffic redirection using WCCP in the Cisco WSA and on the network device" },
+      { "letter": "B", "text": "Configure active traffic redirection using WPAD in the Cisco WSA and on the network device" },
+      { "letter": "C", "text": "Use the Layer 4 setting in the Cisco WSA to receive explicit forward requests from the network" },
+      { "letter": "D", "text": "Use PAC keys to allow only the required network devices to send the traffic to the Cisco WSA" }
+    ],
+    "answer": "QQ==",
+    "explanation": "WCCP (Web Cache Communication Protocol) is the standard method used to transparently redirect web traffic (HTTP/HTTPS) from networking devices to a Cisco WSA.",
+    "has_image": false
+  },
+  {
+    "number": 322,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "An administrator configures new authorization policies within Cisco ISE and has difficulty profiling the devices. Attributes for the new Cisco IP phones that are profiled based on the RADIUS authentication are seen however the attributes for CDP or DHCP are not. What should the administrator do to address this issue?",
+    "options": [
+      { "letter": "A", "text": "Configure the ip dhcp snooping trust command on the DHCP interfaces to get the information to" },
+      { "letter": "B", "text": "Configure the authentication port-control auto feature within Cisco ISE to identify the devices that" },
+      { "letter": "C", "text": "Configure a service template within the switch to standardize the port configurations so that the" },
+      { "letter": "D", "text": "Configure the device sensor feature within the switch to send the appropriate protocol" }
+    ],
+    "answer": "RA==",
+    "explanation": "The Device Sensor feature on Cisco switches allows the switch to inspect and collect protocol-specific information (like DHCP options, CDP, or LLDP data) and export it to Cisco ISE to improve profiling accuracy.",
+    "has_image": false
+  },
+  {
+    "number": 323,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "A network engineer must monitor user and device behavior within the on-premises network. This data must be sent to the Cisco Stealthwatch Cloud analytics platform for analysis. What must be done to meet this requirement using the Ubuntu-based VM appliance deployed in a VMware-based hypervisor?",
+    "options": [
+      { "letter": "A", "text": "Configure a Cisco FMC to send syslogs to Cisco Stealthwatch Cloud" },
+      { "letter": "B", "text": "Deploy the Cisco Stealthwatch Cloud PNM sensor that sends data to Cisco Stealthwatch Cloud" },
+      { "letter": "C", "text": "Deploy a Cisco FTD sensor to send network events to Cisco Stealthwatch Cloud" },
+      { "letter": "D", "text": "Configure a Cisco FMC to send NetFlow to Cisco Stealthwatch Cloud" }
+    ],
+    "answer": "Qg==",
+    "explanation": "The Stealthwatch Cloud Private Network Monitoring (PNM) sensor is a virtual appliance that can be deployed on hypervisors like VMware to monitor local network traffic and send metadata to the cloud for analysis.",
+    "has_image": false
+  },
+  {
+    "number": 324,
+    "domain": "Security Concepts",
+    "question": "An organization uses Cisco FMC to centrally manage multiple Cisco FTD devices. The default management port conflicts with other communications on the network and must be changed. What must be done to ensure that all devices can communicate together?",
+    "options": [
+      { "letter": "A", "text": "Manually change the management port on Cisco FMC and all managed Cisco FTD devices" },
+      { "letter": "B", "text": "Set the tunnel to go through the Cisco FTD" },
+      { "letter": "C", "text": "Change the management port on Cisco FMC so that it pushes the change to all managed Cisco" },
+      { "letter": "D", "text": "Set the tunnel port to 8305" }
+    ],
+    "answer": "QQ==",
+    "explanation": "If the default management port (8305) conflicts, the administrator must change it on the FMC and all associated managed devices to ensure connectivity between the management center and the firewalls is maintained.",
+    "has_image": false
+  },
+  {
+    "number": 325,
+    "domain": "Security Concepts",
+    "question": "Which service allows a user to export application usage and performance statistics with Cisco Application Visibility and control?",
+    "options": [
+      { "letter": "A", "text": "SNORT" },
+      { "letter": "B", "text": "NetFlow" },
+      { "letter": "C", "text": "SNMP" },
+      { "letter": "D", "text": "802.1X" }
+    ],
+    "answer": "Qg==",
+    "explanation": "Application Visibility and Control (AVC) integrates with NetFlow to export detailed application-level statistics and performance metrics.",
+    "has_image": false
+  },
+  {
+    "number": 326,
+    "domain": "Endpoint Protection and Detection",
+    "question": "An engineer adds a custom detection policy to a Cisco AMP deployment and encounters issues with the configuration. The simple detection mechanism is configured, but the dashboard indicates that the hash is not 64 characters and is non-zero. What is the issue?",
+    "options": [
+      { "letter": "A", "text": "The engineer is attempting to upload a hash created using MD5 instead of SHA-256" },
+      { "letter": "B", "text": "The file being uploaded is incompatible with simple detections and must use advanced detections" },
+      { "letter": "C", "text": "The hash being uploaded is part of a set in an incorrect format" },
+      { "letter": "D", "text": "The engineer is attempting to upload a file instead of a hash" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Endpoint (AMP) simple detection lists require SHA-256 hashes (which are 64 hexadecimal characters). MD5 hashes are only 32 characters, which triggers a validation error.",
+    "has_image": true
+  },
+  {
+    "number": 327,
+    "domain": "Endpoint Protection and Detection",
+    "question": "An Cisco ISE administrator adds a new switch to an 802.1X deployment and has difficulty with some endpoints gaining access. Most PCs and IP phones can connect and authenticate using their machine certificate credentials. However, printers and video cameras cannot. Based on the interface configuration provided, what must be done to get these devices on to the network using Cisco ISE for authentication and authorization while maintaining security controls?",
+    "options": [
+      { "letter": "A", "text": "Change the default policy in Cisco ISE to allow all devices not using machine authentication ." },
+      { "letter": "B", "text": "Enable insecure protocols within Cisco ISE in the allowed protocols configuration." },
+      { "letter": "C", "text": "Configure authentication event fail retry 2 action authorize vlan 41 on the interface" },
+      { "letter": "D", "text": "Add mab to the interface configuration." }
+    ],
+    "answer": "RA==",
+    "explanation": "MAC Authentication Bypass (MAB) is required for legacy devices (like printers and cameras) that do not support 802.1X. Adding 'mab' to the interface enables the switch to use the device's MAC address as a fallback authentication method.",
+    "has_image": true
+  },
+  {
+    "number": 328,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "An administrator is adding a new switch onto the network and has configured AAA for network access control. When testing the configuration, the RADIUS authenticates to Cisco ISE but is being rejected. Why is the ip radius source-interface command needed for this configuration?",
+    "options": [
+      { "letter": "A", "text": "Only requests that originate from a configured NAS IP are accepted by a RADIUS server" },
+      { "letter": "B", "text": "The RADIUS authentication key is transmitted only from the defined RADIUS source interface" },
+      { "letter": "C", "text": "RADIUS requests are generated only by a router if a RADIUS source interface is defined." },
+      { "letter": "D", "text": "Encrypted RADIUS authentication requires the RADIUS source interface be defined" }
+    ],
+    "answer": "QQ==",
+    "explanation": "RADIUS servers authenticate requests based on the NAS-IP (Network Access Server IP). By default, the switch uses the egress interface IP. The 'ip radius source-interface' command ensures a consistent IP is used.",
+    "has_image": false
+  },
+  {
+    "number": 329,
+    "domain": "Security Concepts",
+    "question": "A customer has various external HTTP resources available including Intranet, Extranet, and Internet, with a proxy configuration running in explicit mode. Which method allows the client desktop browsers to be configured to select when to connect directly or when to use the proxy?",
+    "options": [
+      { "letter": "A", "text": "Transparent mode" },
+      { "letter": "B", "text": "Forward file" },
+      { "letter": "C", "text": "PAC file" },
+      { "letter": "D", "text": "Bridge mode" }
+    ],
+    "answer": "Qw==",
+    "explanation": "A Proxy Auto-Configuration (PAC) file uses JavaScript logic to determine whether a web request should be directed to a proxy or sent directly to the destination.",
+    "has_image": false
+  },
+  {
+    "number": 330,
+    "domain": "Security Concepts",
+    "question": "Refer to the exhibit. What does this Python script accomplish?",
+    "options": [
+      { "letter": "A", "text": "It allows authentication with TLSv1 SSL protocol" },
+      { "letter": "B", "text": "It authenticates to a Cisco ISE with an SSH connection." },
+      { "letter": "C", "text": "It authenticates to a Cisco ISE server using the username of ersad" },
+      { "letter": "D", "text": "It lists the LDAP users from the external identity store configured on Cisco ISE" }
+    ],
+    "answer": "Qw==",
+    "explanation": "The script uses the ERS (External RESTful Services) API to communicate with Cisco ISE. It encodes the provided credentials and sends a request to the internal user endpoint to list internal user accounts.",
+    "has_image": true
+  },
+  {
+    "number": 331,
+    "domain": "Security Concepts",
+    "question": "Which system facilitates deploying microsegmentation and multi-tenancy services with a policy-based container?",
+    "options": [
+      { "letter": "A", "text": "SDLC" },
+      { "letter": "B", "text": "Docker" },
+      { "letter": "C", "text": "Lambda" },
+      { "letter": "D", "text": "Contiv" }
+    ],
+    "answer": "RA==",
+    "explanation": "Contiv is an open-source container networking fabric designed to provide network policy, multi-tenancy, and microsegmentation for containerized environments.",
+    "has_image": false
+  },
+  {
+    "number": 332,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which feature is leveraged by advanced antimalware capabilities to be an effective endpoint protection platform?",
+    "options": [
+      { "letter": "A", "text": "big data" },
+      { "letter": "B", "text": "storm centers" },
+      { "letter": "C", "text": "sandboxing" },
+      { "letter": "D", "text": "blocklisting" }
+    ],
+    "answer": "Qw==",
+    "explanation": "Sandboxing is a core feature of modern endpoint protection, allowing suspicious files to be executed in an isolated environment to monitor their behavior before they run on the production system.",
+    "has_image": false
+  },
+  {
+    "number": 333,
+    "domain": "Security Concepts",
+    "question": "An organization wants to implement a cloud-delivered and SaaS-based solution to provide visibility and threat detection across the AWS network. The solution must be deployed without software agents and rely on AWS VPC flow logs instead. Which solution meets these requirements?",
+    "options": [
+      { "letter": "A", "text": "Cisco Stealthwatch Cloud" },
+      { "letter": "B", "text": "Cisco Umbrella" },
+      { "letter": "C", "text": "NetFlow collectors" },
+      { "letter": "D", "text": "Cisco Cloudlock" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Cloud Analytics (formerly Stealthwatch Cloud) integrates directly with cloud providers via APIs to ingest flow logs, providing visibility without the need for host-based agents.",
+    "has_image": false
+  },
+  {
+    "number": 334,
+    "domain": "Security Concepts",
+    "question": "What is the difference between a vulnerability and an exploit?",
+    "options": [
+      { "letter": "A", "text": "A vulnerability is a hypothetical event for an attacker to exploit" },
+      { "letter": "B", "text": "A vulnerability is a weakness that can be exploited by an attacker" },
+      { "letter": "C", "text": "An exploit is a weakness that can cause a vulnerability in the network" },
+      { "letter": "D", "text": "An exploit is a hypothetical event that causes a vulnerability in the network" }
+    ],
+    "answer": "Qg==",
+    "explanation": "A vulnerability is a flaw or weakness in a system, while an exploit is the actual code or technique used to take advantage of that vulnerability to compromise the system.",
+    "has_image": false
+  },
+  {
+    "number": 335,
+    "domain": "Security Concepts",
+    "question": "Cisco SensorBase gathers threat information from a variety of Cisco products and services and performs analytics to find patterns on threats. Which term describes this process?",
+    "options": [
+      { "letter": "A", "text": "deployment" },
+      { "letter": "B", "text": "consumption" },
+      { "letter": "C", "text": "authoring" },
+      { "letter": "D", "text": "sharing" }
+    ],
+    "answer": "Qg==",
+    "explanation": "In the Cisco Security Intelligence Operations (SIO) model, 'consumption' refers to the gathering and aggregation of threat intelligence data from across the global sensor network.",
+    "has_image": false
+  },
+  {
+    "number": 336,
+    "domain": "Security Concepts",
+    "question": "An engineer is configuring their router to send NetFlow data to Stealthwatch which has an IP address of 1.1.1.1 using the flow record 'Stealthwatch' command. Which additional command is required to complete the flow record?",
+    "options": [
+      { "letter": "A", "text": "transport udp 2055" },
+      { "letter": "B", "text": "match ipv4 ttl" },
+      { "letter": "C", "text": "cache timeout active 60" },
+      { "letter": "D", "text": "destination 1.1.1.1" }
+    ],
+    "answer": "RA==",
+    "explanation": "The 'destination' command within a flow exporter configuration is mandatory to specify where the NetFlow records should be sent.",
+    "has_image": false
+  },
+  {
+    "number": 337,
+    "domain": "Security Concepts",
+    "question": "Which Cisco platform processes behavior baselines, monitors for deviations, and reviews for malicious processes in data center traffic and servers while performing software vulnerability detection?",
+    "options": [
+      { "letter": "A", "text": "Cisco Tetration" },
+      { "letter": "B", "text": "Cisco ISE" },
+      { "letter": "C", "text": "Cisco AMP for Network" },
+      { "letter": "D", "text": "Cisco AnyConnect" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Workload (formerly Tetration) is a workload protection platform that provides deep visibility into data center traffic and automated vulnerability assessment.",
+    "has_image": false
+  },
+  {
+    "number": 338,
+    "domain": "Security Concepts",
+    "question": "How is data sent out to the attacker during a DNS tunneling attack?",
+    "options": [
+      { "letter": "A", "text": "as part of the UDP/53 packet payload" },
+      { "letter": "B", "text": "as part of the domain name" },
+      { "letter": "C", "text": "as part of the TCP/53 packet header" },
+      { "letter": "D", "text": "as part of the DNS response packet" }
+    ],
+    "answer": "Qg==",
+    "explanation": "In a DNS tunneling attack, data is encoded into subdomains within the DNS query. The authoritative DNS server controlled by the attacker then decodes this data upon receipt.",
+    "has_image": false
+  },
+  {
+    "number": 339,
+    "domain": "Securing the Cloud",
+    "question": "Drag and drop the cloud security assessment components from the left onto the definitions on the right.",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Cloud security assessment components typically include risk identification, policy review, architecture analysis, and compliance verification.",
+    "has_image": false
+  },
+  {
+    "number": 340,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "An engineer is adding a Cisco DUO solution to the current TACACS+ deployment using Cisco ISE. The engineer wants to authenticate users using their account when they log into network devices. Which action accomplishes this task?",
+    "options": [
+      { "letter": "A", "text": "Configure Cisco DUO with the external Active Directory connector and tie it to the policy set within" },
+      { "letter": "B", "text": "Install and configure the Cisco DUO Authentication Proxy and configure the identity source" },
+      { "letter": "C", "text": "Create an identity policy within Cisco ISE to send all authentication requests to Cisco DUO." },
+      { "letter": "D", "text": "Modify the current policy with the condition MFASourceSequence DUO=true in the authorization" }
+    ],
+    "answer": "Qg==",
+    "explanation": "To integrate MFA into TACACS+ flows, you must install the Duo Authentication Proxy. This proxy acts as a bridge, where ISE sends a RADIUS request to the proxy, which performs MFA.",
+    "has_image": false
+  },
+  {
+    "number": 341,
+    "domain": "Endpoint Protection and Detection",
+    "question": "A Cisco AMP for Endpoints administrator configures a custom detection policy to add specific MD5 signatures. The configuration is created in the simple detection policy section, but it does not work. What is the reason for this failure?",
+    "options": [
+      { "letter": "A", "text": "The administrator must upload the file instead of the hash for Cisco AMP to use." },
+      { "letter": "B", "text": "The MD5 hash uploaded to the simple detection policy is in the incorrect format" },
+      { "letter": "C", "text": "The APK must be uploaded for the application that the detection is intended" },
+      { "letter": "D", "text": "Detections for MD5 signatures must be configured in the advanced custom detection policies" }
+    ],
+    "answer": "RA==",
+    "explanation": "Simple Custom Detection lists in Cisco Secure Endpoint (AMP) exclusively support SHA-256 hashes. If the administrator needs to use MD5 signatures, they must use an Advanced Custom Detection policy.",
+    "has_image": true
+  },
+  {
+    "number": 342,
+    "domain": "Endpoint Protection and Detection",
+    "question": "An organization is selecting a cloud architecture and does not want to be responsible for patch management of the operating systems. Why should the organization select either Platform as a Service or Infrastructure as a Service for this environment?",
+    "options": [
+      { "letter": "A", "text": "Platform as a Service because the customer manages the operating system" },
+      { "letter": "B", "text": "Infrastructure as a Service because the customer manages the operating system" },
+      { "letter": "C", "text": "Platform as a Service because the service provider manages the operating system" },
+      { "letter": "D", "text": "Infrastructure as a Service because the service provider manages the operating system" }
+    ],
+    "answer": "Qw==",
+    "explanation": "In a PaaS (Platform as a Service) model, the service provider handles the underlying infrastructure, including OS maintenance and patching.",
+    "has_image": false
+  },
+  {
+    "number": 343,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "An administrator is adding a new Cisco ISE node to an existing deployment. What must be done to ensure that the addition of the node will be successful when inputting the FQDN?",
+    "options": [
+      { "letter": "A", "text": "Change the IP address of the new Cisco ISE node to the same network as the others." },
+      { "letter": "B", "text": "Make the new Cisco ISE node a secondary PAN before registering it with the primary." },
+      { "letter": "C", "text": "Open port 8905 on the firewall between the Cisco ISE nodes" },
+      { "letter": "D", "text": "Add the DNS entry for the new Cisco ISE node into the DNS server" }
+    ],
+    "answer": "RA==",
+    "explanation": "Registration of a Cisco ISE node requires the primary node to be able to resolve the FQDN of the new node. Therefore, a valid DNS record must exist.",
+    "has_image": false
+  },
+  {
+    "number": 344,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Refer to the exhibit. What will occur when this device tries to connect to the port?",
+    "options": [
+      { "letter": "A", "text": "802.1X will not work, but MAB will start and allow the device on the network." },
+      { "letter": "B", "text": "802.1X will not work and the device will not be allowed network access" },
+      { "letter": "C", "text": "802 1X will work and the device will be allowed on the network" },
+      { "letter": "D", "text": "802 1X and MAB will both be used and ISE can use policy to determine the access level" }
+    ],
+    "answer": "RA==",
+    "explanation": "The interface is configured for both 'authentication port-control auto' (802.1X) and MAB. The switch will prioritize 802.1X; if the device fails to provide credentials, it will trigger MAB.",
+    "has_image": true
+  },
+  {
+    "number": 345,
+    "domain": "Content Security",
+    "question": "A network engineer must configure a Cisco ESA to prompt users to enter two forms of information before gaining access. The Cisco ESA must also join a cluster machine using preshared keys. What must be done to meet these requirements?",
+    "options": [
+      { "letter": "A", "text": "Enable two-factor authentication through a RADIUS server and then join the cluster by using the" },
+      { "letter": "B", "text": "Enable two-factor authentication through a RADIUS server and then join the cluster by using the" },
+      { "letter": "C", "text": "Enable two-factor authentication through a TACACS+ server and then join the cluster by using the" },
+      { "letter": "D", "text": "Enable two-factor authentication through a TACACS+ server and then join the cluster by using the" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Two-factor authentication on Cisco ESA is supported via RADIUS integration. Cluster joining is a separate process handled via the 'clusterconfig' command, which requires the pre-shared key.",
+    "has_image": false
+  },
+  {
+    "number": 346,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which portion of the network do EPP solutions solely focus on and EDR solutions do not?",
+    "options": [
+      { "letter": "A", "text": "server farm" },
+      { "letter": "B", "text": "perimeter" },
+      { "letter": "C", "text": "core" },
+      { "letter": "D", "text": "East-West gateways" }
+    ],
+    "answer": "Qg==",
+    "explanation": "EPP (Endpoint Protection Platform) solutions are primarily focused on the perimeter/host-based prevention of malicious files. EDR provides visibility into post-compromise activity.",
+    "has_image": false
+  },
+  {
+    "number": 347,
+    "domain": "Network Security",
+    "question": "Refer to the exhibit. An engineer is implementing a certificate-based VPN. What is the result of the existing configuration?",
+    "options": [
+      { "letter": "A", "text": "The OU of the IKEv2 peer certificate is used as the identity when matching an IKEv2 authorization" },
+      { "letter": "B", "text": "Only an IKEv2 peer that has an OU certificate attribute set to MANGLER establishes an IKEv2 SA" },
+      { "letter": "C", "text": "The OU of the IKEv2 peer certificate is encrypted when the OU is set to MANGLER" },
+      { "letter": "D", "text": "The OU of the IKEv2 peer certificate is set to MANGLER" }
+    ],
+    "answer": "Qg==",
+    "explanation": "The 'name-mangler' configuration is used to transform/verify identity fields. In this case, it enforces that only peers with an Organizational Unit (OU) of 'MANGLER' are allowed.",
+    "has_image": true
+  },
+  {
+    "number": 348,
+    "domain": "Content Security",
+    "question": "What is a benefit of using Cisco CWS compared to an on-premises Cisco WSA?",
+    "options": [
+      { "letter": "A", "text": "Cisco CWS eliminates the need to backhaul traffic through headquarters for remote workers" },
+      { "letter": "B", "text": "Cisco CWS minimizes the load on the internal network and security infrastructure as compared to" },
+      { "letter": "C", "text": "URL categories are updated more frequently on Cisco CWS than they are on Cisco WSA" },
+      { "letter": "D", "text": "Content scanning for SAAS cloud applications is available through Cisco CWS and not available" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Cloud Web Security (CWS) provides direct-to-cloud web security for remote or mobile users, meaning their traffic does not need to be backhauled to the central office.",
+    "has_image": false
+  },
+  {
+    "number": 349,
+    "domain": "Security Concepts",
+    "question": "What is the term for having information about threats and threat actors that helps mitigate harmful events that would otherwise compromise networks or systems?",
+    "options": [
+      { "letter": "A", "text": "trusted automated exchange" },
+      { "letter": "B", "text": "Indicators of Compromise" },
+      { "letter": "C", "text": "The Exploit Database" },
+      { "letter": "D", "text": "threat intelligence" }
+    ],
+    "answer": "RA==",
+    "explanation": "Threat intelligence is actionable information about current and emerging threats used by security teams to proactively defend their infrastructure.",
+    "has_image": false
+  },
+  {
+    "number": 350,
+    "domain": "Security Concepts",
+    "question": "An organization has a requirement to collect full metadata information about the traffic going through their AWS cloud services. They want to use this information for behavior analytics and statistics. Which two actions must be taken to implement this requirement? (Choose two.)",
+    "options": [
+      { "letter": "A", "text": "Configure Cisco ACI to ingest AWS information." },
+      { "letter": "B", "text": "Configure Cisco Thousand Eyes to ingest AWS information." },
+      { "letter": "C", "text": "Send syslog from AWS to Cisco Stealthwatch Cloud." },
+      { "letter": "D", "text": "Send VPC Flow Logs to Cisco Stealthwatch Cloud." },
+      { "letter": "E", "text": "Configure Cisco Stealthwatch Cloud to ingest AWS information" }
+    ],
+    "answer": "RC==",
+    "explanation": "To achieve visibility in AWS, you must export VPC Flow Logs and configure Cisco Secure Cloud Analytics (Stealthwatch) to ingest this data via the cloud provider API.",
+    "has_image": false
+  },
+  {
+    "number": 351,
+    "domain": "Network Security",
+    "question": "What is the function of the 'crypto isakmp key cisc406397954 address 0.0.0.0 0.0.0.0' command when establishing an IPsec VPN tunnel?",
+    "options": [
+      { "letter": "A", "text": "It defines what data is going to be encrypted via the VPN" },
+      { "letter": "B", "text": "It configures the pre-shared authentication key" },
+      { "letter": "C", "text": "It prevents all IP addresses from connecting to the VPN server." },
+      { "letter": "D", "text": "It configures the local address for the VPN server." }
+    ],
+    "answer": "Qg==",
+    "explanation": "This command sets the pre-shared key for IKE authentication. The '0.0.0.0 0.0.0.0' address acts as a wildcard, meaning this key will be used for any IPsec peer.",
+    "has_image": false
+  },
+  {
+    "number": 352,
+    "domain": "Security Concepts",
+    "question": "An organization wants to improve its cybersecurity processes and to add intelligence to its data. The organization wants to utilize the most current intelligence data for URL filtering, reputations, and vulnerability information that can be integrated with the Cisco FTD and Cisco WSA. What must be done to accomplish these objectives?",
+    "options": [
+      { "letter": "A", "text": "Create a Cisco pxGrid connection to NIST to import this information into the security products for" },
+      { "letter": "B", "text": "Create an automated download of the Internet Storm Center intelligence feed into the Cisco FTD" },
+      { "letter": "C", "text": "Download the threat intelligence feed from the IETF and import it into the Cisco FTD and Cisco" },
+      { "letter": "D", "text": "Configure the integrations with Talos Intelligence to take advantage of the threat intelligence that" }
+    ],
+    "answer": "RA==",
+    "explanation": "Cisco Talos is the primary source of threat intelligence for Cisco security products. Integrating Cisco FTD and WSA with Talos provides real-time updates for reputation scoring.",
+    "has_image": false
+  },
+  {
+    "number": 353,
+    "domain": "Network Security",
+    "question": "Refer to the exhibit. A network engineer is testing NTP authentication and realizes that any device synchronizes time with this router and that NTP authentication is not enforced. What is the cause of this issue?",
+    "options": [
+      { "letter": "A", "text": "The key was configured in plain text." },
+      { "letter": "B", "text": "NTP authentication is not enabled." },
+      { "letter": "C", "text": "The hashing algorithm that was used was MD5, which is unsupported." },
+      { "letter": "D", "text": "The router was not rebooted after the NTP configuration updated." }
+    ],
+    "answer": "Qg==",
+    "explanation": "Configuring keys is insufficient; the global command 'ntp authenticate' must be explicitly enabled to force the device to verify keys.",
+    "has_image": true
+  },
+  {
+    "number": 354,
+    "domain": "Security Concepts",
+    "question": "Refer to the exhibit. How does Cisco Umbrella manage traffic that is directed toward risky domains?",
+    "options": [
+      { "letter": "A", "text": "Traffic is proxied through the intelligent proxy." },
+      { "letter": "B", "text": "Traffic is managed by the security settings and blocked." },
+      { "letter": "C", "text": "Traffic is managed by the application settings, unhandled and allowed." },
+      { "letter": "D", "text": "Traffic is allowed but logged." }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Umbrella uses the 'Intelligent Proxy' to selectively route traffic for 'risky' domains, allowing for deeper inspection while maintaining performance for safe traffic.",
+    "has_image": true
+  },
+  {
+    "number": 355,
+    "domain": "Security Concepts",
+    "question": "An engineer needs to add protection for data in transit and have headers in the email message Which configuration is needed to accomplish this goal?",
+    "options": [
+      { "letter": "A", "text": "Provision the email appliance" },
+      { "letter": "B", "text": "Deploy an encryption appliance." },
+      { "letter": "C", "text": "Map sender !P addresses to a host interface." },
+      { "letter": "D", "text": "Enable flagged message handling" }
+    ],
+    "answer": "Qg==",
+    "explanation": "An encryption appliance is a device that encrypts and decrypts email messages and can add headers to the email message to indicate the encryption status.",
+    "has_image": false
+  },
+  {
+    "number": 356,
+    "domain": "Security Concepts",
+    "question": "How does a cloud access security broker function?",
+    "options": [
+      { "letter": "A", "text": "It is an authentication broker to enable single sign-on and multi-factor authentication for a cloud" },
+      { "letter": "B", "text": "lt integrates with other cloud solutions via APIs and monitors and creates incidents based on" },
+      { "letter": "C", "text": "It acts as a security information and event management solution and receives syslog from other" },
+      { "letter": "D", "text": "It scans other cloud solutions being used within the network and identifies vulnerabilities" }
+    ],
+    "answer": "Qg==",
+    "explanation": "A cloud access security broker (CASB) integrates with other cloud solutions via APIs and monitors activity to enforce security policies and compliance requirements.",
+    "has_image": false
+  },
+  {
+    "number": 357,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "An engineer integrates Cisco FMC and Cisco ISE using pxGrid Which role is assigned for Cisco FMC?",
+    "options": [
+      { "letter": "A", "text": "client" },
+      { "letter": "B", "text": "server" },
+      { "letter": "C", "text": "controller" },
+      { "letter": "D", "text": "publisher" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco FMC is assigned the role of a client in the pxGrid ecosystem, where it subscribes to contextual data published by other partners.",
+    "has_image": false
+  },
+  {
+    "number": 358,
+    "domain": "Security Concepts",
+    "question": "A network security engineer must export packet captures from the Cisco FMC web browser while troubleshooting an issue. When navigating to the address IP>/capure/CAPI/pcap/test.pcap, an error 403: Forbidden is given instead of the PCAP file. Which action must the engineer take to resolve this issue?",
+    "options": [
+      { "letter": "A", "text": "Disable the proxy setting on the browser" },
+      { "letter": "B", "text": "Disable the HTTPS server and use HTTP instead" },
+      { "letter": "C", "text": "Use the Cisco FTD IP address as the proxy server setting on the browser" },
+      { "letter": "D", "text": "Enable the HTTPS server for the device platform policy" }
+    ],
+    "answer": "RA==",
+    "explanation": "The error 403: Forbidden indicates that the web server denied access to the PCAP file. This is often because the HTTPS server is not enabled for the device platform policy on the FTD.",
+    "has_image": false
+  },
+  {
+    "number": 359,
+    "domain": "Security Concepts",
+    "question": "What is a description of microsegmentation?",
+    "options": [
+      { "letter": "A", "text": "Environments apply a zero-trust model and specify how applications on different servers or" },
+      { "letter": "B", "text": "Environments deploy a container orchestration platform, such as Kubernetes, to manage the" },
+      { "letter": "C", "text": "Environments implement private VLAN segmentation to group servers with similar applications." },
+      { "letter": "D", "text": "Environments deploy centrally managed host-based firewall rules on each server or container" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Microsegmentation uses a zero-trust model to logically divide the environment into distinct security segments down to the individual workload level, applying granular security controls.",
+    "has_image": false
+  },
+  {
+    "number": 360,
+    "domain": "Securing the Cloud",
+    "question": "What must be enabled to secure SaaS-based applications?",
+    "options": [
+      { "letter": "A", "text": "modular policy framework" },
+      { "letter": "B", "text": "two-factor authentication" },
+      { "letter": "C", "text": "application security gateway" },
+      { "letter": "D", "text": "end-to-end encryption" }
+    ],
+    "answer": "Qg==",
+    "explanation": "Two-factor authentication (2FA) is a critical security measure that requires users to provide two pieces of evidence to verify their identity before accessing SaaS-based applications.",
+    "has_image": false
+  },
+  {
+    "number": 361,
+    "domain": "Content Security",
+    "question": "What are two ways a network administrator transparently identifies users using Active Directory on the Cisco WSA? (Choose two.)",
+    "options": [
+      { "letter": "A", "text": "Create NTLM or Kerberos authentication realm and enable transparent user identification" },
+      { "letter": "B", "text": "Deploy a separate Active Directory agent such as Cisco Context Directory Agent." },
+      { "letter": "C", "text": "Create an LDAP authentication realm and disable transparent user identification." },
+      { "letter": "D", "text": "Deploy a separate eDirectory server: the client IP address is recorded in this server" }
+    ],
+    "answer": "QS==",
+    "explanation": "Transparently identifying users requires configuring an NTLM/Kerberos realm and deploying an Active Directory agent such as the Context Directory Agent.",
+    "has_image": false
+  },
+  {
+    "number": 362,
+    "domain": "Security Concepts",
+    "question": "Which method of attack is used by a hacker to send malicious code through a web application to an unsuspecting user to request that the victim's web browser executes the code?",
+    "options": [
+      { "letter": "A", "text": "buffer overflow" },
+      { "letter": "B", "text": "browser WGET" },
+      { "letter": "C", "text": "SQL injection" },
+      { "letter": "D", "text": "cross-site scripting" }
+    ],
+    "answer": "RA==",
+    "explanation": "Cross-site scripting (XSS) is a type of injection attack that exploits the lack of input validation in a web application to execute arbitrary scripts in the victim's browser.",
+    "has_image": false
+  },
+  {
+    "number": 363,
+    "domain": "Security Concepts",
+    "question": "An administrator enables Cisco Threat Intelligence Director on a Cisco FMC. Which process uses STIX and allows uploads and downloads of block lists?",
+    "options": [
+      { "letter": "A", "text": "consumption" },
+      { "letter": "B", "text": "sharing" },
+      { "letter": "C", "text": "editing" },
+      { "letter": "D", "text": "authoring" }
+    ],
+    "answer": "Qg==",
+    "explanation": "The sharing process uses STIX to allow the exchange of threat intelligence data, including the upload and download of block lists.",
+    "has_image": false
+  },
+  {
+    "number": 364,
+    "domain": "Security Concepts",
+    "question": "Which open standard creates a framework for sharing threat intelligence in a machine-digestible format?",
+    "options": [
+      { "letter": "A", "text": "OpenC2" },
+      { "letter": "B", "text": "OpenlOC" },
+      { "letter": "C", "text": "CybOX" },
+      { "letter": "D", "text": "STIX" }
+    ],
+    "answer": "RA==",
+    "explanation": "STIX (Structured Threat Information Expression) is the open standard framework designed for sharing threat intelligence in a machine-digestible format.",
+    "has_image": false
+  },
+  {
+    "number": 365,
+    "domain": "Security Concepts",
+    "question": "What are two functionalities of SDN Northbound APIs? (Choose two.)",
+    "options": [
+      { "letter": "A", "text": "Northbound APIs provide a programmable interface for applications to dynamically configure the" },
+      { "letter": "B", "text": "Northbound APIs form the interface between the SDN controller and business applications." },
+      { "letter": "C", "text": "OpenFlow is a standardized northbound API protocol." },
+      { "letter": "D", "text": "Northbound APIs use the NETCONF protocol to communicate with applications." },
+      { "letter": "E", "text": "Northbound APIs form the interface between the SDN controller and the network switches or" }
+    ],
+    "answer": "QS==",
+    "explanation": "Northbound APIs provide the interface between business applications and the SDN controller, allowing for dynamic configuration of network resources.",
+    "has_image": false
+  },
+  {
+    "number": 366,
+    "domain": "Security Concepts",
+    "question": "What is an advantage of network telemetry over SNMP pulls?",
+    "options": [
+      { "letter": "A", "text": "accuracy" },
+      { "letter": "B", "text": "encapsulation" },
+      { "letter": "C", "text": "security" },
+      { "letter": "D", "text": "scalability" }
+    ],
+    "answer": "RA==",
+    "explanation": "Network telemetry uses a push model, which is significantly more scalable than the traditional SNMP pull/polling method, especially in large networks.",
+    "has_image": false
+  },
+  {
+    "number": 367,
+    "domain": "Security Concepts",
+    "question": "What are two functions of TAXII in threat intelligence sharing? (Choose two.)",
+    "options": [
+      { "letter": "A", "text": "determines the \"what\" of threat intelligence" },
+      { "letter": "B", "text": "Supports STIX information" },
+      { "letter": "C", "text": "allows users to describe threat motivations and abilities" },
+      { "letter": "D", "text": "exchanges trusted anomaly intelligence information" },
+      { "letter": "E", "text": "determines how threat intelligence information is relayed" }
+    ],
+    "answer": "QyE=",
+    "explanation": "TAXII is a protocol designed to support STIX information and defines the transportation methods for relaying threat intelligence information.",
+    "has_image": false
+  },
+  {
+    "number": 368,
+    "domain": "Content Security",
+    "question": "A network engineer must migrate a Cisco WSA virtual appliance from one physical host to another physical host by using VMware vMotion. What is a requirement for both physical hosts?",
+    "options": [
+      { "letter": "A", "text": "The hosts must run Cisco AsyncOS 10.0 or greater ." },
+      { "letter": "B", "text": "The hosts must run different versions of Cisco AsyncOS." },
+      { "letter": "C", "text": "The hosts must have access to the same defined network." },
+      { "letter": "D", "text": "The hosts must use a different datastore than the virtual appliance." }
+    ],
+    "answer": "Qw==",
+    "explanation": "VMware vMotion requires both the source and destination hosts to have access to the same network and shared storage to ensure the virtual machine remains connected.",
+    "has_image": false
+  },
+  {
+    "number": 369,
+    "domain": "Endpoint Protection and Detection",
+    "question": "What is a difference between Cisco AMP for Endpoints and Cisco Umbrella?",
+    "options": [
+      { "letter": "A", "text": "Cisco AMP for Endpoints is a cloud-based service, and Cisco Umbrella is not." },
+      { "letter": "B", "text": "Cisco AMP for Endpoints prevents connections to malicious destinations, and C malware." },
+      { "letter": "C", "text": "Cisco AMP for Endpoints automatically researches indicators of compromise .." },
+      { "letter": "D", "text": "Cisco AMP for Endpoints prevents, detects, and responds to attacks before and against Internet" }
+    ],
+    "answer": "RA==",
+    "explanation": "Cisco AMP for Endpoints is an EPP and EDR platform for host-based protection and detection, whereas Cisco Umbrella provides DNS-layer security.",
+    "has_image": false
+  },
+  {
+    "number": 370,
+    "domain": "Security Concepts",
+    "question": "What is the result of the ACME-Router(config)#login block-for 100 attempts 4 within 60 command on a Cisco IOS router?",
+    "options": [
+      { "letter": "A", "text": "lf four log in attempts fail in 100 seconds, wait for 60 seconds to next log in prompt." },
+      { "letter": "B", "text": "After four unsuccessful log in attempts, the line is blocked for 100 seconds and only permit IP" },
+      { "letter": "C", "text": "After four unsuccessful log in attempts, the line is blocked for 60 seconds and only permit IP" },
+      { "letter": "D", "text": "If four failures occur in 60 seconds, the router goes to quiet mode for 100 seconds." }
+    ],
+    "answer": "RA==",
+    "explanation": "This command specifies that if 4 failed login attempts occur within a 60-second window, the router will enter 'quiet mode' (block logins) for 100 seconds.",
+    "has_image": false
+  },
+  {
+    "number": 371,
+    "domain": "Security Concepts",
+    "question": "An engineer is implementing Cisco CES in an existing Microsoft Office 365 environment and must route inbound email to Cisco CES. Which record must be modified to accomplish this task?",
+    "options": [
+      { "letter": "A", "text": "CNAME" },
+      { "letter": "B", "text": "MX" },
+      { "letter": "C", "text": "SPF" },
+      { "letter": "D", "text": "DKIM" }
+    ],
+    "answer": "Qg==",
+    "explanation": "The MX (Mail Exchange) record must be updated to point to the Cisco CES gateway, which directs all incoming email to be scanned before delivery to O365.",
+    "has_image": false
+  },
+  {
+    "number": 372,
+    "domain": "Security Concepts",
+    "question": "What are two functionalities of northbound and southbound APIs within Cisco SDN architecture? (Choose two.)",
+    "options": [
+      { "letter": "A", "text": "Southbound APIs are used to define how SDN controllers integrate with applications." },
+      { "letter": "B", "text": "Southbound interfaces utilize device configurations such as VLANs and IP addresses." },
+      { "letter": "C", "text": "Northbound APIs utilize RESTful API methods such as GET ,POST ,and DELETE." },
+      { "letter": "D", "text": "Southbound APIs utilize CLI, SNMP ,and RESTCONF." },
+      { "letter": "E", "text": "Northbound interfaces utilize OpenFlow and OpFlex to integrate with network devices." }
+    ],
+    "answer": "QyE=",
+    "explanation": "Northbound APIs use RESTful methods to communicate with applications, while southbound APIs (such as CLI, SNMP, and RESTCONF) enable the controller to program network devices.",
+    "has_image": false
+  },
+  {
+    "number": 373,
+    "domain": "Security Concepts",
+    "question": "Refer to the exhibit. Which configuration item makes it possible to have the AAA session on the network?",
+    "options": [
+      { "letter": "A", "text": "aaa authentication login console ise" },
+      { "letter": "B", "text": "aaa authentication enable default enable" },
+      { "letter": "C", "text": "aaa authorization network default group ise" },
+      { "letter": "D", "text": "aaa authorization exec default ise" }
+    ],
+    "answer": "Qw==",
+    "explanation": "The 'aaa authorization network default group ise' command is required to enable network-level authorization using an external AAA server like ISE.",
+    "has_image": true
+  },
+  {
+    "number": 374,
+    "domain": "Security Concepts",
+    "question": "Refer to the exhibit. What is the function of the Python script code snippet for the Cisco ASA REST API?",
+    "options": [
+      { "letter": "A", "text": "adds a global rule into policies" },
+      { "letter": "B", "text": "changes the hostname of the Cisco ASA" },
+      { "letter": "C", "text": "deletes a global rule from policies" },
+      { "letter": "D", "text": "obtains the saved configuration of the Cisco ASA firewall" }
+    ],
+    "answer": "QQ==",
+    "explanation": "The Python script uses the ASA REST API to send a POST request with a JSON object, effectively adding a new global rule to the firewall policies.",
+    "has_image": true
+  },
+  {
+    "number": 375,
+    "domain": "Security Concepts",
+    "question": "An engineer must modify a policy to block specific addresses using Cisco Umbrella. The policy is created already and is actively u: of the default policy elements. What else must be done to accomplish this task?",
+    "options": [
+      { "letter": "A", "text": "Add the specified addresses to the identities list and create a block action." },
+      { "letter": "B", "text": "Create a destination list for addresses to be allowed or blocked." },
+      { "letter": "C", "text": "Use content categories to block or allow specific addresses." },
+      { "letter": "D", "text": "Modify the application settings to allow only applications to connect to required addresses." }
+    ],
+    "answer": "Qg==",
+    "explanation": "Cisco Umbrella uses 'Destination Lists' to define specific domains or IPs to block or allow; these lists are then applied to policies to enforce the filtering action.",
+    "has_image": false
+  },
+  {
+    "number": 376,
+    "domain": "Network Security",
+    "question": "An engineer is trying to decide between using L2TP or GRE over IPsec for their site-to-site VPN implementation. What must be un solution?",
+    "options": [
+      { "letter": "A", "text": "L2TP is an IP packet encapsulation protocol, and GRE over IPsec is a tunneling protocol." },
+      { "letter": "B", "text": "L2TP uses TCP port 47 and GRE over IPsec uses UDP port 1701." },
+      { "letter": "C", "text": "GRE over IPsec adds its own header, and L2TP does not." },
+      { "letter": "D", "text": "GRE over IPsec cannot be used as a standalone protocol, and L2TP can." }
+    ],
+    "answer": "Qw==",
+    "explanation": "GRE (Generic Routing Encapsulation) adds its own header to the IP packet to support various payload types, while L2TP typically relies on the existing packet structure for its encapsulation.",
+    "has_image": false
+  },
+  {
+    "number": 377,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "What is a benefit of using a multifactor authentication strategy?",
+    "options": [
+      { "letter": "A", "text": "It provides visibility into devices to establish device trust." },
+      { "letter": "B", "text": "It provides secure remote access for applications." },
+      { "letter": "C", "text": "It provides an easy, single sign-on experience against multiple applications" },
+      { "letter": "D", "text": "lt protects data by enabling the use of a second validation of identity." }
+    ],
+    "answer": "RA==",
+    "explanation": "Multifactor authentication (MFA) adds a critical layer of protection by requiring a second, independent validation of identity beyond a simple password.",
+    "has_image": false
+  },
+  {
+    "number": 378,
+    "domain": "Endpoint Protection and Detection",
+    "question": "A Cisco ISE engineer configures Central Web Authentication (CWA) for wireless guest access and must have the guest endpoints redirect to the guest portal for authentication and authorization. While testing the policy, the engineer notices that the device is not redirected and instead gets full guest access. What must be done for the redirect to work?",
+    "options": [
+      { "letter": "A", "text": "Tag the guest portal in the CWA part of the Common Tasks section of the authorization profile for" },
+      { "letter": "B", "text": "Use the track movement option within the authorization profile for the authorization policy line" },
+      { "letter": "C", "text": "Create an advanced attribute setting of Cisco:cisco-gateway-id=guest within the authorization" },
+      { "letter": "D", "text": "Add the DACL name for the Airespace ACL configured on the WLC in the Common Tasks section of" }
+    ],
+    "answer": "RA==",
+    "explanation": "For CWA redirection to function, the authorization profile must include the correct DACL name for the Airespace ACL, which allows the WLC to trigger the redirect.",
+    "has_image": false
+  },
+  {
+    "number": 379,
+    "domain": "Content Security",
+    "question": "Which two solutions help combat social engineering and phishing at the endpoint level? (Choose two.)",
+    "options": [
+      { "letter": "A", "text": "Cisco Umbrella" },
+      { "letter": "B", "text": "Cisco ISE" },
+      { "letter": "C", "text": "Cisco DNA Center" },
+      { "letter": "D", "text": "Cisco TrustSec" },
+      { "letter": "E", "text": "Cisco Duo Security" }
+    ],
+    "answer": "QS==",
+    "explanation": "Cisco Umbrella (DNS/Web security) and Cisco Duo (MFA) are two primary solutions that protect endpoints from social engineering and phishing attempts.",
+    "has_image": false
+  },
+  {
+    "number": 380,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which role is a default guest type in Cisco ISE?",
+    "options": [
+      { "letter": "A", "text": "Monthly" },
+      { "letter": "B", "text": "Yearly" },
+      { "letter": "C", "text": "Contractor" },
+      { "letter": "D", "text": "Full-Time" }
+    ],
+    "answer": "Qw==",
+    "explanation": "Contractor is a common default guest type provided in Cisco ISE to manage temporary network access for non-employee users.",
+    "has_image": true
+  },
+  {
+    "number": 381,
+    "domain": "Securing the Cloud",
+    "question": "Which two methods must be used to add switches into the fabric so that administrators can control how switches are added into DCNM for private cloud management? (Choose two.)",
+    "options": [
+      { "letter": "A", "text": "Cisco Cloud Director" },
+      { "letter": "B", "text": "Cisco Prime Infrastructure" },
+      { "letter": "C", "text": "PowerOn Auto Provisioning" },
+      { "letter": "D", "text": "Seed IP" },
+      { "letter": "E", "text": "CDP AutoDiscovery" }
+    ],
+    "answer": "QyE=",
+    "explanation": "To add switches into the fabric, administrators use PowerOn Auto Provisioning (POAP) for automated deployment and Seed IP for manual discovery of existing switches.",
+    "has_image": false
+  },
+  {
+    "number": 382,
+    "domain": "Security Concepts",
+    "question": "Refer to the exhibit. All servers are in the same VLAN/Subnet. DNS Server-1 and DNS Server-2 must communicate with each other, and all servers must communicate with default gateway multilayer switch. Which type of private VLAN ports should be configured to prevent communication between DNS servers and the file server?",
+    "options": [
+      { "letter": "A", "text": "Configure GigabitEthernet0/1 as community port, GigabitEthernet0/2 as isolated port, and" },
+      { "letter": "B", "text": "Configure GigabitEthernet0/1 as community port, GigabitEthernet0/2 as promiscuous port," },
+      { "letter": "C", "text": "Configure GigabitEthernet0/1 as promiscuous port, GigabitEthernet0/2 as community port, and" }
+    ],
+    "answer": "Qw==",
+    "explanation": "The default gateway should be a promiscuous port. Community ports allow members to communicate with each other and the gateway. Isolated ports are restricted to only communicating with the gateway.",
+    "has_image": true
+  },
+  {
+    "number": 383,
+    "domain": "Security Concepts",
+    "question": "Refer to the exhibit. When creating an access rule for URL filtering, a network engineer adds certain categories and individual URLs to block. What is the result of the configuration?",
+    "options": [
+      { "letter": "A", "text": "Only URLs for botnets with reputation scores of 1-3 will be blocked." },
+      { "letter": "B", "text": "Only URLs for botnets with a reputation score of 3 will be blocked." },
+      { "letter": "C", "text": "Only URLs for botnets with reputation scores of 3-5 will be blocked." },
+      { "letter": "D", "text": "Only URLs for botnets with a reputation score of 3 will be allowed while the rest will be blocked." }
+    ],
+    "answer": "Qg==",
+    "explanation": "URL reputation scoring in Cisco firewalls ranges from 1 (most risky) to 5 (least risky); a configured block rule with a score of 3 typically targets that specific risk level and below.",
+    "has_image": true
+  },
+  {
+    "number": 384,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Why is it important to have a patching strategy for endpoints?",
+    "options": [
+      { "letter": "A", "text": "to take advantage of new features released with patches" },
+      { "letter": "B", "text": "so that functionality is increased on a faster scale when it is used" },
+      { "letter": "C", "text": "so that known vulnerabilities are targeted and having a regular patch cycle reduces risks" },
+      { "letter": "D", "text": "so that patching strategies can assist with disabling nonsecure protocols in applications" }
+    ],
+    "answer": "Qw==",
+    "explanation": "A regular patching cycle is essential to mitigate security vulnerabilities, which cybercriminals frequently exploit to compromise systems.",
+    "has_image": false
+  },
+  {
+    "number": 385,
+    "domain": "Security Concepts",
+    "question": "An engineer is configuring Cisco Umbrella and has an identity that references two different policies. Which action ensures that the policy that the identity must use takes precedence over the second one?",
+    "options": [
+      { "letter": "A", "text": "Configure the default policy to redirect the requests to the correct policy" },
+      { "letter": "B", "text": "Place the policy with the most-specific configuration last in the policy" }
+    ],
+    "answer": "Qg==",
+    "explanation": "In Cisco Umbrella, policy precedence is determined by the order of the policies; the policy that appears higher (first) in the list takes precedence over those below it.",
+    "has_image": false
+  },
+  {
+"number": 386,
+"domain": "Security Concepts",
+"question": "Which security product enables administrators to deploy Kubernetes clusters in air-gapped sites without needing Internet access?",
+"options": [
+{
+"letter": "A",
+"text": "Cisco Content Platform"
+},
+{
+"letter": "B",
+"text": "Cisco Container Controller"
+},
+{
+"letter": "C",
+"text": "Cisco Container Platform"
+},
+{
+"letter": "D",
+"text": "Cisco Cloud Platform"
+}
+],
+"answer": "C",
+"explanation": "Cisco Container Platform (CCP) is a security product that enables administrators to deploy Kubernetes clusters in air-gapped sites without needing Internet access. CCP tenant images contain all the necessary binaries and do not need internet access to function.",
+"has_image": false
+},
+{
+"number": 387,
+"domain": "Security Concepts",
+"question": "What is the intent of a basic SYN flood attack?",
+"options": [
+{
+"letter": "A",
+"text": "to solicit DNS responses"
+},
+{
+"letter": "B",
+"text": "to exceed the threshold limit of the connection queue"
+},
+{
+"letter": "C",
+"text": "to flush the register stack to re-initiate the buffers"
+},
+{
+"letter": "D",
+"text": "to cause the buffer to overflow"
+}
+],
+"answer": "B",
+"explanation": "A basic SYN flood attack is a type of denial-of-service (DoS) attack that aims to exhaust the resources of a server by sending a large number of SYN packets and not completing the TCP three-way handshake, intending to exceed the threshold limit of the connection queue.",
+"has_image": false
+},
+{
+"number": 388,
+"domain": "Security Concepts",
+"question": "An engineer configures new features within the Cisco Umbrella dashboard and wants to identify and proxy traffic that is categorized as risky domains and may contain safe and malicious content. Which action accomplishes these objectives?",
+"options": [
+{
+"letter": "A",
+"text": "Configure URL filtering within Cisco Umbrella to track the URLs and proxy the requests for those"
+},
+{
+"letter": "B",
+"text": "Configure intelligent proxy within Cisco Umbrella to intercept and proxy the requests for only"
+},
+{
+"letter": "C",
+"text": "Upload the threat intelligence database to Cisco Umbrella for the most current information on"
+},
+{
+"letter": "D",
+"text": "Create a new site within Cisco Umbrella to block requests from those categories so they can be"
+}
+],
+"answer": "B",
+"explanation": "The intelligent proxy is a feature of Cisco Umbrella that allows it to selectively inspect and proxy web requests for domains that are classified as risky or potentially malicious.",
+"has_image": false
+},
+{
+"number": 389,
+"domain": "Content Security",
+"question": "Which endpoint solution protects a user from a phishing attack?",
+"options": [
+{
+"letter": "A",
+"text": "Cisco Identity Services Engine"
+},
+{
+"letter": "B",
+"text": "Cisco AnyConnect with ISE Posture module"
+},
+{
+"letter": "C",
+"text": "Cisco AnyConnect with Network Access Manager module"
+},
+{
+"letter": "D",
+"text": "Cisco AnyConnect with Umbrella Roaming Security module"
+}
+],
+"answer": "D",
+"explanation": "Cisco AnyConnect with Umbrella Roaming Security module protects a user from a phishing attack by enforcing security at the DNS layer and blocking malicious domains that are used for phishing campaigns.",
+"has_image": false
+},
+{
+"number": 390,
+"domain": "Security Concepts",
+"question": "Using Cisco Cognitive Threat Analytics, which platform automatically blocks risky sites, and test unknown sites for hidden advanced threats before allowing users to click them?",
+"options": [
+{
+"letter": "A",
+"text": "Cisco Identity Services Engine (ISE)"
+},
+{
+"letter": "B",
+"text": "Cisco Enterprise Security Appliance (ESA)"
+},
+{
+"letter": "C",
+"text": "Cisco Web Security Appliance (WSA)"
+},
+{
+"letter": "D",
+"text": "Cisco Advanced Stealthwatch Appliance (ASA)"
+}
+],
+"answer": "C",
+"explanation": "Cisco Web Security Appliance (WSA) is the platform that automatically blocks risky sites, and tests unknown sites for hidden advanced threats before allowing users to click them, using Cisco Cognitive Threat Analytics.",
+"has_image": false
+},
+{
+"number": 391,
+"domain": "Content Security",
+"question": "What are two things to consider when using PAC files with the Cisco WSA? (Choose two.)",
+"options": [
+{
+"letter": "A",
+"text": "If the WSA host port is changed, the default port redirects web traffic to the correct port"
+},
+{
+"letter": "B",
+"text": "PAC files use if-else statements to determine whether to use a proxy or a direct connection for"
+},
+{
+"letter": "C",
+"text": "The WSA hosts PAC files on port 9001 by default."
+},
+{
+"letter": "D",
+"text": "The WSA hosts PAC files on port 6001 by default."
+},
+{
+"letter": "E",
+"text": "By default, they direct traffic through a proxy when the PC and the host are on the same subnet."
+}
+],
+"answer": "B, C",
+"explanation": "PAC files use if-else statements to determine whether to use a proxy or a direct connection, and the WSA hosts PAC files on port 9001 by default.",
+"has_image": false
+},
+{
+"number": 392,
+"domain": "Secure Network Access, Visibility, and Enforcement",
+"question": "Which IETF attribute is supported for the RADIUS CoA feature?",
+"options": [
+{
+"letter": "A",
+"text": "24 State"
+},
+{
+"letter": "B",
+"text": "30 Calling-Station-ID"
+},
+{
+"letter": "C",
+"text": "42 Acct-Session-ID"
+},
+{
+"letter": "D",
+"text": "81 Message-Authenticator"
+}
+],
+"answer": "A",
+"explanation": "The RADIUS CoA feature supports the IETF attribute 24 State, which is used to identify the session for which the CoA request is intended.",
+"has_image": false
+},
+{
+"number": 393,
+"domain": "Content Security",
+"question": "When a transparent authentication fails on the Web Security Appliance, which type of access does the end user get?",
+"options": [
+{
+"letter": "A",
+"text": "guest"
+},
+{
+"letter": "B",
+"text": "limited Internet"
+},
+{
+"letter": "C",
+"text": "blocked"
+},
+{
+"letter": "D",
+"text": "full Internet"
+}
+],
+"answer": "C",
+"explanation": "When a transparent authentication fails on the Web Security Appliance (WSA), the end user gets blocked access.",
+"has_image": false
+},
+{
+"number": 394,
+"domain": "Security Concepts",
+"question": "What are two ways that Cisco Container Platform provides value to customers who utilize cloud service providers? (Choose two.)",
+"options": [
+{
+"letter": "A",
+"text": "Allows developers to create code once and deploy to multiple clouds"
+},
+{
+"letter": "B",
+"text": "helps maintain source code for cloud deployments"
+},
+{
+"letter": "C",
+"text": "manages Docker containers"
+},
+{
+"letter": "D",
+"text": "manages Kubernetes clusters"
+},
+{
+"letter": "E",
+"text": "Creates complex tasks for managing code"
+}
+],
+"answer": "A, D",
+"explanation": "Cisco Container Platform (CCP) simplifies deployment and management by allowing developers to create code once and deploy to multiple clouds and by managing Kubernetes clusters.",
+"has_image": false
+},
+{
+"number": 395,
+"domain": "Security Concepts",
+"question": "DRAG DROP  Drag and drop the posture assessment flow actions from the left into a sequence on the right.",
+"options": [],
+"answer": "Sequence requires correct ordering of posture assessment flow actions.",
+"explanation": "Sequence requires correct ordering of posture assessment flow actions.",
+"has_image": false
+},
+{
+"number": 396,
+"domain": "Endpoint Protection and Detection",
+"question": "Refer to the exhibit. What does the API key do while working with",
+"options": [
+{
+"letter": "A",
+"text": "displays client ID"
+},
+{
+"letter": "B",
+"text": "HTTP authorization"
+},
+{
+"letter": "C",
+"text": "Imports requests"
+},
+{
+"letter": "D",
+"text": "HTTP authentication"
+}
+],
+"answer": "D",
+"explanation": "The API key is used for HTTP authentication when working with APIs to ensure the system is authenticated to access requested resources.",
+"has_image": true
+},
+{
+"number": 397,
+"domain": "Security Concepts",
+"question": "Which statement describes a serverless application?",
+"options": [
+{
+"letter": "A",
+"text": "The application delivery controller in front of the server farm designates on which server the"
+},
+{
+"letter": "B",
+"text": "The application runs from an ephemeral, event-triggered, and stateless container that is fully"
+},
+{
+"letter": "C",
+"text": "The application is installed on network equipment and not on physical servers."
+},
+{
+"letter": "D",
+"text": "The application runs from a containerized environment that is managed by Kubernetes or Docker"
+}
+],
+"answer": "B",
+"explanation": "A serverless application runs from an ephemeral, event-triggered, and stateless container that is fully managed by a cloud provider.",
+"has_image": false
+},
+{
+"number": 398,
+"domain": "Security Concepts",
+"question": "What is a description of microsegmentation?",
+"options": [
+{
+"letter": "A",
+"text": "Environments deploy a container orchestration platform, such as Kubernetes, to manage the"
+},
+{
+"letter": "B",
+"text": "Environments apply a zero-trust model and specify how applications on different servers or"
+},
+{
+"letter": "C",
+"text": "Environments deploy centrally managed host-based firewall rules on each server or container ."
+},
+{
+"letter": "D",
+"text": "Environments implement private VLAN segmentation to group servers with similar applications."
+}
+],
+"answer": "B",
+"explanation": "Microsegmentation applies a zero-trust model to specify how applications on different servers or containers can communicate.",
+"has_image": false
+},
+{
+"number": 399,
+"domain": "Content Security",
+"question": "Which Cisco WSA feature supports access control using URL categories?",
+"options": [
+{
+"letter": "A",
+"text": "transparent user identification"
+},
+{
+"letter": "B",
+"text": "SOCKS proxy services"
+},
+{
+"letter": "C",
+"text": "web usage controls"
+},
+{
+"letter": "D",
+"text": "user session restrictions"
+}
+],
+"answer": "C",
+"explanation": "Web usage controls is the Cisco WSA feature that allows administrators to define and enforce policies based on URL categories.",
+"has_image": false
+},
+{
+"number": 400,
+"domain": "Security Concepts",
+"question": "Which technology limits communication between nodes on the same network segment to individual applications?",
+"options": [
+{
+"letter": "A",
+"text": "serverless infrastructure"
+},
+{
+"letter": "B",
+"text": "microsegmentation"
+},
+{
+"letter": "C",
+"text": "SaaS deployment"
+},
+{
+"letter": "D",
+"text": "machine-to-machine firewalling"
+}
+],
+"answer": "B",
+"explanation": "Microsegmentation is a technology that limits communication between nodes on the same network segment to individual applications by creating secure zones.",
+"has_image": false
+}
+
+]
+
+
+ 
+</script>
+<script>
+        const rawQuestions = JSON.parse(document.getElementById('quiz-data').textContent);
+        let currentIdx = 0;
+        let score = 0;
+
+        function base64Decode(str) { try { return atob(str); } catch (e) { return str; } }
+        function getAnswers(obfuscated) { return base64Decode(obfuscated).replace(/[^A-G]/gi, '').split(''); }
+        function isMultiSelect(questionText) { 
+            const text = questionText.toLowerCase();
+            return text.includes('(choose two)') || text.includes('(choose three)');
+        }
+
+        function buildQuiz() {
+            const quizArea = document.getElementById('quiz-area');
+            rawQuestions.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = `quiz-card ${idx === 0 ? 'active' : ''}`;
+                card.id = `card-${idx}`;
+                card.innerHTML = `<div class="domain-badge">Q${q.number} - ${q.domain}</div>
+                                  <div class="question-text">${q.question}</div>`;
+                
+                const multi = isMultiSelect(q.question);
+                q.options.forEach(opt => {
+                    const label = document.createElement('label');
+                    label.className = 'option-label';
+                    label.id = `label-${idx}-${opt.letter}`;
+                    label.innerHTML = `<input type="${multi ? 'checkbox' : 'radio'}" name="question-${idx}" value="${opt.letter}"> ${opt.letter}. ${opt.text}`;
+                    card.appendChild(label);
+                });
+
+                const explainDiv = document.createElement('div');
+                explainDiv.className = 'explanation';
+                explainDiv.id = `explain-${idx}`;
+                explainDiv.innerHTML = `<strong>Explanation:</strong><br>${q.explanation}`;
+                card.appendChild(explainDiv);
+                quizArea.appendChild(card);
+            });
+            updateNav();
+        }
+
+        function changeQuestion(dir) {
+            document.getElementById(`card-${currentIdx}`).classList.remove('active');
+            currentIdx += dir;
+            document.getElementById(`card-${currentIdx}`).classList.add('active');
+            updateNav();
+        }
+
+        function updateNav() {
+            document.getElementById('prev-btn').disabled = currentIdx === 0;
+            document.getElementById('next-btn').style.display = currentIdx === rawQuestions.length - 1 ? 'none' : 'inline-block';
+            document.getElementById('submit-btn').style.display = currentIdx === rawQuestions.length - 1 ? 'inline-block' : 'none';
+            // Finish button is hidden only after the quiz is submitted (handled by action-container styling in gradeQuiz)[cite: 1]
+            document.getElementById('finish-btn').style.display = currentIdx === rawQuestions.length - 1 ? 'none' : 'inline-block';
+        }
+
+        function gradeQuiz() {
+            score = 0;
+            rawQuestions.forEach((q, idx) => {
+                const correctAnswers = getAnswers(q.answer);
+                const selected = Array.from(document.querySelectorAll(`input[name="question-${idx}"]:checked`)).map(el => el.value);
+                const explainDiv = document.getElementById(`explain-${idx}`);
+                let isCorrect = selected.length === correctAnswers.length && selected.every(val => correctAnswers.includes(val));
+                
+                q.options.forEach(opt => {
+                    const label = document.getElementById(`label-${idx}-${opt.letter}`);
+                    if (correctAnswers.includes(opt.letter)) label.classList.add('right-ans');
+                    else if (selected.includes(opt.letter)) label.classList.add('wrong-ans');
+                });
+                explainDiv.style.display = 'block';
+                if (isCorrect) score++;
+            });
+            document.querySelectorAll('.quiz-card').forEach(card => card.classList.add('active'));
+            document.querySelector('.action-container').style.display = 'none';
+            alert(`Module 3 Completed!\nScore: ${score} / ${rawQuestions.length}`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        buildQuiz();
+    </script>
+</body>
+</html>
