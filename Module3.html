@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 3 - CCNP 350-701 Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7fafc;
+            color: #2d3748;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #1a365d;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .quiz-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border-top: 5px solid #2b6cb0;
+            display: none;
+        }
+        .quiz-card.active {
+            display: block;
+        }
+        .domain-badge {
+            display: inline-block;
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question-text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .option-label {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-label:hover {
+            background: #edf2f7;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+        .btn {
+            background-color: #2b6cb0;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background-color: #2c5282;
+        }
+        .action-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .nav-container {
+            display: flex;
+            gap: 10px;
+        }
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0fff4;
+            border-left: 4px solid #38a169;
+            border-radius: 4px;
+            display: none;
+        }
+        .wrong-ans {
+            background-color: #fff5f5 !important;
+            border-color: #feb2b2 !important;
+        }
+        .right-ans {
+            background-color: #f0fff4 !important;
+            border-color: #9ae6b4 !important;
+        }
+        .exhibit-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #cbd5e0;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+    </style>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+        if (localStorage.getItem('scor_session') !== 'authenticated') {
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CCNP Security 350-701</h1>
+            <h2>Module 3 Practice Exam</h2>
+            <button class="btn" style="background-color: #4a5568;" onclick="window.location.href='index.html'">🏠 Portal Home</button>
+        </header>
+        <div id="quiz-area"></div>
+        <div class="action-container">
+            <!-- Exit and Finish Quiz grouped together on the left -->
+            <div class="nav-container">
+                <button class="btn" style="background-color: #e53e3e;" onclick="window.location.href='index.html'">Exit</button>
+                <button class="btn" id="finish-btn" style="background-color: #38a169;" onclick="gradeQuiz()">Finish Quiz</button>
+            </div>
+            
+            <div class="nav-container">
+                <button class="btn" id="prev-btn" style="background-color: #4a5568;" onclick="changeQuestion(-1)">Previous</button>
+                <button class="btn" id="next-btn" onclick="changeQuestion(1)">Next</button>
+            </div>
+            <button class="btn" id="submit-btn" style="background-color: #38a169;" onclick="gradeQuiz()">Submit & Review</button>
+        </div>
+    </div>
+    <script id="quiz-data" type="application/json">
+      
+[
+
+
+{
+    "number": 201,
+    "domain": "Security Concepts",
+    "question": "An organization is implementing URL blocking using Cisco Umbrell a. The users are able to go to some sites but other sites are not accessible due to an error .Why is the error occurring?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Client computers do not have the Cisco Umbrella Root CA certificate installed."
+      },
+      {
+        "letter": "B",
+        "text": "IP-Layer Enforcement is not configured."
+      },
+      {
+        "letter": "C",
+        "text": "Client computers do not have an SSL certificate deployed from an internal CA server ."
+      },
+      {
+        "letter": "D",
+        "text": "Intelligent proxy and SSL decryption is disabled in the policy"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "Other features are dependent on SSL Decryption functionality, which requires the Cisco Umbrella root certificate. Having the SSL Decryption feature improves: Custom URL Blocking\u2014Required to block the HTTPS version of a URL. \u2026 Umbrella\u2019s Block Page and Block Page Bypass features present an SSL certificate to browsers that make connections to HTTPS sites. This SSL certificate matches the requested site but will be signed by the Cisco Umbrella certificate authority (CA). If the CA is not trusted by your browser, an error page may be displayed. Typical errors include \u201cThe security certificate presented by this website was not issued by a trusted certificate authority\u201d (Internet Explorer), \u201cThe site\u2019s security certificate is not trusted!\u201d (Google Chrome) or \u201cThis Connection is Untrusted\u201d (Mozilla Firefox). Although the error page is expected, the message displayed can be confusing and you may wish to prevent it from appearing. To avoid these error pages, install the Cisco Umbrella root certificate into your browser or the browsers of your users\u2014if you\u2019re a network admin. Reference:  -umbrella/docs/rebrand-cisco-certificate-import- information   Questions & Answers PDF P-152",
+    "has_image": false
+  },
+  {
+    "number": 202,
+    "domain": "Securing the Cloud",
+    "question": "Which two aspects of the cloud PaaS model are managed by the customer but not the provider? (Choose two)",
+    "options": [
+      {
+        "letter": "A",
+        "text": "virtualization"
+      },
+      {
+        "letter": "B",
+        "text": "middleware"
+      },
+      {
+        "letter": "C",
+        "text": "operating systems"
+      },
+      {
+        "letter": "D",
+        "text": "applications"
+      },
+      {
+        "letter": "E",
+        "text": "data"
+      }
+    ],
+    "answer": "RCxF",
+    "explanation": "Customers must manage applications and data in PaaS.   Questions & Answers PDF P-153",
+    "has_image": false
+  },
+  {
+    "number": 203,
+    "domain": "Security Concepts",
+    "question": "What is an attribute of the DevSecOps process?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "mandated security controls and check lists"
+      },
+      {
+        "letter": "B",
+        "text": "security scanning and theoretical vulnerabilities"
+      },
+      {
+        "letter": "C",
+        "text": "development security"
+      },
+      {
+        "letter": "D",
+        "text": "isolated security team"
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "Questions & Answers PDF P-154  DevSecOps (development, security, and operations) is a concept used in recent years to describe how to move security activities to the start of the development life cycle and have built-in security practices in the continuous integration/continuous deployment (CI/CD) pipeline. Thus minimizing vulnerabilities and bringing security closer to IT and business objectives. Three key things make a real DevSecOps environment: + Security testing is done by the development team. + Issues found during that testing is managed by the development team. + Fixing those issues stays within the development team.",
+    "has_image": false
+  },
+  {
+    "number": 204,
+    "domain": "Security Concepts",
+    "question": "An engineer notices traffic interruption on the network. Upon further investigation, it is learned that broadcast packets have been flooding the network. What must be configured, based on a predefined threshold, to address this issue?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Bridge Protocol Data Unit guard"
+      },
+      {
+        "letter": "B",
+        "text": "embedded event monitoring"
+      },
+      {
+        "letter": "C",
+        "text": "storm control"
+      },
+      {
+        "letter": "D",
+        "text": "access control lists"
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "Storm control prevents traffic on a LAN from being disrupted by a broadcast, multicast, or unicast storm on one of the physical interfaces. A LAN storm occurs when packets flood the LAN, creating excessive traffic and degrading network performance. Errors in the protocol-stack implementation, mistakes in network configurations, or users issuing a denial-of-service attack can cause a storm. By using the \u201cstorm-control broadcast level [falling-threshold]\u201d we can limit the broadcast traffic on the switch.   Questions & Answers PDF P-155",
+    "has_image": false
+  },
+  {
+    "number": 205,
+    "domain": "Network Security",
+    "question": "Which two cryptographic algorithms are used with IPsec? (Choose two)",
+    "options": [
+      {
+        "letter": "A",
+        "text": "AES-BAC"
+      },
+      {
+        "letter": "B",
+        "text": "AES-ABC"
+      },
+      {
+        "letter": "C",
+        "text": "HMAC-SHA1/SHA2"
+      },
+      {
+        "letter": "D",
+        "text": "Triple AMC-CBC"
+      },
+      {
+        "letter": "E",
+        "text": "AES-CBC"
+      }
+    ],
+    "answer": "QyxF",
+    "explanation": "Cryptographic algorithms defined for use with IPsec include: + HMAC-SHA1/SHA2 for integrity protection and authenticity. + TripleDES-CBC for confidentiality + AES-CBC and AES-CTR for confidentiality. + AES-GCM and ChaCha20-Poly1305 providing confidentiality and authentication together efficiently.",
+    "has_image": false
+  },
+  {
+    "number": 206,
+    "domain": "Security Concepts",
+    "question": "In which type of attack does the attacker insert their machine between two hosts that are communicating with each other?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "LDAP injection"
+      },
+      {
+        "letter": "B",
+        "text": "man-in-the-middle"
+      },
+      {
+        "letter": "C",
+        "text": "cross-site scripting"
+      },
+      {
+        "letter": "D",
+        "text": "insecure API"
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "In a\u00a0man-in-the-middle (MITM)\u00a0attack, the attacker inserts their machine between two hosts that are communicating with each other, and secretly relays and possibly alters the messages between them. The attacker can intercept, modify, or spoof the data, and the hosts are unaware that their communication is compromised. A MITM attack can target any communication channel that uses   Questions & Answers PDF P-156  weak or no encryption, such as email, web, or wireless networks. A MITM attack can break the confidentiality, integrity, and authenticity of the communication, and can have various goals, such as eavesdropping, stealing credentials, impersonating a legitimate party, or redirecting traffic. A MITM attack can be prevented by using strong encryption protocols, such as TLS, IPSec, or SSH, and verifying the identity of the communication endpoints using certificates or other means.\u00a0Reference:\u00a0Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0,\u00a0Man- in-the-middle attack - Wikipedia,\u00a0Man-in-the-Middle Attack: Types and Examples - Fortinet",
+    "has_image": false
+  },
+  {
+    "number": 207,
+    "domain": "Security Concepts",
+    "question": "Which Dos attack uses fragmented packets to crash a target machine?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "smurf"
+      },
+      {
+        "letter": "B",
+        "text": "MITM"
+      },
+      {
+        "letter": "C",
+        "text": "teardrop"
+      },
+      {
+        "letter": "D",
+        "text": "LAND"
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "A teardrop attack is a denial-of-service (DoS) attack that involves sending fragmented packets to a target machine. Since the machine receiving such packets cannot reassemble them due to a bug in TCP/IP fragmentation reassembly, the packets overlap one another, crashing the target network device. This generally happens on older operating systems such as Windows 3.1x, Windows 95, Windows NT and versions of the Linux kernel prior to 2.1.63.",
+    "has_image": false
+  },
+  {
+    "number": 208,
+    "domain": "Security Concepts",
+    "question": "Why is it important to have logical security controls on endpoints even though the users are trained to spot security threats and the network devices already help prevent them?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "to prevent theft of the endpoints"
+      },
+      {
+        "letter": "B",
+        "text": "because defense-in-depth stops at the network"
+      },
+      {
+        "letter": "C",
+        "text": "to expose the endpoint to more threats"
+      },
+      {
+        "letter": "D",
+        "text": "because human error or insider threats will still exist"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "",
+    "has_image": false
+  },
+  {
+    "number": 209,
+    "domain": "Security Concepts",
+    "question": "Which type of API is being used when a security application notifies a controller within a software- defined network architecture about a specific security threat?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "westbound AP"
+      },
+      {
+        "letter": "B",
+        "text": "southbound API"
+      },
+      {
+        "letter": "C",
+        "text": "northbound API"
+      },
+      {
+        "letter": "D",
+        "text": "eastbound API"
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "A security application that notifies a controller within a software-defined network architecture about a specific security threat is using a\u00a0northbound API.\u00a0A northbound API is an interface that enables communication between the SDN controller and the applications or management systems that use the network services1.\u00a0A security application can use a northbound API to send alerts, requests, or commands to the SDN controller, which can then take appropriate actions on the network devices or policies2.\u00a0For example, a security application can use a northbound API to inform the SDN controller about a malicious traffic pattern, and the SDN controller can then block or redirect the traffic using a southbound API3. :\u00a01:\u00a0What is Software-Defined Networking (SDN)? | VMware Glossary\u00a02:\u00a0Intent-Based Networking\u2019s Next Evolution: The DNA Center Platform - Cisco Blogs\u00a03: Cisco SDN Security: Securing the Software Defined Network - Cisco",
+    "has_image": false
+  },
+  {
+    "number": 210,
+    "domain": "Network Security",
+    "question": "When planning a VPN deployment, for which reason does an engineer opt for an active/active FlexVPN configuration as opposed to DMVPN?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Multiple routers or VRFs are required."
+      },
+      {
+        "letter": "B",
+        "text": "Traffic is distributed statically by default."
+      },
+      {
+        "letter": "C",
+        "text": "Floating static routes are required."
+      },
+      {
+        "letter": "D",
+        "text": "HSRP is used for faliover ."
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "An active/active FlexVPN configuration allows for multiple routers or VRFs to act as hubs for different VPN groups, providing load balancing and redundancy1. This is useful when the VPN deployment has a large number of spokes or different security policies for different groups of spokes.\u00a0DMVPN, on the other hand, only supports a single hub or a pair of hubs in active/standby mode for each VPN group2. This limits the scalability and flexibility of DMVPN deployments. Therefore, an engineer would opt for an active/active FlexVPN configuration as opposed to DMVPN when multiple routers or VRFs are required.\u00a0Reference\u00a0:= Cisco FlexVPN: Benefits and Best Practices Cisco DMVPN Design Guide",
+    "has_image": false
+  },
+  {
+    "number": 211,
+    "domain": "Security Concepts",
+    "question": "Which algorithm provides asymmetric encryption?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "RC4"
+      },
+      {
+        "letter": "B",
+        "text": "AES"
+      },
+      {
+        "letter": "C",
+        "text": "RSA"
+      },
+      {
+        "letter": "D",
+        "text": "3DES"
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "Asymmetric encryption, also known as public-key cryptography, is a type of encryption that uses a pair of keys to encrypt and decrypt data. The pair of keys includes a public key, which can be shared with anyone, and a private key, which is kept secret by the owner .In asymmetric encryption, the sender uses the recipient\u2019s public key to encrypt the data. The recipient then uses their private key to decrypt the data. This approach allows for secure communication between two parties without the need for both parties to have the same secret key. RSA is one of the most commonly used asymmetric encryption algorithms. It is based on the mathematical problem of factoring large numbers, which is believed to be hard to solve. RSA stands for Rivest-Shamir-Adleman, the names of the three inventors of the algorithm. RSA can be used for both encryption and digital signatures. To generate an RSA key pair, the following steps are performed:   Questions & Answers PDF P-159  Choose two large prime numbers, p and q, and compute their product, n = pq. This is called the modulus. Choose a small number, e, that is relatively prime to (p-1)(q-1). This is called the public exponent. Compute a number, d, that satisfies the equation ed \u2261 1 (mod (p-1)(q-1)). This is called the private exponent. The public key is (n, e) and the private key is (n, d). To encrypt a message, m, with the public key (n, e), the following formula is used: c = m^e mod n To decrypt a ciphertext, c, with the private key (n, d), the following formula is used: m = c^d mod n Reference\u00a0:= [Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0], Module 3: VPN Technologies, Lesson 3.1: Site-to-Site VPNs, Topic 3.1.2: IPsec VPNs What is Asymmetric Encryption? - GeeksforGeeks What is asymmetric encryption? | Asymmetric vs. symmetric \u2026 - Cloudflare",
+    "has_image": false
+  },
+  {
+    "number": 212,
+    "domain": "Security Concepts",
+    "question": "What are two functions of secret key cryptography? (Choose two)",
+    "options": [
+      {
+        "letter": "A",
+        "text": "key selection without integer factorization"
+      },
+      {
+        "letter": "B",
+        "text": "utilization of different keys for encryption and decryption"
+      },
+      {
+        "letter": "C",
+        "text": "utilization of large prime number iterations"
+      },
+      {
+        "letter": "D",
+        "text": "provides the capability to only know the key on one side"
+      },
+      {
+        "letter": "E",
+        "text": "utilization of less memory"
+      }
+    ],
+    "answer": "QSxF",
+    "explanation": "Secret key cryptography, also known as symmetric key cryptography, is a type of encryption where a single secret key is used for both encryption and decryption of a message. The cryptographic key is kept secret between the sender and receiver, making it difficult for anyone else to decipher the message. Some of the functions of secret key cryptography are: Key selection without integer factorization: Secret key cryptography does not rely on complex mathematical problems such as integer factorization or discrete logarithms to generate keys. Instead, the keys are chosen randomly or derived from a passphrase or a shared secret. This makes the key generation process faster and simpler than in public key cryptography. Utilization of less memory: Secret key cryptography uses less memory than public key cryptography, as it only requires one key to be stored and managed. Public key cryptography, on the other hand, requires two keys (public and private) for each user, which increases the memory overhead and complexity of key management.   Questions & Answers PDF P-160  The other options are not functions of secret key cryptography, but rather characteristics of public key cryptography or asymmetric cryptography, which is a different type of encryption where different keys are used for encryption and decryption. Public key cryptography has the following features: Utilization of different keys for encryption and decryption: Public key cryptography uses a pair of keys, one public and one private, for each user .The public key can be shared with anyone, while the private key must be kept secret. The public key is used to encrypt messages, while the private key is used to decrypt them. This allows users to communicate securely without having to exchange a secret key beforehand. Utilization of large prime number iterations: Public key cryptography relies on hard mathematical problems such as integer factorization or discrete logarithms to generate keys. These problems involve finding the prime factors of large numbers or finding the discrete logarithms of numbers in a finite field. These problems are easy to solve in one direction, but hard to solve in the reverse direction. For example, it is easy to multiply two large prime numbers, but hard to find the prime factors of the product. This makes the keys hard to break by brute force or other methods. Provides the capability to only know the key on one side: Public key cryptography enables users to encrypt messages without knowing the recipient\u2019s key, and vice versa. This is possible because the encryption and decryption keys are different and mathematically related. For example, Alice can encrypt a message with Bob\u2019s public key, and only Bob can decrypt it with his private key. Alice does not need to know Bob\u2019s private key, and Bob does not need to know Alice\u2019s key. This also enables public key cryptography to support digital signatures, which are a way of verifying the identity and integrity of a message. Reference\u00a0:= What Is Secret Key Cryptography? A Complete Guide - Helenix Definition of Secret-key Cryptography - Gartner",
+    "has_image": false
+  },
+  {
+    "number": 213,
+    "domain": "Security Concepts",
+    "question": "For Cisco IOS PKI, which two types of Servers are used as a distribution point for CRLs? (Choose two)",
+    "options": [
+      {
+        "letter": "A",
+        "text": "SDP"
+      },
+      {
+        "letter": "B",
+        "text": "LDAP"
+      },
+      {
+        "letter": "C",
+        "text": "subordinate CA"
+      },
+      {
+        "letter": "D",
+        "text": "SCP"
+      },
+      {
+        "letter": "E",
+        "text": "HTTP"
+      }
+    ],
+    "answer": "QixF",
+    "explanation": "Cisco IOS public key infrastructure (PKI) provides certificate management to support security   Questions & Answers PDF P-161  protocols such as IP Security (IPSec), secure shell (SSH), and secure socket layer (SSL). This module identifies and describes concepts that are needed to understand, plan for, and implement a PKI. A PKI is composed of the following entities: \u2026 \u2013 A distribution mechanism (such as Lightweight Directory Access Protocol [LDAP] or HTTP) for certificate revocation lists (CRLs) Reference:  mt/sec-pki-15-mtbook/sec-pki-overview.html",
+    "has_image": false
+  },
+  {
+    "number": 214,
+    "domain": "Security Concepts",
+    "question": "Which attack type attempts to shut down a machine or network so that users are not able to access it?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "smurf"
+      },
+      {
+        "letter": "B",
+        "text": "bluesnarfing"
+      },
+      {
+        "letter": "C",
+        "text": "MAC spoofing"
+      },
+      {
+        "letter": "D",
+        "text": "IP spoofing"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "Denial-of-service (DDoS) aims at shutting down a network or service, causing it to be inaccessible to its intended users. The Smurf attack is a DDoS attack in which large numbers of Internet Control Message Protocol (ICMP) packets with the intended victim\u2019s spoofed source IP are broadcast to a computer network using an IP broadcast address.",
+    "has_image": false
+  },
+  {
+    "number": 215,
+    "domain": "Network Security",
+    "question": "What is a difference between DMVPN and sVTI?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "DMVPN supports tunnel encryption, whereas sVTI does not."
+      },
+      {
+        "letter": "B",
+        "text": "DMVPN supports dynamic tunnel establishment, whereas sVTI does not."
+      },
+      {
+        "letter": "C",
+        "text": "DMVPN supports static tunnel establishment, whereas sVTI does not."
+      },
+      {
+        "letter": "D",
+        "text": "DMVPN provides interoperability with other vendors, whereas sVTI does not."
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "DMVPN and sVTI are both VPN technologies that use IPsec to secure the tunnel traffic. However, they differ in how they establish and manage the tunnels. DMVPN supports dynamic tunnel establishment, which means that the VPN endpoints can create and delete tunnels on demand, based on the routing information. This allows for a scalable and flexible VPN topology, where the endpoints can communicate directly with each other without going through a central hub. sVTI, on the other hand, supports static tunnel establishment, which means that the VPN endpoints have to manually configure the tunnel source and destination addresses. This requires a one-to-one mapping between the endpoints, and limits the VPN topology to a hub-and-spoke model, where the endpoints can only communicate with the hub. Therefore, DMVPN is more suitable for large and dynamic VPN networks, while sVTI is more suitable for small and stable VPN networks.\u00a0Reference: [Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0], Module 5: Secure Connectivity, Lesson 5.2: Implementing Site-to-Site VPNs, Topic 5.2.3: Dynamic Multipoint VPN (DMVPN) what is difference between svti and DVTI? - Cisco Community",
+    "has_image": false
+  },
+  {
+    "number": 216,
+    "domain": "Security Concepts",
+    "question": "What features does Cisco FTDv provide over ASAv?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Cisco FTDv runs on VMWare while ASAv does not"
+      },
+      {
+        "letter": "B",
+        "text": "Cisco FTDv provides 1GB of firewall throughput while Cisco ASAv does not"
+      },
+      {
+        "letter": "C",
+        "text": "Cisco FTDv runs on AWS while ASAv does not"
+      },
+      {
+        "letter": "D",
+        "text": "Cisco FTDv supports URL filtering while ASAv does not"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "Cisco FTDv is a virtual appliance that combines the features of Cisco ASA and Cisco Firepower NGIPS. It provides stateful firewall, IPS, URL filtering, malware protection, and other advanced security functions. Cisco ASAv is a virtual appliance that only provides stateful firewall and VPN features. It does not support URL filtering or other Firepower functions. Therefore, Cisco FTDv provides more features than ASAv, especially for next-generation firewall capabilities.\u00a0Reference\u00a0:= Cisco Firewall in AWS - Should i use ASAv or FTDv/FMCv? Difference between Cisco ASAv, NGIPSv and FTDv\u2026?   Questions & Answers PDF P-163  Are there any differences in features between Cisco ASA hardware \u2026",
+    "has_image": false
+  },
+  {
+    "number": 217,
+    "domain": "Endpoint Protection and Detection",
+    "question": "In which situation should an Endpoint Detection and Response solution be chosen versus an Endpoint Protection Platform?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "when there is a need for traditional anti-malware detection"
+      },
+      {
+        "letter": "B",
+        "text": "when there is no need to have the solution centrally managed"
+      },
+      {
+        "letter": "C",
+        "text": "when there is no firewall on the network"
+      },
+      {
+        "letter": "D",
+        "text": "when there is a need to have more advanced detection capabilities"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "Endpoint protection platforms (EPP) prevent endpoint security threats like known and unknown malware. Endpoint detection and response (EDR) solutions can detect and respond to threats that your EPP and other security tools did not catch. EDR and EPP have similar goals but are designed to fulfill different purposes. EPP is designed to provide device-level protection by identifying malicious files, detecting potentially malicious activity, and providing tools for incident investigation and response. The preventative nature of EPP complements proactive EDR. EPP acts as the first line of defense, filtering out attacks that can be detected by the organization\u2019s deployed security solutions. EDR acts as a second layer of protection, enabling security analysts to perform threat hunting and identify more subtle threats to the endpoint. Effective endpoint defense requires a solution that integrates the capabilities of both EDR and EPP to provide protection against cyber threats without overwhelming an organization\u2019s security team.",
+    "has_image": false
+  },
+  {
+    "number": 218,
+    "domain": "Security Concepts",
+    "question": "Which type of API is being used when a controller within a software-defined network architecture dynamically makes configuration changes on switches within the network?   Questions & Answers PDF P-164",
+    "options": [
+      {
+        "letter": "A",
+        "text": "westbound AP"
+      },
+      {
+        "letter": "B",
+        "text": "southbound API"
+      },
+      {
+        "letter": "C",
+        "text": "northbound API"
+      },
+      {
+        "letter": "D",
+        "text": "eastbound API"
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "Southbound APIs enable SDN controllers to dynamically make changes based on real-time demands and scalability needs.",
+    "has_image": false
+  },
+  {
+    "number": 219,
+    "domain": "Security Concepts",
+    "question": "An organization has two systems in their DMZ that have an unencrypted link between them for communication. The organization does not have a defined password policy and uses several default accounts on the   Questions & Answers PDF P-165  systems. The application used on those systems also have not gone through stringent code reviews. Which vulnerability would help an attacker brute force their way into the systems?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "weak passwords"
+      },
+      {
+        "letter": "B",
+        "text": "lack of input validation"
+      },
+      {
+        "letter": "C",
+        "text": "missing encryption"
+      },
+      {
+        "letter": "D",
+        "text": "lack of file permission"
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "The version 9 export format uses templates to provide access to observations of IP packet flows in a flexible and extensible manner .A template defines a collection of fields, with corresponding descriptions of structure and semantics. Reference:",
+    "has_image": false
+  },
+  {
+    "number": 220,
+    "domain": "Network Security",
+    "question": "What is provided by the Secure Hash Algorithm in a VPN?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "integrity"
+      },
+      {
+        "letter": "B",
+        "text": "key exchange"
+      },
+      {
+        "letter": "C",
+        "text": "encryption"
+      },
+      {
+        "letter": "D",
+        "text": "authentication"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "The HMAC-SHA-1-96 (also known as HMAC-SHA-1) encryption technique is used by IPSec to ensure that a message has not been altered. (-> Therefore answer \u201cintegrity\u201d is the best choice). HMAC- SHA-1 uses the SHA-1 specified in FIPS-190-1, combined with HMAC (as per RFC 2104), and is described in RFC 2404. Reference:",
+    "has_image": false
+  },
+  {
+    "number": 221,
+    "domain": "Security Concepts",
+    "question": "Questions & Answers PDF P-166   A network engineer is deciding whether to use stateful or stateless failover when configuring two ASAs for high availability. What is the connection status in both cases?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "need to be reestablished with stateful failover and preserved with stateless failover"
+      },
+      {
+        "letter": "B",
+        "text": "preserved with stateful failover and need to be reestablished with stateless failover"
+      },
+      {
+        "letter": "C",
+        "text": "preserved with both stateful and stateless failover"
+      },
+      {
+        "letter": "D",
+        "text": "need to be reestablished with both stateful and stateless failover"
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "Stateful failover means that the connection state information is replicated from the active ASA to the standby ASA, so that in the event of a failover, the connections are preserved and do not need to be reestablished. Stateless failover means that the connection state information is not replicated, so that in the event of a failover, the connections are dropped and need to be reestablished by the end hosts. Stateful failover provides a smoother transition and less disruption to the network traffic, while stateless failover is simpler and less resource-intensive.\u00a0Reference: Failover for High Availability - Cisco Failover Types / ASA Failover Addresses / Failover Requirements | Cisco \u2026",
+    "has_image": false
+  },
+  {
+    "number": 222,
+    "domain": "Security Concepts",
+    "question": "Which type of protection encrypts RSA keys when they are exported and imported?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "file"
+      },
+      {
+        "letter": "B",
+        "text": "passphrase"
+      },
+      {
+        "letter": "C",
+        "text": "NGE"
+      },
+      {
+        "letter": "D",
+        "text": "nonexportable"
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "A passphrase is a type of protection that encrypts RSA keys when they are exported and imported. A passphrase is a sequence of characters that the user enters to decrypt the key. The passphrase acts as a symmetric key that is used to encrypt and decrypt the RSA key with a symmetric algorithm, such as AES. This way, the RSA key is protected from unauthorized access or tampering when it is transferred or stored. A passphrase can also provide additional security by adding entropy to the RSA key generation process. A file, NGE, and nonexportable are not types of protection that encrypt RSA keys when they are exported and imported. A file is a container that stores the RSA key, but does not   Questions & Answers PDF P-167  encrypt it. NGE stands for Next Generation Encryption, which is a set of cryptographic standards and algorithms that Cisco recommends, but it is not a specific type of protection. Nonexportable is a property that prevents the RSA key from being exported at all, but it does not encrypt it.\u00a0Reference:\u00a0RSA/Schannel Key BLOBs,\u00a0Common Encryption Types, Protocols and Algorithms Explained, Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0 (Module 5: Implementing Secure Communications with VPNs, Lesson 5.1: Implementing Site-to-Site VPNs, Topic 5.1.2: Implementing Site-to-Site VPNs with Pre-Shared Keys)",
+    "has_image": false
+  },
+  {
+    "number": 223,
+    "domain": "Endpoint Protection and Detection",
+    "question": "DRAG DROP  Drag and drop the capabilities of Cisco Firepower versus Cisco AMP from the left into the appropriate category on the right. Answer: Explanation:   Questions & Answers PDF P-168  The Firepower System uses network discovery and identity policies to collect host, application, and user data for traffic on your network. You can use certain types of discovery and identity data to build a comprehensive map of your network assets, perform forensic analysis, behavioral profiling, access control, and mitigate and respond to the vulnerabilities and exploits to which your organization is susceptible. The Cisco Advanced Malware Protection (AMP) solution enables you to detect and block malware, continuously analyze for malware, and get retrospective alerts. AMP for Networks delivers network- based advanced malware protection that goes beyond point-in-time detection to protect your organization across the entire attack continuum \u2013 before, during, and after an attack. Designed for Cisco Firepower\u00ae network threat appliances, AMP for Networks detects, blocks, tracks, and contains malware threats across multiple threat vectors within a single system. It also provides the visibility and control necessary to protect your organization against highly sophisticated, targeted, zero-day, and persistent advanced malware threats.",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Questions & Answers PDF P-168  The Firepower System uses network discovery and identity policies to collect host, application, and user data for traffic on your network. You can use certain types of discovery and identity data to build a comprehensive map of your network assets, perform forensic analysis, behavioral profiling, access control, and mitigate and respond to the vulnerabilities and exploits to which your organization is susceptible. The Cisco Advanced Malware Protection (AMP) solution enables you to detect and block malware, continuously analyze for malware, and get retrospective alerts. AMP for Networks delivers network- based advanced malware protection that goes beyond point-in-time detection to protect your organization across the entire attack continuum \u2013 before, during, and after an attack. Designed for Cisco Firepower\u00ae network threat appliances, AMP for Networks detects, blocks, tracks, and contains malware threats across multiple threat vectors within a single system. It also provides the visibility and control necessary to protect your organization against highly sophisticated, targeted, zero-day, and persistent advanced malware threats.",
+    "has_image": false
+  },
+  {
+    "number": 224,
+    "domain": "Security Concepts",
+    "question": "DRAG DROP  Drag and drop the suspicious patterns for the Cisco Tetration platform from the left onto the correct definitions on the right.   Questions & Answers PDF P-169  Answer: Explanation: Cisco Tetration platform studies the behavior of the various processes and applications in the workload,   Questions & Answers PDF P-170  measuring them against known bad behavior sequences. It also factors in the process hashes it collects. By studying various sets of malwares, the Tetration Analytics engineering team deconstructed it back into its basic building blocks. Therefore, the platform understands clear and crisp definitions of these building blocks and watches for them. The various suspicious patterns for which the Cisco Tetration platform looks in the current release are: + Shell code execution: Looks for the patterns used by shell code. + Privilege escalation: Watches for privilege changes from a lower privilege to a higher privilege in the process lineage tree. + Side channel attacks: Cisco Tetration platform watches for cache-timing attacks and page table fault bursts. Using these, it can detect Meltdown, Spectre, and other cache-timing attacks. + Raw socket creation: Creation of a raw socket by a nonstandard process (for example, ping). + User login suspicious behavior: Cisco Tetration platform watches user login failures and user login methods. + Interesting file access: Cisco Tetration platform can be armed to look at sensitive files. + File access from a different user: Cisco Tetration platform learns the normal behavior of which file is accessed by which user . + Unseen command: Cisco Tetration platform learns the behavior and set of commands as well as the lineage of each command over time. Any new command or command with a different lineage triggers the interest of the Tetration Analytics platform. Reference:  analytics/whitepaper -c11-740380.html",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Cisco Tetration platform studies the behavior of the various processes and applications in the workload,   Questions & Answers PDF P-170  measuring them against known bad behavior sequences. It also factors in the process hashes it collects. By studying various sets of malwares, the Tetration Analytics engineering team deconstructed it back into its basic building blocks. Therefore, the platform understands clear and crisp definitions of these building blocks and watches for them. The various suspicious patterns for which the Cisco Tetration platform looks in the current release are: + Shell code execution: Looks for the patterns used by shell code. + Privilege escalation: Watches for privilege changes from a lower privilege to a higher privilege in the process lineage tree. + Side channel attacks: Cisco Tetration platform watches for cache-timing attacks and page table fault bursts. Using these, it can detect Meltdown, Spectre, and other cache-timing attacks. + Raw socket creation: Creation of a raw socket by a nonstandard process (for example, ping). + User login suspicious behavior: Cisco Tetration platform watches user login failures and user login methods. + Interesting file access: Cisco Tetration platform can be armed to look at sensitive files. + File access from a different user: Cisco Tetration platform learns the normal behavior of which file is accessed by which user . + Unseen command: Cisco Tetration platform learns the behavior and set of commands as well as the lineage of each command over time. Any new command or command with a different lineage triggers the interest of the Tetration Analytics platform. Reference:  analytics/whitepaper -c11-740380.html",
+    "has_image": false
+  },
+  {
+    "number": 225,
+    "domain": "Security Concepts",
+    "question": "DRAG DROP  Drag and drop the descriptions from the left onto the encryption algorithms on the right.   Questions & Answers PDF P-171  Answer: Explanation: Symmetric encryption uses a single key that needs to be shared among the people who need to receive the message while asymmetric encryption uses a pair of public key and a private key to encrypt and decrypt messages when communicating. Asymmetric encryption takes relatively more time than the symmetric encryption. Diffie Hellman algorithm is an asymmetric algorithm used to establish a shared secret for a   Questions & Answers PDF P-172  symmetric key algorithm. Nowadays most of the people uses hybrid crypto system i.e, combination of symmetric and asymmetric encryption. Asymmetric Encryption is used as a technique in key exchange mechanism to share secret key and after the key is shared between sender and receiver, the communication will take place using symmetric encryption. The shared secret key will be used to encrypt the communication. Triple DES (3DES), a symmetric-key algorithm for the encryption of electronic data, is the successor of DES (Data Encryption Standard) and provides more secure encryption then DES. Note: Although \u201crequires secret keys\u201d option in this question is a bit unclear but it can only be assigned to Symmetric algorithm.",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Symmetric encryption uses a single key that needs to be shared among the people who need to receive the message while asymmetric encryption uses a pair of public key and a private key to encrypt and decrypt messages when communicating. Asymmetric encryption takes relatively more time than the symmetric encryption. Diffie Hellman algorithm is an asymmetric algorithm used to establish a shared secret for a   Questions & Answers PDF P-172  symmetric key algorithm. Nowadays most of the people uses hybrid crypto system i.e, combination of symmetric and asymmetric encryption. Asymmetric Encryption is used as a technique in key exchange mechanism to share secret key and after the key is shared between sender and receiver, the communication will take place using symmetric encryption. The shared secret key will be used to encrypt the communication. Triple DES (3DES), a symmetric-key algorithm for the encryption of electronic data, is the successor of DES (Data Encryption Standard) and provides more secure encryption then DES. Note: Although \u201crequires secret keys\u201d option in this question is a bit unclear but it can only be assigned to Symmetric algorithm.",
+    "has_image": false
+  },
+  {
+    "number": 226,
+    "domain": "Security Concepts",
+    "question": "DRAG DROP  Drag and drop the threats from the left onto examples of that threat on the right Answer: Explanation:   Questions & Answers PDF P-173  A data breach is the intentional or unintentional release of secure or private/confidential information to an untrusted environment. When your credentials have been compromised, it means someone other than you may be in possession of your account information, such as your username and/or password.",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Questions & Answers PDF P-173  A data breach is the intentional or unintentional release of secure or private/confidential information to an untrusted environment. When your credentials have been compromised, it means someone other than you may be in possession of your account information, such as your username and/or password.",
+    "has_image": false
+  },
+  {
+    "number": 227,
+    "domain": "Network Security",
+    "question": "DRAG DROP  Drag and drop the VPN functions from the left onto the description on the right.   Questions & Answers PDF P-174  Answer: Explanation:",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "",
+    "has_image": false
+  },
+  {
+    "number": 228,
+    "domain": "Security Concepts",
+    "question": "DRAG DROP  Drag and drop the Firepower Next Generation Intrusion Prevention System detectors from the left onto the correct definitions on the right. Answer: Explanation:   Questions & Answers PDF P-175",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Questions & Answers PDF P-175",
+    "has_image": false
+  },
+  {
+    "number": 229,
+    "domain": "Security Concepts",
+    "question": "DRAG DROP  Drag and drop the capabilities from the left onto the correct technologies on the right. Answer: Explanation:   Questions & Answers PDF P-176",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Questions & Answers PDF P-176",
+    "has_image": false
+  },
+  {
+    "number": 230,
+    "domain": "Security Concepts",
+    "question": "DRAG DROP  Drag and drop the descriptions from the left onto the correct protocol versions on the right. Answer:   Questions & Answers PDF P-177  Explanation:",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "",
+    "has_image": false
+  },
+  {
+    "number": 231,
+    "domain": "Security Concepts",
+    "question": "DRAG DROP  Drag and drop the steps from the left into the correct order on the right to enable AppDynamics to monitor an EC2 instance in Amazon Web Services. Answer: Explanation:   Questions & Answers PDF P-178",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Questions & Answers PDF P-178",
+    "has_image": false
+  },
+  {
+    "number": 232,
+    "domain": "Core Security Concepts",
+    "question": "DRAG DROP [Security Operations] Drag and drop the NetFlow export formats from the left onto the descriptions on the right. Answer: Explanation:   Questions & Answers PDF P-179  The Version 1 format was the initially released version. Do not use the Version 1 format unless you are using a legacy collection system that requires it. Use Version 9 or Version 5 export format. Version 5 export format is suitable only for the main cache; it cannot be expanded to support new features. Version 8 export format is available only for aggregation caches; it cannot be expanded to support new features. Reference:  -mt/nf-15- mt-book/cfgnflow-data-expt.html",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Questions & Answers PDF P-179  The Version 1 format was the initially released version. Do not use the Version 1 format unless you are using a legacy collection system that requires it. Use Version 9 or Version 5 export format. Version 5 export format is suitable only for the main cache; it cannot be expanded to support new features. Version 8 export format is available only for aggregation caches; it cannot be expanded to support new features. Reference:  -mt/nf-15- mt-book/cfgnflow-data-expt.html",
+    "has_image": false
+  },
+  {
+    "number": 233,
+    "domain": "Security Concepts",
+    "question": "DRAG DROP  Drag and drop the solutions from the left onto the solution's benefits on the right.   Questions & Answers PDF P-180  Answer: Explanation: Cisco Stealthwatch - rapidly collects and analyzes netflow and telementy data to deliver in-depth visibility and understanding of network traffic Cisco ISE \u2013 obtains contextual identity and profiles for all users and device Cisco TrustSec \u2013 software defined segmentation that uses SGTs Cisco Umbrella \u2013 secure internet gateway ion the cloud that provides a security solution",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Cisco Stealthwatch - rapidly collects and analyzes netflow and telementy data to deliver in-depth visibility and understanding of network traffic Cisco ISE \u2013 obtains contextual identity and profiles for all users and device Cisco TrustSec \u2013 software defined segmentation that uses SGTs Cisco Umbrella \u2013 secure internet gateway ion the cloud that provides a security solution",
+    "has_image": false
+  },
+  {
+    "number": 234,
+    "domain": "Security Concepts",
+    "question": "DRAG DROP  Drag and drop the common security threats from the left onto the definitions on the right. Answer: Explanation:   Questions & Answers PDF P-181",
+    "options": [],
+    "answer": "RQ==",
+    "explanation": "Questions & Answers PDF P-181",
+    "has_image": false
+  },
+  {
+    "number": 235,
+    "domain": "Content Security",
+    "question": "A Cisco ESA network administrator has been tasked to use a newly installed service to help create policy based on the reputation verdict. During testing, it is discovered that the Cisco ESA is not dropping files that have an undetermined verdict. What is causing this issue?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "The policy was created to send a message to quarantine instead of drop"
+      },
+      {
+        "letter": "B",
+        "text": "The file has a reputation score that is above the threshold"
+      },
+      {
+        "letter": "C",
+        "text": "The file has a reputation score that is below the threshold"
+      },
+      {
+        "letter": "D",
+        "text": "The policy was created to disable file analysis"
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "The Cisco ESA uses the Sender Domain Reputation (SDR) service to assign a reputation verdict to   Questions & Answers PDF P-182  each message based on the sender\u2019s domain and other attributes. The SDR verdicts range from Awful to Good, and each verdict has a corresponding reputation score. The administrator can configure a message or content filter to take action on messages based on their SDR verdict or score. For example, the administrator can set a threshold score to drop messages that have a poor or awful reputation. However, if the SDR service cannot determine a verdict for a message, it assigns an undetermined verdict with a score of -1. This means that the message will not be dropped by the filter unless the administrator explicitly sets the threshold to -1 or lower .Therefore, the reason why the Cisco ESA is not dropping files that have an undetermined verdict is because the file has a reputation score that is above the threshold.\u00a0Reference\u00a0:= Some possible references are: Configure Sender Domain Reputation for ESA Sender Domain Reputation Filtering Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0 (source book)",
+    "has_image": false
+  },
+  {
+    "number": 236,
+    "domain": "Security Concepts",
+    "question": "An administrator is trying to determine which applications are being used in the network but does not want the network devices to send metadata to Cisco Firepower .Which feature should be used to accomplish this?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "NetFlow"
+      },
+      {
+        "letter": "B",
+        "text": "Packet Tracer"
+      },
+      {
+        "letter": "C",
+        "text": "Network Discovery"
+      },
+      {
+        "letter": "D",
+        "text": "Access Control"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "NetFlow is a network protocol developed by Cisco for the collection and monitoring of network traffic flow data generated by NetFlow-enabled routers and switches. The flows do not contain actual packet data, but rather the metadata for communications. It is a standard form of session data that details who, what, when, and where of network traffic -> Answer A is not correct. Reference:  network-security/white-paper-c11-736595.html   Questions & Answers PDF P-183",
+    "has_image": false
+  },
+  {
+    "number": 237,
+    "domain": "Content Security",
+    "question": "Which attack is preventable by Cisco ESA but not by the Cisco WSA?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "buffer overflow"
+      },
+      {
+        "letter": "B",
+        "text": "DoS"
+      },
+      {
+        "letter": "C",
+        "text": "SQL injection"
+      },
+      {
+        "letter": "D",
+        "text": "phishing"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "The following are the benefits of deploying Cisco Advanced Phishing Protection on the Cisco Email Security Gateway: Prevents the following: + Attacks that use compromised accounts and social engineering. + Phishing, ransomware, zero-day attacks and spoofing. + BEC with no malicious payload or URL. Reference:  5/user_guide/b_ESA_Admin_Guide_13 -5/m_advanced_phishing_protection.html",
+    "has_image": false
+  },
+  {
+    "number": 238,
+    "domain": "Content Security",
+    "question": "A Cisco ESA administrator has been tasked with configuring the Cisco ESA to ensure there are no viruses before quarantined emails are delivered. In addition, delivery of mail from known bad mail servers must be prevented. Which two actions must be taken in order to meet these requirements? (Choose two)",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Use outbreak filters from SenderBase"
+      },
+      {
+        "letter": "B",
+        "text": "Enable a message tracking service"
+      },
+      {
+        "letter": "C",
+        "text": "Configure a recipient access table"
+      },
+      {
+        "letter": "D",
+        "text": "Deploy the Cisco ESA in the DMZ"
+      },
+      {
+        "letter": "E",
+        "text": "Scan quarantined emails using AntiVirus signatures"
+      }
+    ],
+    "answer": "QSxF",
+    "explanation": "Questions & Answers PDF P-184  We should scan emails using AntiVirus signatures to make sure there are no viruses attached in emails. Note: A virus signature is the fingerprint of a virus. It is a set of unique data, or bits of code, that allow it to be identified. Antivirus software uses a virus signature to find a virus in a computer file system, allowing to detect, quarantine, and remove the virus. SenderBase is an email reputation service designed to help email administrators research senders, identify legitimate sources of email, and block spammers. When the Cisco ESA receives messages from known or highly reputable senders, it delivers them directly to the end user without any content scanning. However, when the Cisco ESA receives email messages from unknown or less reputable senders, it performs antispam and antivirus scanning. Reference:  0/user_guide/b_ESA_Admin_Guide_12_0/b_ESA_Admin_Guide_12_0_chapter_0100100.html -> Therefore Outbreak filters can be used to block emails from bad mail servers.Web servers and email gateways are generally located in the DMZ soNote: The recipient access table (RAT), not to be confused with remote-access Trojan (also RAT), is a Cisco ESA term that defines which recipients are accepted by a public listener .",
+    "has_image": false
+  },
+  {
+    "number": 239,
+    "domain": "Security Concepts",
+    "question": "Which type of dashboard does Cisco DNA Center provide for complete control of the network?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "service management"
+      },
+      {
+        "letter": "B",
+        "text": "centralized management"
+      },
+      {
+        "letter": "C",
+        "text": "application management"
+      },
+      {
+        "letter": "D",
+        "text": "distributed management"
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "Cisco\u2019s DNA Center is the only centralized network management system to bring all of this functionality into a single pane of glass. Reference:  center/nb-06- dna-center-faq-cte-en.html   Questions & Answers PDF P-185",
+    "has_image": false
+  },
+  {
+    "number": 240,
+    "domain": "Securing the Cloud",
+    "question": "In an IaaS cloud services model, which security function is the provider responsible for managing?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Internet proxy"
+      },
+      {
+        "letter": "B",
+        "text": "firewalling virtual machines"
+      },
+      {
+        "letter": "C",
+        "text": "CASB"
+      },
+      {
+        "letter": "D",
+        "text": "hypervisor OS hardening"
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "In this IaaS model, cloud providers offer resources to users/machines that include computers as virtual machines, raw (block) storage, firewalls, load balancers, and network devices. Note: Cloud access security broker (CASB) provides visibility and compliance checks, protects data against misuse and exfiltration, and provides threat protections against malware such as ransomware.",
+    "has_image": false
+  },
+  {
+    "number": 241,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "A network engineer has been tasked with adding a new medical device to the network. Cisco ISE is being used as the NAC server, and the new device does not have a supplicant available. What must be done in order to securely connect this device to the network?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Use MAB with profiling"
+      },
+      {
+        "letter": "B",
+        "text": "Use MAB with posture assessment."
+      },
+      {
+        "letter": "C",
+        "text": "Use 802.1X with posture assessment."
+      },
+      {
+        "letter": "D",
+        "text": "Use 802.1X with profiling."
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "As the new device does not have a supplicant, we cannot use 802.1X. MAC Authentication Bypass (MAB) is a fallback option for devices that don\u2019t support 802.1x. It is   Questions & Answers PDF P-186  virtually always used in deployments in some way shape or form. MAB works by having the authenticator take the connecting device\u2019s MAC address and send it to the authentication server as its username and password. The authentication server will check its policies and send back an Access-Accept or Access- Reject just like it would with 802.1x. Cisco ISE Profiling Services provides dynamic detection and classification of endpoints connected to the network. Using MAC addresses as the unique identifier, ISE collects various attributes for each network endpoint to build an internal endpoint database. The classification process matches the collected attributes to prebuilt or user-defined conditions, which are then correlated to an extensive library of profiles. These profiles include a wide range of device types, including mobile clients (iPads, Android tablets, Chromebooks, and so on), desktop operating systems (for example, Windows, Mac OS X, Linux, and others), and numerous non-user systems such as printers, phones, cameras, and game consoles. Once classified, endpoints can be authorized to the network and granted access based on their profile. For example, endpoints that match the IP phone profile can be placed into a voice VLAN using MAC Authentication Bypass (MAB) as the authentication method. Another example is to provide differentiated network access to users based on the device used. For example, employees can get full access when accessing the network from their corporate workstation but be granted limited network access when accessing the network from their personal iPhone. Reference:  p/3739456",
+    "has_image": false
+  },
+  {
+    "number": 242,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "An engineer is implementing NTP authentication within their network and has configured both the client and server devices with the command ntp authentication-key 1 md5 Cisc392368270. The server at 1.1.1.1 is attempting to authenticate to the client at 1.1.1.2, however it is unable to do so. Which command is required to enable the client to accept the server\u2019s authentication key?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "ntp peer 1.1.1.1 key 1"
+      },
+      {
+        "letter": "B",
+        "text": "ntp server 1.1.1.1 key 1"
+      },
+      {
+        "letter": "C",
+        "text": "ntp server 1.1.1.2 key 1"
+      },
+      {
+        "letter": "D",
+        "text": "ntp peer 1.1.1.2 key 1"
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "Questions & Answers PDF P-187  To configure an NTP enabled router to require authentication when other devices connect to it, use the following commands: NTP_Server(config)#ntp authentication-key 2 md5 securitytut NTP_Server(config)#ntp authenticate NTP_Server(config)#ntp trusted-key 2 Then you must configure the same authentication-key on the client router: NTP_Client(config)#ntp authentication-key 2 md5 securitytut NTP_Client(config)#ntp authenticate NTP_Client(config)#ntp trusted-key 2 NTP_Client(config)#ntp server 10.10.10.1 key 2 Note: To configure a Cisco device as a NTP client, use the command ntp server <IP address>. For example: Router(config)#ntp server 10.10.10.1. This command will instruct the router to query 10.10.10.1 for the time.",
+    "has_image": false
+  },
+  {
+    "number": 243,
+    "domain": "Content Security",
+    "question": "What is the role of an endpoint in protecting a user from a phishing attack?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Use Cisco Stealthwatch and Cisco ISE Integration."
+      },
+      {
+        "letter": "B",
+        "text": "Utilize 802.1X network security to ensure unauthorized access to resources."
+      },
+      {
+        "letter": "C",
+        "text": "Use machine learning models to help identify anomalies and determine expected sending"
+      },
+      {
+        "letter": "D",
+        "text": "Ensure that antivirus and anti malware software is up to date"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "One of the key capabilities of endpoint security is to prevent phishing attacks by ensuring that antivirus and anti malware software is up to date. This helps to detect and block malicious attachments or links that may be embedded in phishing emails. Antivirus and anti malware software can also scan the endpoint for any signs of compromise or infection that may have resulted from a successful phishing attack. Additionally, endpoint security can provide data loss prevention (DLP) features that can prevent sensitive data from being exfiltrated by attackers who have gained access to the endpoint through phishing.\u00a0Reference\u00a0:= Some possible references are: Endpoint Security and Phishing: What to Know Protect Against Spear Phishing with Endpoint Security Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0 (source book)   Questions & Answers PDF P-188",
+    "has_image": false
+  },
+  {
+    "number": 244,
+    "domain": "Security Concepts",
+    "question": "An organization has noticed an increase in malicious content downloads and wants to use Cisco Umbrella to prevent this activity for suspicious domains while allowing normal web traffic. Which action will accomplish this task?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Set content settings to High"
+      },
+      {
+        "letter": "B",
+        "text": "Configure the intelligent proxy."
+      },
+      {
+        "letter": "C",
+        "text": "Use destination block lists."
+      },
+      {
+        "letter": "D",
+        "text": "Configure application block lists."
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "Obviously, if you allow all traffic to these risky domains, users might access malicious content, resulting in an infection or data leak. But if you block traffic, you can expect false positives, an increase in support inquiries, and thus, more headaches. By only proxying risky domains, the intelligent proxy delivers more granular visibility and control. The intelligent proxy bridges the gap by allowing access to most known good sites without being proxied and only proxying those that pose a potential risk. The proxy then filters and blocks against specific URLs hosting malware while allowing access to everything else. Reference:  -umbrella/docs/what-is-the-intelligent-proxy",
+    "has_image": false
+  },
+  {
+    "number": 245,
+    "domain": "Security Concepts",
+    "question": "With which components does a southbound API within a software-defined network architecture communicate?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "controllers within the network"
+      },
+      {
+        "letter": "B",
+        "text": "applications"
+      },
+      {
+        "letter": "C",
+        "text": "appliances"
+      },
+      {
+        "letter": "D",
+        "text": "devices such as routers and switches"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "Questions & Answers PDF P-189  The Southbound API is used to communicate between Controllers and network devices.",
+    "has_image": false
+  },
+  {
+    "number": 246,
+    "domain": "Security Concepts",
+    "question": "A network administrator needs to find out what assets currently exist on the network. Third-party systems need to be able to feed host data into Cisco Firepower .What must be configured to accomplish this?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "a Network Discovery policy to receive data from the host"
+      },
+      {
+        "letter": "B",
+        "text": "a Threat Intelligence policy to download the data from the host"
+      },
+      {
+        "letter": "C",
+        "text": "a File Analysis policy to send file data into Cisco Firepower"
+      },
+      {
+        "letter": "D",
+        "text": "a Network Analysis policy to receive NetFlow data from the host"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "You can configure discovery rules to tailor the discovery of host and application data to your needs.   Questions & Answers PDF P-190  The Firepower System can use data from NetFlow exporters to generate connection and discovery events, and to add host and application data to the network map. A network analysis policy governs how traffic is decoded and preprocessed so it can be further evaluated, especially for anomalous traffic that might signal an intrusion attempt -> Answer D is not correct.",
+    "has_image": false
+  },
+  {
+    "number": 247,
+    "domain": "Security Concepts",
+    "question": "When configuring ISAKMP for IKEv1 Phase1 on a Cisco IOS router, an administrator needs to input the command crypto isakmp key cisco address 0.0.0.0. The administrator is not sure what the IP addressing in this command issued for .What would be the effect of changing the IP address from 0.0.0.0 to 1.2.3.4?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "The key server that is managing the keys for the connection will be at 1.2.3.4"
+      },
+      {
+        "letter": "B",
+        "text": "The remote connection will only be allowed from 1.2.3.4"
+      },
+      {
+        "letter": "C",
+        "text": "The address that will be used as the crypto validation authority"
+      },
+      {
+        "letter": "D",
+        "text": "All IP addresses other than 1.2.3.4 will be allowed"
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "The command crypto isakmp key cisco address 1.2.3.4 authenticates the IP address of the 1.2.3.4 peer by using the key cisco. The address of \u201c0.0.0.0\u201d will authenticate any address with this key",
+    "has_image": false
+  },
+  {
+    "number": 248,
+    "domain": "Security Concepts",
+    "question": "Which suspicious pattern enables the Cisco Tetration platform to learn the normal behavior of users?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "file access from a different user"
+      },
+      {
+        "letter": "B",
+        "text": "interesting file access"
+      },
+      {
+        "letter": "C",
+        "text": "user login suspicious behavior"
+      },
+      {
+        "letter": "D",
+        "text": "privilege escalation"
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "Questions & Answers PDF P-191  The various suspicious patterns for which the Cisco Tetration platform looks in the current release are: + Shell code execution: Looks for the patterns used by shell code. + Privilege escalation: Watches for privilege changes from a lower privilege to a higher privilege in the process lineage tree. + Side channel attacks: Cisco Tetration platform watches for cache-timing attacks and page table fault bursts. Using these, it can detect Meltdown, Spectre, and other cache-timing attacks. + Raw socket creation: Creation of a raw socket by a nonstandard process (for example, ping). + User login suspicious behavior: Cisco Tetration platform watches user login failures and user login methods. + Interesting file access: Cisco Tetration platform can be armed to look at sensitive files. + File access from a different user: Cisco Tetration platform learns the normal behavior of which file is accessed by which user . + Unseen command: Cisco Tetration platform learns the behavior and set of commands as well as the lineage of each command over time. Any new command or command with a different lineage triggers the interest of the Tetration Analytics platform. Reference:  analytics/whitepaper -c11-740380.html",
+    "has_image": false
+  },
+  {
+    "number": 249,
+    "domain": "Security Concepts",
+    "question": "Due to a traffic storm on the network, two interfaces were error-disabled, and both interfaces sent SNMP traps. Which two actions must be taken to ensure that interfaces are put back into service? (Choose two)",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Have Cisco Prime Infrastructure issue an SNMP set command to re-enable the ports after the"
+      },
+      {
+        "letter": "B",
+        "text": "Use EEM to have the ports return to service automatically in less than 300 seconds."
+      },
+      {
+        "letter": "C",
+        "text": "Enter the shutdown and no shutdown commands on the interfaces."
+      },
+      {
+        "letter": "D",
+        "text": "Enable the snmp-server enable traps command and wait 300 seconds"
+      },
+      {
+        "letter": "E",
+        "text": "Ensure that interfaces are configured with the error-disable detection and recovery feature"
+      }
+    ],
+    "answer": "QyxF",
+    "explanation": "You can also bring up the port by using these commands:   Questions & Answers PDF P-192  + The \u201cshutdown\u201d interface configuration command followed by the \u201cno shutdown\u201d interface configuration command restarts the disabled port. + The \u201cerrdisable recovery cause \u2026\u201d global configuration command enables the timer to automatically recover error-disabled state, and the \u201cerrdisable recovery interval interval\u201d global configuration command specifies the time to recover error-disabled state.",
+    "has_image": false
+  },
+  {
+    "number": 250,
+    "domain": "Security Concepts",
+    "question": "What is the difference between Cross-site Scripting and SQL Injection, attacks?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Cross-site Scripting is an attack where code is injected into a database, whereas SQL Injection is an"
+      },
+      {
+        "letter": "B",
+        "text": "Cross-site Scripting is a brute force attack targeting remote sites, whereas SQL Injection is a"
+      },
+      {
+        "letter": "C",
+        "text": "Cross-site Scripting is when executives in a corporation are attacked, whereas SQL Injection is"
+      },
+      {
+        "letter": "D",
+        "text": "Cross-site Scripting is an attack where code is executed from the server side, whereas SQL"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "Answer B is not correct because Cross-site Scripting (XSS) is not a brute force attack. Answer C is not correct because the statement \u201cCross-site Scripting is when executives in a corporation are attacked\u201d is not true. XSS is a client-side vulnerability that targets other application users. Answer D is not correct because the statement \u201cCross-site Scripting is an attack where code is executed from the server side\u201d. In fact, XSS is a method that exploits website vulnerability by injecting scripts that will run at client\u2019s side. Therefore only answer A is left. In XSS, an attacker will try to inject his malicious code (usually malicious links) into a database. When other users follow his links, their web browsers are redirected to websites where attackers can steal data from them. In a SQL Injection, an attacker will try to inject SQL code (via his browser) into forms, cookies, or HTTP headers that do not use data sanitizing or validation methods of GET/POST parameters. Note: The main difference between a SQL and XSS injection attack is that SQL injection attacks are used to steal information from databases whereas XSS attacks are used to redirect users to websites where attackers can steal data from them.   Questions & Answers PDF P-193",
+    "has_image": false
+  },
+  {
+    "number": 251,
+    "domain": "Endpoint Protection and Detection",
+    "question": "A network administrator is configuring a switch to use Cisco ISE for 802.1X. An endpoint is failing authentication and is unable to access the network. Where should the administrator begin troubleshooting to verify the authentication details?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Adaptive Network Control Policy List"
+      },
+      {
+        "letter": "B",
+        "text": "Context Visibility"
+      },
+      {
+        "letter": "C",
+        "text": "Accounting Reports"
+      },
+      {
+        "letter": "D",
+        "text": "RADIUS Live Logs"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "How To Troubleshoot ISE Failed Authentications & Authorizations Check the ISE Live Logs Login to the primary ISE Policy Administration Node (PAN). Go to Operations > RADIUS > Live Logs (Optional) If the event is not present in the RADIUS Live Logs, go to Operations > Reports > Reports > Endpoints and Users > RADIUS Authentications Check for Any Failed Authentication Attempts in the Log Reference:    Questions & Answers PDF P-194  authenticationsamp/ta-p/3630960",
+    "has_image": false
+  },
+  {
+    "number": 252,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "What is a prerequisite when integrating a Cisco ISE server and an AD domain?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Place the Cisco ISE server and the AD server in the same subnet"
+      },
+      {
+        "letter": "B",
+        "text": "Configure a common administrator account"
+      },
+      {
+        "letter": "C",
+        "text": "Configure a common DNS server"
+      },
+      {
+        "letter": "D",
+        "text": "Synchronize the clocks of the Cisco ISE server and the AD server"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "The following are the prerequisites to integrate Active Directory with Cisco ISE. + Use the Network Time Protocol (NTP) server settings to synchronize the time between the Cisco ISE server and Active Directory. You can configure NTP settings from Cisco ISE CLI. + If your Active Directory structure has multidomain forest or is divided into multiple forests, ensure that trust relationships exist between the domain to which Cisco ISE is connected and the other domains that have user and machine information to which you need access. For more information on establishing trust relationships, refer to Microsoft Active Directory documentation. + You must have at least one global catalog server operational and accessible by Cisco ISE, in the domain to which you are joining Cisco ISE. Reference:  0/ise_active_directory_integration/b_ISE_AD_integration_2x.html#reference_8DC463597A644A5C9 CF5D582B77BB24F",
+    "has_image": false
+  },
+  {
+    "number": 253,
+    "domain": "Content Security",
+    "question": "An organization recently installed a Cisco WSA and would like to take advantage of the AVC engine to allow the organization to create a policy to control application specific activity. After enabling the AVC engine, what must be done to implement this?   Questions & Answers PDF P-195",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Use security services to configure the traffic monitor, ."
+      },
+      {
+        "letter": "B",
+        "text": "Use URL categorization to prevent the application traffic."
+      },
+      {
+        "letter": "C",
+        "text": "Use an access policy group to configure application control settings."
+      },
+      {
+        "letter": "D",
+        "text": "Use web security reporting to validate engine functionality"
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "The Application Visibility and Control (AVC) engine lets you create policies to control application activity on the network without having to fully understand the underlying technology of each application. You can configure application control settings in Access Policy groups. You can block or allow applications individually or according to application type. You can also apply controls to particular application types.",
+    "has_image": false
+  },
+  {
+    "number": 254,
+    "domain": "Security Concepts",
+    "question": "Which method is used to deploy certificates and configure the supplicant on mobile devices to gain access to network resources?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "BYOD on boarding"
+      },
+      {
+        "letter": "B",
+        "text": "Simple Certificate Enrollment Protocol"
+      },
+      {
+        "letter": "C",
+        "text": "Client provisioning"
+      },
+      {
+        "letter": "D",
+        "text": "MAC authentication bypass"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "When supporting personal devices on a corporate network, you must protect network services and enterprise data by authenticating and authorizing users (employees, contractors, and guests) and their devices. Cisco ISE provides the tools you need to allow employees to securely use personal devices on a corporate network.   Questions & Answers PDF P-196  Guests can add their personal devices to the network by running the native supplicant provisioning (Network Setup Assistant), or by adding their devices to the My Devices portal. Because native supplicant profiles are not available for all devices, users can use the My Devices portal to add these devices manually; or you can configure Bring Your Own Device (BYOD) rules to register these devices. Reference:  4/admin_guide/b_ISE_admin_guide_24/m_ise_devices_byod.html",
+    "has_image": false
+  },
+  {
+    "number": 255,
+    "domain": "Security Concepts",
+    "question": "Refer to the exhibit. What will happen when this Python script is run?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "The compromised computers and malware trajectories will be received from Cisco AMP"
+      },
+      {
+        "letter": "B",
+        "text": "The list of computers and their current vulnerabilities will be received from Cisco AMP"
+      },
+      {
+        "letter": "C",
+        "text": "The compromised computers and what compromised them will be received from Cisco AMP"
+      },
+      {
+        "letter": "D",
+        "text": "The list of computers, policies, and connector statuses will be received from Cisco AMP"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "The call to API of \u201c allows us to fetch list of computers across your organization that Advanced Malware Protection (AMP) sees Reference:  docs.amp.cisco.com/api_actions/details?api_action=GET+%2Fv1%2Fcomputers&api_host=api.apjc.a mp.cisco.com&api_resource=Computer&api_version=v1   Questions & Answers PDF P-197",
+    "has_image": true
+  },
+  {
+    "number": 256,
+    "domain": "Security Concepts",
+    "question": "An organization is trying to implement micro-segmentation on the network and wants to be able to gain visibility on the applications within the network. The solution must be able to maintain and force compliance. Which product should be used to meet these requirements?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Cisco Umbrella"
+      },
+      {
+        "letter": "B",
+        "text": "Cisco AMP"
+      },
+      {
+        "letter": "C",
+        "text": "Cisco Stealthwatch"
+      },
+      {
+        "letter": "D",
+        "text": "Cisco Tetration"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "Micro-segmentation secures applications by expressly allowing particular application traffic and, by default, denying all other traffic. Micro-segmentation is the foundation for implementing a zero-trust security model for application workloads in the data center and cloud. Cisco Tetration is an application workload security platform designed to secure your compute instances across any infrastructure and any cloud. To achieve this, it uses behavior and attribute-driven microsegmentation policy generation and enforcement. It enables trusted access through automated, exhaustive context from various systems to automatically adapt security policies. To generate accurate microsegmentation policy, Cisco Tetration performs application dependency mapping to discover the relationships between different application tiers and infrastructure services. In addition, the platform supports \u201cwhat-if\u201d policy analysis using real-time data or historical data to assist in the validation and risk assessment of policy application pre-enforcement to ensure ongoing application availability. The normalized microsegmentation policy can be enforced through the application workload itself for a consistent approach to workload microsegmentation across any environment, including virtualized, bare-metal, and container workloads running in any public cloud or any data center .Once the microsegmentation policy is enforced, Cisco Tetration continues to monitor for compliance deviations, ensuring the segmentation policy is up to date as the application behavior change. Reference:  analytics/solutionoverview -c22-739268.pdf   Questions & Answers PDF P-198",
+    "has_image": false
+  },
+  {
+    "number": 257,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which factor must be considered when choosing the on-premise solution over the cloud-based one?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "With an on-premise solution, the provider is responsible for the installation and maintenance of"
+      },
+      {
+        "letter": "B",
+        "text": "With a cloud-based solution, the provider is responsible for the installation, but the customer is"
+      },
+      {
+        "letter": "C",
+        "text": "With an on-premise solution, the provider is responsible for the installation, but the customer is"
+      },
+      {
+        "letter": "D",
+        "text": "With an on-premise solution, the customer is responsible for the installation and maintenance of"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "The main difference between an on-premise solution and a cloud-based solution is the distribution of responsibilities between the customer and the provider .With an on-premise solution, the customer has full control over the installation, configuration, maintenance, and security of the product, but also bears the costs and risks associated with it. With a cloud-based solution, the provider takes care of most of these aspects, while the customer pays a subscription fee and accesses the product over the internet. Therefore, when choosing between the two options, the customer must consider factors such as cost, scalability, performance, availability, security, compliance, and customization. For example, an on-premise solution may be preferred if the customer has strict security or regulatory requirements, or needs a high level of customization. A cloud-based solution may be preferred if the customer wants to reduce capital expenditure, or needs a flexible and scalable solution that can adapt to changing demands.\u00a0Reference\u00a0:= Some possible references are: Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0, Module 1: Security Concepts, Lesson 1: Describing Information Security Concepts, Topic: Cloud Security 350-701 SCOR - Cisco, Exam Topics, 1.0 Security Concepts, 1.6 Compare and contrast the characteristics of a data center and the cloud Cloud vs. On-Premise Software Comparison",
+    "has_image": false
+  },
+  {
+    "number": 258,
+    "domain": "Security Concepts",
+    "question": "Which term describes when the Cisco Firepower downloads threat intelligence updates from Cisco Talos?   Questions & Answers PDF P-199",
+    "options": [
+      {
+        "letter": "A",
+        "text": "consumption"
+      },
+      {
+        "letter": "B",
+        "text": "sharing"
+      },
+      {
+        "letter": "C",
+        "text": "analysis"
+      },
+      {
+        "letter": "D",
+        "text": "authoring"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "\u2026 we will showcase Cisco Threat Intelligence Director (CTID) an exciting feature on Cisco\u2019s Firepower Management Center (FMC) product offering that automates the operationalization of threat intelligence. TID has the ability to consume threat intelligence via STIX over TAXII and allows uploads/downloads of STIX and simple blacklists. Reference:  -threat-intelligence-using-cisco-threat- intelligencedirector",
+    "has_image": false
+  },
+  {
+    "number": 259,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "An organization has a Cisco Stealthwatch Cloud deployment in their environment. Cloud logging is working as expected, but logs are not being received from the on-premise network, what action will resolve this issue?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Configure security appliances to send syslogs to Cisco Stealthwatch Cloud"
+      },
+      {
+        "letter": "B",
+        "text": "Configure security appliances to send NetFlow to Cisco Stealthwatch Cloud"
+      },
+      {
+        "letter": "C",
+        "text": "Deploy a Cisco FTD sensor to send events to Cisco Stealthwatch Cloud"
+      },
+      {
+        "letter": "D",
+        "text": "Deploy a Cisco Stealthwatch Cloud sensor on the network to send data to Cisco Stealthwatch"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "You can also monitor on-premises networks in your organizations using Cisco Stealthwatch Cloud. In order to do so, you need to deploy at least one Cisco Stealthwatch Cloud Sensor appliance (virtual or physical appliance). Reference: CCNP And CCIE Security Core SCOR 350-701 Official Cert Guide   Questions & Answers PDF P-200",
+    "has_image": false
+  },
+  {
+    "number": 260,
+    "domain": "Endpoint Protection and Detection",
+    "question": "What does Cisco AMP for Endpoints use to help an organization detect different families of malware?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Ethos Engine to perform fuzzy fingerprinting"
+      },
+      {
+        "letter": "B",
+        "text": "Tetra Engine to detect malware when me endpoint is connected to the cloud"
+      },
+      {
+        "letter": "C",
+        "text": "Clam AV Engine to perform email scanning"
+      },
+      {
+        "letter": "D",
+        "text": "Spero Engine with machine learning to perform dynamic analysis"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "ETHOS is the Cisco file grouping engine. It allows us to group families of files together so if we see variants of a malware, we mark the ETHOS hash as malicious and whole families of malware are instantly detected. Reference:  = Fuzzy Fingerprinting using static/passive heuristics Reference:  -2139.pdf",
+    "has_image": false
+  },
+  {
+    "number": 261,
+    "domain": "Security Concepts",
+    "question": "What are two characteristics of Cisco DNA Center APIs? (Choose two)",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Postman is required to utilize Cisco DNA Center API calls."
+      },
+      {
+        "letter": "B",
+        "text": "They do not support Python scripts."
+      },
+      {
+        "letter": "C",
+        "text": "They are Cisco proprietary."
+      },
+      {
+        "letter": "D",
+        "text": "They quickly provision new devices."
+      },
+      {
+        "letter": "E",
+        "text": "They view the overall health of the network"
+      }
+    ],
+    "answer": "RCxF",
+    "explanation": "Cisco DNA Center APIs are RESTful APIs that allow you to automate and operate your network at scale, using Python scripts or other tools. They are not Cisco proprietary, as they follow the OpenAPI   Questions & Answers PDF P-201  specification and can be accessed by any client that supports HTTP requests. They do not require Postman, although Postman is a useful tool to test and explore the API endpoints. They can quickly provision new devices by applying predefined templates and workflows, and they can view the overall health of the network by retrieving metrics and alerts from various sources.\u00a0Reference\u00a0:= Cisco DNA Center Platform - Cisco DevNet Introduction to Cisco DNA Center REST APIs - Cisco DevNet Learning Labs Cisco DNA Center Platform User Guide, Release 2.3.4",
+    "has_image": false
+  },
+  {
+    "number": 262,
+    "domain": "Security Concepts",
+    "question": "What is a benefit of conducting device compliance checks?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "It indicates what type of operating system is connecting to the network."
+      },
+      {
+        "letter": "B",
+        "text": "It validates if anti-virus software is installed."
+      },
+      {
+        "letter": "C",
+        "text": "It scans endpoints to determine if malicious activity is taking place."
+      },
+      {
+        "letter": "D",
+        "text": "It detects email phishing attacks."
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "Device compliance checks are a feature of Cisco Identity Services Engine (ISE) that allows you to verify the posture of endpoints before allowing them to access your network. Posture is the state of the endpoint in terms of security, such as the presence of anti-virus software, firewall, patches, and so on. A posture agent, such as the AnyConnect ISE Posture Agent, runs on the endpoint and collects posture information, which is then sent to the ISE server for evaluation. Based on the posture policy, the ISE server can grant or deny network access, or apply remediation actions to the endpoint. One of the benefits of conducting device compliance checks is that it validates if anti-virus software is installed on the endpoint, which can prevent malware infections and protect your network from threats. The other options are not benefits of device compliance checks, as they are not related to the posture of the endpoint.\u00a0Reference: Compliance - Cisco Device Compliance - Cisco",
+    "has_image": false
+  },
+  {
+    "number": 263,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "In which two ways does Easy Connect help control network access when used with Cisco TrustSec? (Choose two)   Questions & Answers PDF P-202",
+    "options": [
+      {
+        "letter": "A",
+        "text": "It allows multiple security products to share information and work together to enhance security"
+      },
+      {
+        "letter": "B",
+        "text": "It creates a dashboard in Cisco ISE that provides full visibility of all connected endpoints."
+      },
+      {
+        "letter": "C",
+        "text": "It allows for the assignment of Security Group Tags and does not require 802.1x to be configured"
+      },
+      {
+        "letter": "D",
+        "text": "It integrates with third-party products to provide better visibility throughout the network."
+      },
+      {
+        "letter": "E",
+        "text": "It allows for managed endpoints that authenticate to AD to be mapped to Security Groups"
+      }
+    ],
+    "answer": "QyxF",
+    "explanation": "Easy Connect simplifies network access control and segmentation by allowing the assignment of Security Group Tags to endpoints without requiring 802.1X on those endpoints, whether using wired or wireless connectivity. Reference:  - networks/trustsec/trustsec-witheasy-connect-configuration-guide.pdf",
+    "has_image": false
+  },
+  {
+    "number": 264,
+    "domain": "Endpoint Protection and Detection",
+    "question": "What is the benefit of installing Cisco AMP for Endpoints on a network?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "It provides operating system patches on the endpoints for security."
+      },
+      {
+        "letter": "B",
+        "text": "It provides flow-based visibility for the endpoints network connections."
+      },
+      {
+        "letter": "C",
+        "text": "It enables behavioral analysis to be used for the endpoints."
+      },
+      {
+        "letter": "D",
+        "text": "It protects endpoint systems through application control and real-time scanning"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "Cisco AMP for Endpoints is a cloud-based endpoint security solution that provides advanced malware protection, threat detection and response, and endpoint isolation. It protects endpoint systems through application control and real-time scanning, which are two of its multifaceted prevention techniques. Application control allows administrators to define and enforce policies on which applications can run on the endpoints, while real-time scanning continuously monitors files and   Questions & Answers PDF P-203  processes for malicious activity. These features help stop threats from compromising the endpoints and reduce the attack surface.\u00a0Cisco Secure Endpoint (Formerly AMP for Endpoints) - CiscoMalware Protection - Cisco AMP Advanced Malware Protection\u00a0Reference: Cisco Secure Endpoint (Formerly AMP for Endpoints) - Cisco Malware Protection - Cisco AMP Advanced Malware Protection Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0, Module 3: Endpoint Protection and Detection, Lesson 3.1: Cisco AMP for Endpoints, Topic 3.1.1: Introduction to Cisco AMP for Endpoints Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0, Module 3: Endpoint Protection and Detection, Lesson 3.1: Cisco AMP for Endpoints, Topic 3.1.2: Cisco AMP for Endpoints Architecture Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0, Module 3: Endpoint Protection and Detection, Lesson 3.1: Cisco AMP for Endpoints, Topic 3.1.3: Cisco AMP for Endpoints Features",
+    "has_image": false
+  },
+  {
+    "number": 265,
+    "domain": "Security Concepts",
+    "question": "An administrator is configuring a DHCP server to better secure their environment. They need to be able to ratelimit the traffic and ensure that legitimate requests are not dropped. How would this be accomplished?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Set a trusted interface for the DHCP server"
+      },
+      {
+        "letter": "B",
+        "text": "Set the DHCP snooping bit to 1"
+      },
+      {
+        "letter": "C",
+        "text": "Add entries in the DHCP snooping database"
+      },
+      {
+        "letter": "D",
+        "text": "Enable ARP inspection for the required VLAN"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "To understand DHCP snooping we need to learn about DHCP spoofing attack first.   Questions & Answers PDF P-204  DHCP spoofing is a type of attack in that the attacker listens for DHCP Requests from clients and answers them with fake DHCP Response before the authorized DHCP Response comes to the clients. The fake DHCP Response often gives its IP address as the client default gateway -> all the traffic sent from the client will go through the attacker computer, the attacker becomes a \u201cman-in-the-middle\u201d. The attacker can have some ways to make sure its fake DHCP Response arrives first. In fact, if the attacker is \u201ccloser\u201d than the DHCP Server then he doesn\u2019t need to do anything. Or he can DoS the DHCP Server so that it can\u2019t send the DHCP Response. DHCP snooping can prevent DHCP spoofing attacks. DHCP snooping is a Cisco Catalyst feature that determines which switch ports can respond to DHCP requests. Ports are identified as trusted and untrusted.   Questions & Answers PDF P-205  Only ports that connect to an authorized DHCP server are trusted, and allowed to send all types of DHCP messages. All other ports on the switch are untrusted and can send only DHCP requests. If a DHCP response is seen on an untrusted port, the port is shut down.",
+    "has_image": false
+  },
+  {
+    "number": 266,
+    "domain": "Security Concepts",
+    "question": "Refer to the exhibit. What will happen when the Python script is executed?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "The hostname will be translated to an IP address and printed."
+      },
+      {
+        "letter": "B",
+        "text": "The hostname will be printed for the client in the client ID field."
+      },
+      {
+        "letter": "C",
+        "text": "The script will pull all computer hostnames and print them."
+      },
+      {
+        "letter": "D",
+        "text": "The script will translate the IP address to FODN and print it"
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "The Python script in the exhibit uses the Cisco AMP for Endpoints API to get information about the computers in the deployment. It imports the requests library, which allows it to make HTTP requests. It then defines three variables: client_id, api_key, and url. These are used to authenticate and access the API endpoint. The url is set to \u20181\u2019, which returns a list of computers in JSON format. The script then makes a GET request using the requests.get() method, passing the url and the authentication details as parameters. The response from the API is stored in the response variable, and converted to JSON using the response.json() method. The script then loops over each computer in the \u2018data\u2019 field of the JSON response, using a for loop. Inside the loop, it extracts the hostname of each computer using the \u2018hostname\u2019 key, and prints it using the print() function. Therefore, the script will pull all computer hostnames and print them, which is option C.\u00a0Reference: Overview of the Cisco AMP for Endpoints API Secure Endpoint API - Cisco DevNet Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0",
+    "has_image": true
+  },
+  {
+    "number": 267,
+    "domain": "Network Security",
+    "question": "Refer to the exhibit.   Questions & Answers PDF P-207  When configuring a remote access VPN solution terminating on the Cisco ASA, an administrator would like to utilize an external token authentication mechanism in conjunction with AAA authentication using machine certificates. Which configuration item must be modified to allow this?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Group Policy"
+      },
+      {
+        "letter": "B",
+        "text": "Method"
+      },
+      {
+        "letter": "C",
+        "text": "SAML Server"
+      },
+      {
+        "letter": "D",
+        "text": "DHCP Servers"
+      }
+    ],
+    "answer": "Qg==",
+    "explanation": "In order to use AAA along with an external token authentication mechanism, set the \u201cMethod\u201d as \u201cBoth\u201d in the Authentication.",
+    "has_image": true
+  },
+  {
+    "number": 268,
+    "domain": "Securing the Cloud",
+    "question": "An engineer has been tasked with implementing a solution that can be leveraged for securing the cloud users, data, and applications. There is a requirement to use the Cisco cloud native CASB and cloud cybersecurity platform. What should be used to meet these requirements?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Cisco Umbrella"
+      },
+      {
+        "letter": "B",
+        "text": "Cisco Cloud Email Security"
+      },
+      {
+        "letter": "C",
+        "text": "Cisco NGFW"
+      },
+      {
+        "letter": "D",
+        "text": "Cisco Cloudlock"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "Cisco Cloudlock: Secure your cloud users, data, and applications with the cloud-native Cloud Access Security Broker (CASB) and cloud cybersecurity platform. Reference:  security/at-a-glance-c45- 738565.pdf",
+    "has_image": false
+  },
+  {
+    "number": 269,
+    "domain": "Security Concepts",
+    "question": "An engineer needs a cloud solution that will monitor traffic, create incidents based on events, and integrate with other cloud solutions via an API. Which solution should be used to accomplish this goal?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "SIEM"
+      },
+      {
+        "letter": "B",
+        "text": "CASB"
+      },
+      {
+        "letter": "C",
+        "text": "Adaptive MFA"
+      },
+      {
+        "letter": "D",
+        "text": "Cisco Cloudlock"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "+ Cisco Cloudlock continuously monitors cloud environments with a cloud Data Loss Prevention (DLP) engine to identify sensitive information stored in cloud environments in violation of policy. + Cloudlock is API-based. + Incidents are a key resource in the Cisco Cloudlock application. They are triggered by the Cloudlock policy engine when a policy detection criteria result in a match in an object (document, field, folder, post, or file). Reference:  -documentation/docs/endpointsNote:+ Security information and event management (SIEM) platforms collect log and event data from securitysystems, networks and computers, and turn it into actionable security insights.+ An incident is a record of the triggering of an alerting policy. Cloud Monitoring opens an incident when acondition of an alerting policy has been met.",
+    "has_image": false
+  },
+  {
+    "number": 270,
+    "domain": "Security Concepts",
+    "question": "Why is it important to implement MFA inside of an organization?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "To prevent man-the-middle attacks from being successful."
+      },
+      {
+        "letter": "B",
+        "text": "To prevent DoS attacks from being successful."
+      },
+      {
+        "letter": "C",
+        "text": "To prevent brute force attacks from being successful."
+      },
+      {
+        "letter": "D",
+        "text": "To prevent phishing attacks from being successful."
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "Multi-factor authentication (MFA) is an authentication method that requires the user to provide two or more verification factors to gain access to a resource such as an application, online account, or a VPN.\u00a0MFA is a core component of a strong identity and access management (IAM) policy1. MFA is important to implement inside of an organization because it can prevent brute force attacks from   Questions & Answers PDF P-210  being successful. A brute force attack is a type of cyberattack that tries to guess the user\u2019s password or PIN by trying different combinations until it finds the correct one. This can be done manually or with automated tools. MFA can stop brute force attacks by requiring an additional factor of authentication that the attacker does not have, such as a phone, a token, a biometric, or a location.\u00a0MFA can also reduce the risk of other types of attacks that rely on stealing or compromising the user\u2019s credentials, such as phishing, keylogging, or credential stuffing.\u00a0Reference\u00a0:=\u00a01: What is Multi-Factor Authentication (MFA)? | OneLogin",
+    "has_image": false
+  },
+  {
+    "number": 271,
+    "domain": "Security Concepts",
+    "question": "A network administrator is configuring SNMPv3 on a new router .The users have already been created; however, an additional configuration is needed to facilitate access to the SNMP views. What must the administrator do to accomplish this?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "map SNMPv3 users to SNMP views"
+      },
+      {
+        "letter": "B",
+        "text": "set the password to be used for SNMPv3 authentication"
+      },
+      {
+        "letter": "C",
+        "text": "define the encryption algorithm to be used by SNMPv3"
+      },
+      {
+        "letter": "D",
+        "text": "specify the UDP port used by SNMP"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "SNMPv3 is a security model that uses authentication and encryption to provide secure access to devices. SNMPv3 requires the configuration of SNMP groups, users, and views. SNMP groups define the security model, security level, and access rights for a set of users. SNMP users are members of SNMP groups and have passwords for authentication and encryption. SNMP views define the subset of the MIB tree that a group of users can access. To facilitate access to the SNMP views, the network administrator must map the SNMPv3 users to the SNMP views using the\u00a0snmp-server group\u00a0command with the\u00a0v3\u00a0and\u00a0view\u00a0keywords. This command assigns a view to a group of users and specifies the security model and level for that group. For example, the following command maps the SNMPv3 users in the group\u00a0admin\u00a0to the view\u00a0all\u00a0using the\u00a0authPriv\u00a0security level: snmp-server group admin v3 authPriv read all write all This command allows the users in the group\u00a0admin\u00a0to access all the MIB objects in the view\u00a0all\u00a0using authentication and encryption. The other options are not correct because they are not related to the SNMP views. Option B is incorrect because the password for SNMPv3 authentication is configured for each user using the\u00a0snmp-server user\u00a0command with the\u00a0auth\u00a0keyword. Option C is incorrect because the encryption algorithm for SNMPv3 is also configured for each user using the\u00a0snmp-server user\u00a0command with the\u00a0priv\u00a0keyword. Option D is incorrect because the UDP port used by SNMP is not configurable and is always 161 for queries and 162 for traps.\u00a0Reference\u00a0:= Some possible references for this question are: SNMP Configuration Guide, Cisco IOS XE Release 3SE (Catalyst 3850 Switches) - SNMP Version 3 Configuration Template for SNMPv3 - Cisco Community   Questions & Answers PDF P-211  Configure ESXi for SNMP v3 - VMware Docs How to Configure SNMPv3 and How It Works - CBT Nuggets",
+    "has_image": false
+  },
+  {
+    "number": 272,
+    "domain": "Security Concepts",
+    "question": "An organization is using Cisco Firepower and Cisco Meraki MX for network security and needs to centrally manage cloud policies across these platforms. Which software should be used to accomplish this goal?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "Cisco Defense Orchestrator"
+      },
+      {
+        "letter": "B",
+        "text": "Cisco Secureworks"
+      },
+      {
+        "letter": "C",
+        "text": "Cisco DNA Center"
+      },
+      {
+        "letter": "D",
+        "text": "Cisco Configuration Professional"
+      }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Defense Orchestrator is a cloud-based management solution that allows you to manage security policies and device configurations with ease across multiple Cisco and cloud-native security platforms. Cisco Defense Orchestrator features: \u2026. Management of hybrid environments: Managing a mix of firewalls running the ASA, FTD, and Meraki MX software is now easy, with the ability to share policy elements across platforms. Reference:  orchestrator/datasheet-c78-736847.html",
+    "has_image": false
+  },
+  {
+    "number": 273,
+    "domain": "Security Concepts",
+    "question": "What is a function of 3DES in reference to cryptography?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "It hashes files."
+      },
+      {
+        "letter": "B",
+        "text": "It creates one-time use passwords."
+      },
+      {
+        "letter": "C",
+        "text": "It encrypts traffic."
+      },
+      {
+        "letter": "D",
+        "text": "It generates private keys."
+      }
+    ],
+    "answer": "Qw==",
+    "explanation": "3DES is a symmetric-key block cipher that applies the DES algorithm three times to each data block. It was developed to improve the security of DES, which has a small key size and is vulnerable to brute-force attacks. 3DES encrypts traffic by using three different keys, each 56 bits long, to perform three rounds of encryption on the plaintext. The encryption process can be described as follows: Encrypt the plaintext with the first key (K1). Decrypt the result with the second key (K2). Encrypt the result again with the third key (K3). The final ciphertext is the output of the third encryption. The decryption process is the reverse of the encryption process, using the same keys in reverse order: Decrypt the ciphertext with the third key (K3). Encrypt the result with the second key (K2). Decrypt the result again with the first key (K1). The final plaintext is the output of the third decryption. 3DES is more secure than DES because it uses a longer effective key length of 168 bits (56 x 3), which makes brute-force attacks more difficult. However, 3DES is also slower than DES because it requires three times more computations. Moreover, 3DES has some weaknesses, such as the meet-in-the-middle attack, which can reduce the effective key length to 112 bits.\u00a0Therefore, 3DES is not recommended for new applications and has been deprecated by NIST since 201712 Reference\u00a0:=\u00a01: NIST Special Publication 800-67 Revision 2 Recommendation for the Triple Data Encryption Algorithm (TDEA) Block Cipher\u00a02: What is 3DES encryption and how does DES work? | Comparitech",
+    "has_image": false
+  },
+  {
+    "number": 274,
+    "domain": "Security Concepts",
+    "question": "Which risk is created when using an Internet browser to access cloud-based service?",
+    "options": [
+      {
+        "letter": "A",
+        "text": "misconfiguration of infrastructure, which allows unauthorized access"
+      },
+      {
+        "letter": "B",
+        "text": "intermittent connection to the cloud connectors"
+      },
+      {
+        "letter": "C",
+        "text": "vulnerabilities within protocol"
+      },
+      {
+        "letter": "D",
+        "text": "insecure implementation of API"
+      }
+    ],
+    "answer": "RA==",
+    "explanation": "Using an Internet browser to access cloud-based service creates the risk of insecure implementation of API. API stands for Application Programming Interface, which is a set of rules and protocols that   Questions & Answers PDF P-213  allow different applications or services to communicate and exchange data. API is often used to access cloud-based service, such as software as a service (SaaS), platform as a service (PaaS), or infrastructure as a service (IaaS). However, if the API is not implemented securely, it can expose sensitive data or allow unauthorized access to the cloud service. For example, an API may not use encryption, authentication, or authorization mechanisms to protect the data in transit or at rest. An API may also have vulnerabilities such as injection, broken authentication, or insufficient logging and monitoring, which can be exploited by attackers to compromise the cloud service or the user\u2019s browser .Therefore, it is important to follow the best practices and standards for secure API development and testing, such as OWASP API Security Top 10.\u00a0Reference: 1: Implementing and Operating Cisco Security Core Technologies (SCOR) - Cisco 2: 350-701 SCOR - Cisco 3: Implementing and Operating Cisco Security Core Technologies (SCOR) v1.0 4: 12 Cloud Security Issues: Risks, Threats & Challenges - CrowdStrike 5: 12 Risks, Threats, & Vulnerabilities in Moving to the Cloud - SEI Blog 6: Remote Browser Isolation Protects Users from Threats - Cisco Umbrella 7: Which risk is created when using an Internet browser to access cloud-based service? 8: Browser in the Cloud",
+    "has_image": false
+  }
+
+
+]
+    </script>
+    <script>
+        const rawQuestions = JSON.parse(document.getElementById('quiz-data').textContent);
+        let currentIdx = 0;
+        let score = 0;
+
+        function base64Decode(str) { try { return atob(str); } catch (e) { return str; } }
+        function getAnswers(obfuscated) { return base64Decode(obfuscated).replace(/[^A-G]/gi, '').split(''); }
+        function isMultiSelect(questionText) { 
+            const text = questionText.toLowerCase();
+            return text.includes('(choose two)') || text.includes('(choose three)');
+        }
+
+        function buildQuiz() {
+            const quizArea = document.getElementById('quiz-area');
+            rawQuestions.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = `quiz-card ${idx === 0 ? 'active' : ''}`;
+                card.id = `card-${idx}`;
+                card.innerHTML = `<div class="domain-badge">Q${q.number} - ${q.domain}</div>
+                                  <div class="question-text">${q.question}</div>`;
+                
+                const multi = isMultiSelect(q.question);
+                q.options.forEach(opt => {
+                    const label = document.createElement('label');
+                    label.className = 'option-label';
+                    label.id = `label-${idx}-${opt.letter}`;
+                    label.innerHTML = `<input type="${multi ? 'checkbox' : 'radio'}" name="question-${idx}" value="${opt.letter}"> ${opt.letter}. ${opt.text}`;
+                    card.appendChild(label);
+                });
+
+                const explainDiv = document.createElement('div');
+                explainDiv.className = 'explanation';
+                explainDiv.id = `explain-${idx}`;
+                explainDiv.innerHTML = `<strong>Explanation:</strong><br>${q.explanation}`;
+                card.appendChild(explainDiv);
+                quizArea.appendChild(card);
+            });
+            updateNav();
+        }
+
+        function changeQuestion(dir) {
+            document.getElementById(`card-${currentIdx}`).classList.remove('active');
+            currentIdx += dir;
+            document.getElementById(`card-${currentIdx}`).classList.add('active');
+            updateNav();
+        }
+
+        function updateNav() {
+            document.getElementById('prev-btn').disabled = currentIdx === 0;
+            document.getElementById('next-btn').style.display = currentIdx === rawQuestions.length - 1 ? 'none' : 'inline-block';
+            document.getElementById('submit-btn').style.display = currentIdx === rawQuestions.length - 1 ? 'inline-block' : 'none';
+            // Finish button is hidden only after the quiz is submitted (handled by action-container styling in gradeQuiz)[cite: 1]
+            document.getElementById('finish-btn').style.display = currentIdx === rawQuestions.length - 1 ? 'none' : 'inline-block';
+        }
+
+        function gradeQuiz() {
+            score = 0;
+            rawQuestions.forEach((q, idx) => {
+                const correctAnswers = getAnswers(q.answer);
+                const selected = Array.from(document.querySelectorAll(`input[name="question-${idx}"]:checked`)).map(el => el.value);
+                const explainDiv = document.getElementById(`explain-${idx}`);
+                let isCorrect = selected.length === correctAnswers.length && selected.every(val => correctAnswers.includes(val));
+                
+                q.options.forEach(opt => {
+                    const label = document.getElementById(`label-${idx}-${opt.letter}`);
+                    if (correctAnswers.includes(opt.letter)) label.classList.add('right-ans');
+                    else if (selected.includes(opt.letter)) label.classList.add('wrong-ans');
+                });
+                explainDiv.style.display = 'block';
+                if (isCorrect) score++;
+            });
+            document.querySelectorAll('.quiz-card').forEach(card => card.classList.add('active'));
+            document.querySelector('.action-container').style.display = 'none';
+            alert(`Module 3 Completed!\nScore: ${score} / ${rawQuestions.length}`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        buildQuiz();
+    </script>
+</body>
+</html>

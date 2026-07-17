@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module 2 - CCNP 350-701 Quiz</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f7fafc;
+            color: #2d3748;
+            margin: 0;
+            padding: 20px;
+        }
+        header {
+            background-color: #1a365d;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .quiz-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border-top: 5px solid #2b6cb0;
+            display: none;
+        }
+        .quiz-card.active {
+            display: block;
+        }
+        .domain-badge {
+            display: inline-block;
+            background-color: #ebf8ff;
+            color: #2b6cb0;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .question-text {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        .option-label {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .option-label:hover {
+            background: #edf2f7;
+        }
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+        .btn {
+            background-color: #2b6cb0;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .btn:hover {
+            background-color: #2c5282;
+        }
+        .action-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        .nav-container {
+            display: flex;
+            gap: 10px;
+        }
+        .explanation {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #f0fff4;
+            border-left: 4px solid #38a169;
+            border-radius: 4px;
+            display: none;
+        }
+        .wrong-ans {
+            background-color: #fff5f5 !important;
+            border-color: #feb2b2 !important;
+        }
+        .right-ans {
+            background-color: #f0fff4 !important;
+            border-color: #9ae6b4 !important;
+        }
+        .exhibit-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #cbd5e0;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+    </style>
+    <script>
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) return false;
+            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) return false;
+        }
+        if (localStorage.getItem('scor_session') !== 'authenticated') {
+            window.location.href = "index.html";
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CCNP Security 350-701</h1>
+            <h2>Module 2 Practice Exam</h2>
+            <button class="btn" style="background-color: #4a5568;" onclick="window.location.href='index.html'">🏠 Portal Home</button>
+        </header>
+        <div id="quiz-area"></div>
+        <div class="action-container">
+            <!-- Exit and Finish Quiz grouped together on the left -->
+            <div class="nav-container">
+                <button class="btn" style="background-color: #e53e3e;" onclick="window.location.href='index.html'">Exit</button>
+                <button class="btn" id="finish-btn" style="background-color: #38a169;" onclick="gradeQuiz()">Finish Quiz</button>
+            </div>
+            
+            <div class="nav-container">
+                <button class="btn" id="prev-btn" style="background-color: #4a5568;" onclick="changeQuestion(-1)">Previous</button>
+                <button class="btn" id="next-btn" onclick="changeQuestion(1)">Next</button>
+            </div>
+            <button class="btn" id="submit-btn" style="background-color: #38a169;" onclick="gradeQuiz()">Submit & Review</button>
+        </div>
+    </div>
+    <script id="quiz-data" type="application/json">
+
+[
+  {
+    "number": 101,
+    "domain": "Security Concepts",
+    "question": "A malicious user gained network access by spoofing printer connections that were authorized using MAB on four different switch ports at the same time. What two catalyst switch security features will prevent further violations? (Choose two)",
+    "options": [
+      { "letter": "A", "text": "DHCP Snooping" },
+      { "letter": "B", "text": "802.1AE MacSec" },
+      { "letter": "C", "text": "Port security" },
+      { "letter": "D", "text": "IP Device track" },
+      { "letter": "E", "text": "Dynamic ARP inspection" },
+      { "letter": "F", "text": "Private VLANs" }
+    ],
+    "answer": "QixD",
+    "explanation": "MAB is a fallback mechanism for IEEE 802.1X that allows network access based on the MAC address of the endpoint. However, MAB does not prevent MAC address spoofing. To mitigate this risk, two Catalyst switch security features can be used: 802.1AE MacSec and port security. MacSec provides encryption and integrity verification, making it impossible for spoofed endpoints to participate in the data transport. Port security restricts the maximum number of MAC addresses allowed per switchport, dropping violations if a MAC is seen elsewhere.",
+    "has_image": false
+  },
+  {
+    "number": 102,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which command enables 802.1X globally on a Cisco switch?",
+    "options": [
+      { "letter": "A", "text": "dot1x system-auth-control" },
+      { "letter": "B", "text": "dot1x pae authenticator" },
+      { "letter": "C", "text": "authentication port-control aut" },
+      { "letter": "D", "text": "aaa new-model" }
+    ],
+    "answer": "QQ==",
+    "explanation": "The dot1x system-auth-control command enables 802.1X globally on a Cisco switch. This configuration command allows the switch to act as an authenticator for 802.1X clients.",
+    "has_image": false
+  },
+  {
+    "number": 103,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which RADIUS attribute can you use to filter MAB requests in an 802.1x deployment?",
+    "options": [
+      { "letter": "A", "text": "1" },
+      { "letter": "B", "text": "2" },
+      { "letter": "C", "text": "6" },
+      { "letter": "D", "text": "31" }
+    ],
+    "answer": "Qw==",
+    "explanation": "Cisco switches identify MAB requests by setting Attribute 6 (Service-Type) to 10 (Call-Check) in the Access-Request payload. This allows the RADIUS server (like Cisco ISE) to process it as a MAC-bypass authentication attempt.",
+    "has_image": false
+  },
+  {
+    "number": 104,
+    "domain": "Security Concepts",
+    "question": "A network administrator configures Dynamic ARP Inspection on a switch. After Dynamic ARP Inspection is applied, all users on that switch are unable to communicate with any destination. The network administrator checks the interface status of all interfaces, and there is no err-disabled interface. What is causing this problem?",
+    "options": [
+      { "letter": "A", "text": "DHCP snooping has not been enabled on all VLANs." },
+      { "letter": "B", "text": "The ip arp inspection limit command is applied on all interfaces and is blocking the traffic of all" },
+      { "letter": "C", "text": "Dynamic ARP Inspection has not been enabled on all VLANs" },
+      { "letter": "D", "text": "The no ip arp inspection trust command is applied on all user host interfaces" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Dynamic ARP Inspection (DAI) relies on the DHCP Snooping binding database to validate incoming ARP packets on untrusted ports. If DHCP Snooping is not enabled globally or on the specified VLANs, the switch will not build a binding database. As a result, DAI will drop all incoming ARP packets, causing a complete loss of communication across the switch without triggering err-disabled states.",
+    "has_image": false
+  },
+  {
+    "number": 105,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Refer to the exhibit. An engineer configured wired 802.1x on the network and is unable to get a laptop to authenticate. Which port configuration is missing?",
+    "options": [
+      { "letter": "A", "text": "authentication open" },
+      { "letter": "B", "text": "dotlx reauthentication" },
+      { "letter": "C", "text": "cisp enable" },
+      { "letter": "D", "text": "dot1x pae authenticator" }
+    ],
+    "answer": "UkE=",
+    "explanation": "The dot1x pae authenticator command enables 802.1x authentication on the port and configures the port as an authenticator. Without this command, the port will not send EAPOL packets to the client.",
+    "has_image": true
+  },
+  {
+    "number": 106,
+    "domain": "Security Concepts",
+    "question": "Which SNMPv3 configuration must be used to support the strongest security possible?",
+    "options": [
+      { "letter": "A", "text": "asa-host(config)#snmp-server group myv3 v3 privasa-host(config)#snmp-server user andy myv3" },
+      { "letter": "B", "text": "asa-host(config)#snmp-server group myv3 v3 noauthasa-host(config)#snmp-server user andy" },
+      { "letter": "C", "text": "asa-host(config)#snmpserver group myv3 v3 noauthasa-host(config)#snmp-server user andy myv3" },
+      { "letter": "D", "text": "asa-host(config)#snmp-server group myv3 v3 privasa-host(config)#snmp-server user andy myv3" }
+    ],
+    "answer": "UkE=",
+    "explanation": "To run SNMPv3 with maximum security, you must enforce both cryptographic authentication and data encryption. This is defined by using the 'priv' keyword in the group and user configurations.",
+    "has_image": false
+  },
+  {
+    "number": 107,
+    "domain": "Security Concepts",
+    "question": "Refer to the exhibit. Which command was used to generate this output and to show which ports are authenticating with dot1x or mab?",
+    "options": [
+      { "letter": "A", "text": "show authentication registrations" },
+      { "letter": "B", "text": "show authentication method" },
+      { "letter": "C", "text": "show dot1x all" },
+      { "letter": "D", "text": "show authentication sessions" }
+    ],
+    "answer": "UkE=",
+    "explanation": "The 'show authentication sessions' command shows the summary list of active client sessions, revealing their MAC address, the authentication method used (mab, dot1x), and the status of authorization.",
+    "has_image": true
+  },
+  {
+    "number": 108,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "What Cisco command shows you the status of an 802.1X connection on interface gi0/1?",
+    "options": [
+      { "letter": "A", "text": "show authorization status" },
+      { "letter": "B", "text": "show authen sess int gi0/1" },
+      { "letter": "C", "text": "show connection status gi0/1" },
+      { "letter": "D", "text": "show ver gi0/1" }
+    ],
+    "answer": "Qg==",
+    "explanation": "The 'show authen sess int <interface>' command is the modern Cisco IOS command to display the details of active authentication sessions on a specific physical or logical interface.",
+    "has_image": false
+  },
+  {
+    "number": 109,
+    "domain": "Security Concepts",
+    "question": "Refer to the exhibit. What does the number 15 represent in this configuration?",
+    "options": [
+      { "letter": "A", "text": "privilege level for an authorized user to this router" },
+      { "letter": "B", "text": "access list that identifies the SNMP devices that can access the router" },
+      { "letter": "C", "text": "interval in seconds between SNMPv3 authentication attempts" },
+      { "letter": "D", "text": "number of possible failed attempts until the SNMPv3 user is locked out" }
+    ],
+    "answer": "Qg==",
+    "explanation": "The 'access 15' parameter references standard Access Control List 15, limiting queries and operations to only those sources permitted within that ACL configuration.",
+    "has_image": true
+  },
+  {
+    "number": 110,
+    "domain": "Security Concepts",
+    "question": "Under which two circumstances is a CoA issued? (Choose two)",
+    "options": [
+      { "letter": "A", "text": "A new authentication rule was added to the policy on the Policy Service node." },
+      { "letter": "B", "text": "An endpoint is deleted on the Identity Service Engine server." },
+      { "letter": "C", "text": "A new Identity Source Sequence is created and referenced in the authentication policy." },
+      { "letter": "D", "text": "An endpoint is profiled for the first time." },
+      { "letter": "E", "text": "A new Identity Service Engine server is added to the deployment with the Administration persona" }
+    ],
+    "answer": "QixE",
+    "explanation": "A Change of Authorization (CoA) is issued by Cisco ISE when an endpoint is profiled for the first time (transitioning status from unknown to a specific profile), or when an endpoint is explicitly deleted from the database, requiring the NAS switch/WLC to drop the active port connection.",
+    "has_image": false
+  },
+  {
+    "number": 111,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Refer to the exhibit. A network administrator configures command authorization for the admin5 user. What is the admin5 user able to do on HQ_Router after this configuration?",
+    "options": [
+      { "letter": "A", "text": "set the IP address of an interface" },
+      { "letter": "B", "text": "complete no configurations" },
+      { "letter": "C", "text": "complete all configurations" },
+      { "letter": "D", "text": "add subinterfaces" }
+    ],
+    "answer": "Qg==",
+    "explanation": "Because admin5 has privilege level 5, but is not granted explicit commands, they cannot enter global configuration mode. To allow configuration, the administrator would need to add a privilege mapping like 'privilege exec level 5 configure terminal'. Without it, they cannot make any configuration modifications.",
+    "has_image": true
+  },
+  {
+    "number": 112,
+    "domain": "Security Concepts",
+    "question": "A network engineer has entered the snmp-server user andy myv3 auth sha cisco priv aes 256 cisc0380739941 command and needs to send SNMP information to a host at 10.255.254.1. Which command achieves this goal?",
+    "options": [
+      { "letter": "A", "text": "snmp-server host inside 10.255.254.1 version 3 andy" },
+      { "letter": "B", "text": "snmp-server host inside 10.255.254.1 version 3 myv3" },
+      { "letter": "C", "text": "snmp-server host inside 10.255.254.1 snmpv3 andy" },
+      { "letter": "D", "text": "snmp-server host inside 10.255.254.1 snmpv3 myv3" }
+    ],
+    "answer": "QQ==",
+    "explanation": "The command syntax requires 'snmp-server host [interface-name] [IP] version 3 [username]'. The command uses the specific SNMPv3 username ('andy') rather than the group name ('myv3').",
+    "has_image": false
+  },
+  {
+    "number": 113,
+    "domain": "Security Concepts",
+    "question": "Which telemetry data captures variations seen within the flow, such as the packets TTL, IP/TCP flags, and payload length?",
+    "options": [
+      { "letter": "A", "text": "interpacket variation" },
+      { "letter": "B", "text": "software package variation" },
+      { "letter": "C", "text": "flow insight variation" },
+      { "letter": "D", "text": "process details variation" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Telemetry has three core properties: Flow information, Interpacket variation, and Context details. Interpacket variation measures differences in fields such as packet size, TTL modifications, and TCP Flags within a stream.",
+    "has_image": false
+  },
+  {
+    "number": 114,
+    "domain": "Security Concepts",
+    "question": "How is ICMP used an exfiltration technique?",
+    "options": [
+      { "letter": "A", "text": "by flooding the destination host with unreachable packets" },
+      { "letter": "B", "text": "by sending large numbers of ICMP packets with a targeted hosts source IP address using an IP" },
+      { "letter": "C", "text": "by encrypting the payload in an ICMP packet to carry out command and control tasks on a" },
+      { "letter": "D", "text": "by overwhelming a targeted host with ICMP echo-request packets" }
+    ],
+    "answer": "Qw==",
+    "explanation": "ICMP tunneling embeds data inside the optional payload field of standard ICMP Echo Request and Reply packets. By encrypting and embedding data, an attacker can maintain C2 or exfiltrate datasets past standard edge firewalls that do not inspect ICMP payloads.",
+    "has_image": false
+  },
+  {
+    "number": 115,
+    "domain": "Security Concepts",
+    "question": "Which exfiltration method does an attacker use to hide and encode data inside DNS requests and queries?",
+    "options": [
+      { "letter": "A", "text": "DNS tunneling" },
+      { "letter": "B", "text": "DNSCrypt" },
+      { "letter": "C", "text": "DNS security" },
+      { "letter": "D", "text": "DNSSEC" }
+    ],
+    "answer": "QQ==",
+    "explanation": "DNS Tunneling is a dynamic protocol abuse vector that encodes system data into the subdomain space of standard recursive DNS requests, routing information through normal lookup pathways directly to nameservers controlled by the threat actor.",
+    "has_image": false
+  },
+  {
+    "number": 116,
+    "domain": "Security Concepts",
+    "question": "How is DNS tunneling used to exfiltrate data out of a corporate network?",
+    "options": [
+      { "letter": "A", "text": "It corrupts DNS servers by replacing the actual IP address with a rogue address to collect" },
+      { "letter": "B", "text": "It encodes the payload with random characters that are broken into short strings and the DNS" },
+      { "letter": "C", "text": "It redirects DNS requests to a malicious server used to steal user credentials, which allows further" },
+      { "letter": "D", "text": "It leverages the DNS server by permitting recursive lookups to spread the attack to other DNS" }
+    ],
+    "answer": "Qg==",
+    "explanation": "The exfiltration payload is split into small segments, encoded (typically in Base64 or Hex), and placed as the subdomain query string (e.g., encoded-data.attackerdomain.com) of a standard DNS request. The recursive resolver passes this queries up to the authoritative nameserver, where the attacker's listener decodes and reassembles the pieces.",
+    "has_image": false
+  },
+  {
+    "number": 117,
+    "domain": "Security Concepts",
+    "question": "Which two characteristics of messenger protocols make data exfiltration difficult to detect and prevent? (Choose two)",
+    "options": [
+      { "letter": "A", "text": "Outgoing traffic is allowed so users can communicate with outside organizations." },
+      { "letter": "B", "text": "Malware infects the messenger application on the user endpoint to send company data." },
+      { "letter": "C", "text": "Traffic is encrypted, which prevents visibility on firewalls and IPS systems." },
+      { "letter": "D", "text": "An exposed API for the messaging platform is used to send large amounts of data." },
+      { "letter": "E", "text": "Messenger applications cannot be segmented with standard network controls" }
+    ],
+    "answer": "QSxD",
+    "explanation": "Messenger protocols are particularly difficult to secure because outbound connections to corporate messaging clouds (like Slack, Teams, etc.) are explicitly allowed by firewall policy. Furthermore, this traffic is wrapped inside SSL/TLS encryption, blinding inline deep-packet security mechanisms.",
+    "has_image": false
+  },
+  {
+    "number": 118,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which Cisco AMP file disposition valid?",
+    "options": [
+      { "letter": "A", "text": "pristine" },
+      { "letter": "B", "text": "malware" },
+      { "letter": "C", "text": "dirty" },
+      { "letter": "D", "text": "non malicious" }
+    ],
+    "answer": "Qg==",
+    "explanation": "Cisco Advanced Malware Protection classifies files into three distinct dispositions: Clean, Unknown, or Malware.",
+    "has_image": false
+  },
+  {
+    "number": 119,
+    "domain": "Endpoint Protection and Detection",
+    "question": "When using Cisco AMP for Networks which feature copies a file to the Cisco AMP cloud for analysis?",
+    "options": [
+      { "letter": "A", "text": "Spero analysis" },
+      { "letter": "B", "text": "dynamic analysis" },
+      { "letter": "C", "text": "sandbox analysis" },
+      { "letter": "D", "text": "malware analysis" }
+    ],
+    "answer": "Qg==",
+    "explanation": "Dynamic Analysis (utilizing Threat Grid engines) uploads physical copies of suspicious files from the firewall or endpoint directly to the sandbox cloud. Spero Heuristics, on the other hand, only analyzes local metadata/header structure without completing a full file upload.",
+    "has_image": false
+  },
+  {
+    "number": 120,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which Cisco Advanced Malware protection for Endpoints deployment architecture is designed to keep data within a network perimeter?",
+    "options": [
+      { "letter": "A", "text": "cloud web services" },
+      { "letter": "B", "text": "network AMP" },
+      { "letter": "C", "text": "private cloud" },
+      { "letter": "D", "text": "public cloud" }
+    ],
+    "answer": "Qw==",
+    "explanation": "For highly secure or air-gapped network spaces, the AMP Private Cloud appliance is utilized to process security evaluations locally, keeping proprietary and operational data safely within the enterprise's physical network boundaries.",
+    "has_image": false
+  },
+  {
+    "number": 121,
+    "domain": "Endpoint Protection and Detection",
+    "question": "What is the primary difference between standard antivirus and endpoint detection and response solutions?",
+    "options": [
+      { "letter": "A", "text": "Standard antivirus requires continuous connectivity, whereas EDR operates fully offline." },
+      { "letter": "B", "text": "Antivirus focuses primarily on signature-based prevention, while EDR provides continuous visibility and behavioral threat detection." },
+      { "letter": "C", "text": "EDR solutions only monitor network edge devices, whereas antivirus is deployed locally." },
+      { "letter": "D", "text": "Antivirus handles system updates, whereas EDR provides automated firewalls." }
+    ],
+    "answer": "Qg==",
+    "explanation": "Standard Antivirus relies heavily on pre-computed file hashes and signatures to match known threat payloads. Endpoint Detection and Response (EDR) provides forensic process tracing, recording anomalous runtime behaviors, even if the malicious payload is entirely signatureless.",
+    "has_image": false
+  },
+  {
+    "number": 122,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which function is an outbreak control feature within Cisco AMP for Endpoints?",
+    "options": [
+      { "letter": "A", "text": "Device flow correlation" },
+      { "letter": "B", "text": "Application blocking list" },
+      { "letter": "C", "text": "Simple detections" },
+      { "letter": "D", "text": "Advanced custom detections" }
+    ],
+    "answer": "Qw==",
+    "explanation": "Outbreak Control features allow immediate operational mitigation of sudden active campaigns. The primary options here include Simple Custom Detections (which quarantine specific hash values), Advanced Custom Detections, and Application Blocklists/Allowlists.",
+    "has_image": false
+  },
+  {
+    "number": 123,
+    "domain": "Security Concepts",
+    "question": "Which function is the primary function of Cisco AMP threat Grid?",
+    "options": [
+      { "letter": "A", "text": "automated email encryption" },
+      { "letter": "B", "text": "applying a real-time URI blacklist" },
+      { "letter": "C", "text": "automated malware analysis" },
+      { "letter": "D", "text": "monitoring network traffic" }
+    ],
+    "answer": "Qw==",
+    "explanation": "Threat Grid is built specifically to execute suspicious samples inside highly instrumented sandboxes, performing automated static and dynamic file analysis to discover systemic behaviors and score threat vectors.",
+    "has_image": false
+  },
+  {
+    "number": 124,
+    "domain": "Endpoint Protection and Detection",
+    "question": "What are two list types within AMP for Endpoints Outbreak Control? (Choose two)",
+    "options": [
+      { "letter": "A", "text": "blocked ports" },
+      { "letter": "B", "text": "simple custom detections" },
+      { "letter": "C", "text": "command and control" },
+      { "letter": "D", "text": "allowed applications" },
+      { "letter": "E", "text": "URL" }
+    ],
+    "answer": "QixE",
+    "explanation": "Within the Outbreak Control section, administrators can configure policies via 'Simple Custom Detections' (custom blocks) and 'Allowed Applications' (to prevent false positives).",
+    "has_image": true
+  },
+  {
+    "number": 125,
+    "domain": "Endpoint Protection and Detection",
+    "question": "What is a required prerequisite to enable malware file scanning for the Secure Internet Gateway?",
+    "options": [
+      { "letter": "A", "text": "Enable IP Layer Enforcement" },
+      { "letter": "B", "text": "Enable the Decryption option in the Web Policy Configuration" },
+      { "letter": "C", "text": "Enable Intelligent Proxy" },
+      { "letter": "D", "text": "Configure DNS policies to redirect all traffic" }
+    ],
+    "answer": "Qg==",
+    "explanation": "To inspect the file payload of web downloads passing through a Secure Internet Gateway (SIG) proxy utilizing HTTPS, you must enable SSL Decryption. Without SSL Decryption, payload streams remain encrypted and cannot be parsed for structural or signature anomalies.",
+    "has_image": false
+  },
+  {
+    "number": 126,
+    "domain": "Endpoint Protection and Detection",
+    "question": "What is the function of the Cisco AMP device flow correlation feature?",
+    "options": [
+      { "letter": "A", "text": "It correlates device location data to isolate infections." },
+      { "letter": "B", "text": "It inspects network connections established by processes to identify malicious activity and data exfiltration." },
+      { "letter": "C", "text": "It matches file hashes across multiple endpoints synchronously." },
+      { "letter": "D", "text": "It automatically blocks USB mass storage devices during a malware outbreak." }
+    ],
+    "answer": "Qg==",
+    "explanation": "Cisco Secure Endpoint (formerly AMP for Endpoints) Device Flow Correlation allows the agent to monitor network connections made by individual processes on the endpoint. It correlates this telemetry with threat intelligence to detect command-and-control communication, unauthorized data exfiltration, or connections to malicious IP addresses.",
+    "has_image": false
+  },
+  {
+    "number": 127,
+    "domain": "Security Concepts",
+    "question": "An enterprise network is experiencing frequent unauthorized device attachments. The network administrator needs to restrict access based on MAC address validation before allowing full 802.1X configuration. Which feature serves as an interim solution?",
+    "options": [
+      { "letter": "A", "text": "Web Authentication" },
+      { "letter": "B", "text": "MAC Authentication Bypass" },
+      { "letter": "C", "text": "Dynamic ARP Inspection" },
+      { "letter": "D", "text": "Port Security" }
+    ],
+    "answer": "Qg==",
+    "explanation": "MAC Authentication Bypass (MAB) is used to authenticate legacy or non-802.1X capable endpoints (like printers or cameras) by using their MAC addresses as credentials.",
+    "has_image": false
+  },
+  {
+    "number": 128,
+    "domain": "Infrastructure Security",
+    "question": "Which control plane security mechanism is used to protect a Cisco IOS router's processor from overhead and denial-of-service traffic?",
+    "options": [
+      { "letter": "A", "text": "Control Plane Policing" },
+      { "letter": "B", "text": "Unicast Reverse Path Forwarding" },
+      { "letter": "C", "text": "Management Plane Protection" },
+      { "letter": "D", "text": "Dynamic ARP Inspection" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Control Plane Policing (CoPP) is used on Cisco routers to protect the CPU from being overwhelmed by control plane traffic (such as routing updates, ICMP, etc.) by rate-limiting or filtering traffic specifically directed to the router itself.",
+    "has_image": false
+  },
+  {
+    "number": 129,
+    "domain": "Infrastructure Security",
+    "question": "Which protocol secures communication between a client and a web server using asymmetric encryption for session key exchange and symmetric encryption for transmission?",
+    "options": [
+      { "letter": "A", "text": "HTTPS / TLS" },
+      { "letter": "B", "text": "IPsec" },
+      { "letter": "C", "text": "SSH" },
+      { "letter": "D", "text": "WPA3" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Transport Layer Security (TLS), used in HTTPS, establishes secure connections using asymmetric keys to verify identity and exchange a symmetric session key, which is then used to encrypt the rest of the web traffic.",
+    "has_image": false
+  },
+  {
+    "number": 130,
+    "domain": "Security Concepts",
+    "question": "An engineer needs to isolate department network segments at Layer 2 without adding physical equipment. What is the most effective technology to use?",
+    "options": [
+      { "letter": "A", "text": "VLANs" },
+      { "letter": "B", "text": "IP subnets" },
+      { "letter": "C", "text": "Virtual Routing and Forwarding (VRF)" },
+      { "letter": "D", "text": "Access Control Lists" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Virtual Local Area Networks (VLANs) segment a physical switch into multiple logical Layer 2 domains, isolating broadcast traffic and devices without needing separate physical switches.",
+    "has_image": false
+  },
+  {
+    "number": 131,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which Cisco ASA deployment mode acts like a Layer 2 bump-in-the-wire without requiring routing changes?",
+    "options": [
+      { "letter": "A", "text": "Transparent mode" },
+      { "letter": "B", "text": "Routed mode" },
+      { "letter": "C", "text": "Multiple context mode" },
+      { "letter": "D", "text": "Single context mode" }
+    ],
+    "answer": "QQ==",
+    "explanation": "In transparent mode, the Cisco ASA acts as a Layer 2 firewall (invisible to endpoints). It does not act as a next-hop router and does not require modifying the existing IP network infrastructure.",
+    "has_image": false
+  },
+  {
+    "number": 132,
+    "domain": "Infrastructure Security",
+    "question": "Which protocol prevents Layer 2 switching loops by dynamically disabling redundant paths?",
+    "options": [
+      { "letter": "A", "text": "Spanning Tree Protocol" },
+      { "letter": "B", "text": "Virtual Router Redundancy Protocol" },
+      { "letter": "C", "text": "Link Aggregation Control Protocol" },
+      { "letter": "D", "text": "Dynamic Trunking Protocol" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Spanning Tree Protocol (STP) prevents switching loops by calculating a loop-free logical topology and placing redundant physical links into a blocking state.",
+    "has_image": false
+  },
+  {
+    "number": 133,
+    "domain": "Security Concepts",
+    "question": "Which component is responsible for translating a policy into device-specific configurations in a Cisco Software-Defined Access environment?",
+    "options": [
+      { "letter": "A", "text": "Cisco DNA Center" },
+      { "letter": "B", "text": "Cisco ISE" },
+      { "letter": "C", "text": "vManage" },
+      { "letter": "D", "text": "Cisco Prime Infrastructure" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco DNA Center (now Cisco Catalyst Center) acts as the centralized management controller in an SD-Access environment, abstracting configuration to push policy-driven states to the fabric nodes.",
+    "has_image": false
+  },
+  {
+    "number": 134,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which deployment scenario describes an 802.1X environment where endpoints are given access to the network even if they do not authenticate, but are logged as failed?",
+    "options": [
+      { "letter": "A", "text": "Monitor Mode" },
+      { "letter": "B", "text": "Low Impact Mode" },
+      { "letter": "C", "text": "Closed Mode" },
+      { "letter": "D", "text": "Open Mode" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Monitor Mode allows endpoints onto the network with an open access-list regardless of authentication success or failure, logging events to help administrators test their 802.1X configurations prior to active enforcement.",
+    "has_image": false
+  },
+  {
+    "number": 135,
+    "domain": "Security Concepts",
+    "question": "Which attack type occurs when a malicious node answers a broadcast request for a default gateway by spoofing its Layer 2 hardware address?",
+    "options": [
+      { "letter": "A", "text": "ARP Poisoning" },
+      { "letter": "B", "text": "MAC Flooding" },
+      { "letter": "C", "text": "DHCP Starvation" },
+      { "letter": "D", "text": "IP Spoofing" }
+    ],
+    "answer": "QQ==",
+    "explanation": "ARP Poisoning (or ARP Spoofing) occurs when an attacker sends falsified ARP replies across a local network to link their physical MAC address with the IP address of a legitimate gateway device.",
+    "has_image": false
+  },
+  {
+    "number": 136,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which option is an advantage of using dACLs on Cisco ISE during 802.1X authentication?",
+    "options": [
+      { "letter": "A", "text": "They are sent to the switch inside the Access-Accept message, eliminating the need to pre-configure ACLs locally on the switch." },
+      { "letter": "B", "text": "They operate at Layer 7 to inspect application payloads." },
+      { "letter": "C", "text": "They dynamically modify physical switchport speeds." },
+      { "letter": "D", "text": "They completely bypass the switch's hardware TCAM limits." }
+    ],
+    "answer": "QQ==",
+    "explanation": "Downloadable Access Control Lists (dACLs) are centralized on ISE. When a client authenticates successfully, the dACL content is delivered directly within the RADIUS Access-Accept packet to the switchport, meaning the switch doesn't need to have local ACL rules predefined.",
+    "has_image": false
+  },
+  {
+    "number": 137,
+    "domain": "Infrastructure Security",
+    "question": "Which Cisco IOS switch feature prevents an untrusted port from acting as a root port for the Spanning Tree Protocol?",
+    "options": [
+      { "letter": "A", "text": "Root Guard" },
+      { "letter": "B", "text": "BPDU Guard" },
+      { "letter": "C", "text": "Loop Guard" },
+      { "letter": "D", "text": "PortFast" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Root Guard prevents an interface from becoming a Root Port. If a port configured with Root Guard receives superior BPDUs (indicating a device attempting to become the STP Root Bridge), the port goes into a root-inconsistent state and blocks traffic.",
+    "has_image": false
+  },
+  {
+    "number": 138,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "What standard-based protocol is used to pass user authentication information between a network access server and a centralized directory service?",
+    "options": [
+      { "letter": "A", "text": "RADIUS" },
+      { "letter": "B", "text": "LDAP" },
+      { "letter": "C", "text": "SNMP" },
+      { "letter": "D", "text": "TACACS+" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Remote Authentication Dial-In User Service (RADIUS) is an industry-standard Client/Server protocol that carries authentication, authorization, and accounting details between Network Access Servers (NAS) and centralized directory databases.",
+    "has_image": false
+  },
+  {
+    "number": 139,
+    "domain": "Security Concepts",
+    "question": "Which parameter must match exactly between two adjacent OSPF routers to form a neighbor adjacency?",
+    "options": [
+      { "letter": "A", "text": "Hello and Dead intervals" },
+      { "letter": "B", "text": "OSPF Process ID" },
+      { "letter": "C", "text": "Router ID" },
+      { "letter": "D", "text": "Loopback interface IP" }
+    ],
+    "answer": "QQ==",
+    "explanation": "For OSPF neighbors to successfully establish an adjacency, their configured Hello and Dead intervals, as well as Area IDs and Subnets, must match exactly on the connecting interfaces.",
+    "has_image": false
+  },
+  {
+    "number": 140,
+    "domain": "Infrastructure Security",
+    "question": "Which technology establishes dynamically generated point-to-multipoint VPN tunnels without requiring static mapping of every endpoint?",
+    "options": [
+      { "letter": "A", "text": "DMVPN" },
+      { "letter": "B", "text": "IPsec Direct Encapsulation" },
+      { "letter": "C", "text": "GRE Tunneling" },
+      { "letter": "D", "text": "L2TPv3" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Dynamic Multipoint VPN (DMVPN) leverages Next Hop Resolution Protocol (NHRP), Multipoint GRE (mGRE), and IPsec to easily scale dynamic hub-to-spoke and spoke-to-spoke secure tunnels without static peer configs.",
+    "has_image": false
+  },
+  {
+    "number": 141,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which authentication protocol encrypts the entire administrative session payload, including the username, password, and configuration commands?",
+    "options": [
+      { "letter": "A", "text": "TACACS+" },
+      { "letter": "B", "text": "RADIUS" },
+      { "letter": "C", "text": "Diameter" },
+      { "letter": "D", "text": "LDAP" }
+    ],
+    "answer": "QQ==",
+    "explanation": "TACACS+ encrypts the entire transmission payload (except the minimal header), providing greater cryptographic protection for administrative device access compared to RADIUS, which only encrypts user passwords.",
+    "has_image": false
+  },
+  {
+    "number": 142,
+    "domain": "Infrastructure Security",
+    "question": "Which secure protocol is typically used to manage and configure Cisco network appliances out-of-band over a command-line interface?",
+    "options": [
+      { "letter": "A", "text": "SSH" },
+      { "letter": "B", "text": "Telnet" },
+      { "letter": "C", "text": "HTTP" },
+      { "letter": "D", "text": "FTP" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Secure Shell (SSH) provides robust administrative console access by encrypting all credentials and active command payloads, replacing cleartext legacy protocols like Telnet.",
+    "has_image": false
+  },
+  {
+    "number": 143,
+    "domain": "Security Concepts",
+    "question": "Which telemetry platform collects netflow records and maps them to physical locations, and is optimized for visibility into internal user behaviors?",
+    "options": [
+      { "letter": "A", "text": "Cisco Secure Network Analytics" },
+      { "letter": "B", "text": "Cisco Secure Endpoint" },
+      { "letter": "C", "text": "Cisco Umbrella" },
+      { "letter": "D", "text": "Cisco Duo" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Network Analytics (formerly Stealthwatch) correlates NetFlow and other telemetry fields to identify network anomalies, detect lateral movement, and provide internal behavioral baselines.",
+    "has_image": false
+  },
+  {
+    "number": 144,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "What primary criteria does an ASA use to map incoming connections into a specific tunnel group during clientless SSL VPN initialization?",
+    "options": [
+      { "letter": "A", "text": "The URL group alias or connection profile selected by the user" },
+      { "letter": "B", "text": "The user's local operating system version" },
+      { "letter": "C", "text": "The physical interface speed of the client endpoint" },
+      { "letter": "D", "text": "The client browser's user-agent string" }
+    ],
+    "answer": "QQ==",
+    "explanation": "An ASA can parse connection parameters (such as a designated URL alias, or certificate maps) to determine which Connection Profile / Tunnel Group a clientless SSL VPN user belongs to during login.",
+    "has_image": false
+  },
+  {
+    "number": 145,
+    "domain": "Infrastructure Security",
+    "question": "Which Cisco security tool analyzes email headers and content, enforcing SPF, DKIM, and DMARC validations?",
+    "options": [
+      { "letter": "A", "text": "Cisco Secure Email Gateway" },
+      { "letter": "B", "text": "Cisco Secure Web Appliance" },
+      { "letter": "C", "text": "Cisco Firepower Threat Defense" },
+      { "letter": "D", "text": "Cisco Secure Firewall" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Email Gateway (formerly ESA) specializes in email defense vectors, enforcing DNS-based validation rules like SPF, DKIM, and DMARC to block phishing and spoofing.",
+    "has_image": false
+  },
+  {
+    "number": 146,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which host telemetry solution relies on OS query endpoints to provide continuous tracking of active system processes, network sockets, and file writes?",
+    "options": [
+      { "letter": "A", "text": "Cisco Secure Endpoint Orbital" },
+      { "letter": "B", "text": "Cisco Secure Email" },
+      { "letter": "C", "text": "Cisco Webex Defense" },
+      { "letter": "D", "text": "Cisco Secure Firewall" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Endpoint incorporates 'Orbital', a technology built on Osquery that allows security teams to run SQL queries on physical endpoints to search for running processes, listening ports, and active configuration changes.",
+    "has_image": false
+  },
+  {
+    "number": 147,
+    "domain": "Security Concepts",
+    "question": "Which identity platform specializes in multi-factor authentication (MFA) and host posture verification before granting user access to enterprise cloud applications?",
+    "options": [
+      { "letter": "A", "text": "Cisco Duo" },
+      { "letter": "B", "text": "Cisco Umbrella" },
+      { "letter": "C", "text": "Cisco Catalyst Center" },
+      { "letter": "D", "text": "Cisco Prime" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Duo is a cloud-based access security platform providing secure Single Sign-On, robust MFA, and deep device posture verification to protect SaaS and corporate assets.",
+    "has_image": false
+  },
+  {
+    "number": 148,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which Cisco VPN client mode supports checking host integrity, automatically updating anti-malware, and establishing connections before user Windows login?",
+    "options": [
+      { "letter": "A", "text": "Cisco Secure Client" },
+      { "letter": "B", "text": "Cisco IPsec QuickVPN" },
+      { "letter": "C", "text": "Cisco Easy VPN" },
+      { "letter": "D", "text": "Cisco clientless portal" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Client (formerly AnyConnect) offers advanced features like Start Before Logon (SBL), endpoint posture modules (ISE Posture), and automatic VPN profile provisioning.",
+    "has_image": false
+  },
+  {
+    "number": 149,
+    "domain": "Infrastructure Security",
+    "question": "Which protocol secures site-to-site WAN traffic inside a software-defined WAN (SD-WAN) context using automated IPSec tunnels?",
+    "options": [
+      { "letter": "A", "text": "IPsec / IKEv2" },
+      { "letter": "B", "text": "BGP Flowspec" },
+      { "letter": "C", "text": "GRE over HTTPS" },
+      { "letter": "D", "text": "SSH Tunneling" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco SD-WAN automatically negotiates and maintains symmetric IPsec tunnels over any transit network interface, using IKEv2 or OMP-driven keying architectures.",
+    "has_image": false
+  },
+  {
+    "number": 150,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which technology can block an endpoint's network connection automatically when Cisco Secure Endpoint detects a high-severity malware threat?",
+    "options": [
+      { "letter": "A", "text": "Cisco ISE Rapid Threat Containment" },
+      { "letter": "B", "text": "Cisco Firepower FMC" },
+      { "letter": "C", "text": "Cisco Secure Email Gateway" },
+      { "letter": "D", "text": "Cisco Prime Infrastructure" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco ISE Rapid Threat Containment (RTC) integrates with Cisco Secure Endpoint to automatically quarantine compromised hosts using a Change of Authorization (CoA) when security intelligence identifies an infection.",
+    "has_image": false
+  },
+  {
+    "number": 151,
+    "domain": "Infrastructure Security",
+    "question": "A network security administrator must protect a switch from DHCP starvation attacks. Which feature should be enabled on access ports?",
+    "options": [
+      { "letter": "A", "text": "DHCP Snooping with Port Security" },
+      { "letter": "B", "text": "Dynamic ARP Inspection" },
+      { "letter": "C", "text": "IP Source Guard" },
+      { "letter": "D", "text": "BPDU Guard" }
+    ],
+    "answer": "QQ==",
+    "explanation": "DHCP Snooping validates DHCP messages. When paired with Port Security, it limits the number of MAC addresses on the port, preventing a malicious user from generating thousands of MAC addresses to exhaust the DHCP pool.",
+    "has_image": false
+  },
+  {
+    "number": 152,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "What is the key functional difference between a local web authentication (LWA) and central web authentication (CWA) on a Cisco switch?",
+    "options": [
+      { "letter": "A", "text": "LWA runs the login portal directly on the local switch, while CWA redirects the user to a portal hosted centrally on Cisco ISE." },
+      { "letter": "B", "text": "LWA is standard-based, while CWA is proprietary to Microsoft Active Directory." },
+      { "letter": "C", "text": "CWA completely ignores ACL structures, whereas LWA requires them." },
+      { "letter": "D", "text": "LWA is only used for wired clients, while CWA is only used for wireless clients." }
+    ],
+    "answer": "QQ==",
+    "explanation": "With Local Web Authentication, the network access switch hosts the portal web pages and prompts the client. With Central Web Authentication, the authentication process redirects the client's browser session to a central engine (like Cisco ISE) to process credentials.",
+    "has_image": false
+  },
+  {
+    "number": 153,
+    "domain": "Security Concepts",
+    "question": "Which attack type occurs when an adversary captures administrative credentials in cleartext by analyzing unencrypted VTY traffic?",
+    "options": [
+      { "letter": "A", "text": "Sniffing Attack" },
+      { "letter": "B", "text": "Man-In-The-Middle Attack" },
+      { "letter": "C", "text": "Replay Attack" },
+      { "letter": "D", "text": "Brute Force Attack" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Sniffing attacks involve capturing packets as they transit the network. If cleartext legacy management protocols (like Telnet or HTTP) are used, passwords can be extracted effortlessly.",
+    "has_image": false
+  },
+  {
+    "number": 154,
+    "domain": "Infrastructure Security",
+    "question": "Which action does an enterprise firewall perform when it drops packets because they do not match a validated TCP session handshake?",
+    "options": [
+      { "letter": "A", "text": "Stateful Inspection Dropping" },
+      { "letter": "B", "text": "Proxy Session Validation" },
+      { "letter": "C", "text": "Application Control Filtering" },
+      { "letter": "D", "text": "Control Plane Policing" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Stateful inspection firewalls track the connection status of TCP flows (such as SYN, SYN-ACK, ACK). If a packet arrives out-of-order or with incorrect sequence numbers outside a validated session, the firewall drops it.",
+    "has_image": false
+  },
+  {
+    "number": 155,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which identity store type does Cisco ISE query when pulling nested active directory security group memberships to validate a client's credentials?",
+    "options": [
+      { "letter": "A", "text": "Active Directory" },
+      { "letter": "B", "text": "Internal Endpoints Store" },
+      { "letter": "C", "text": "RADIUS Token Server" },
+      { "letter": "D", "text": "ODBC Database" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco ISE natively integrates with Microsoft Active Directory via LDAP/Kerberos connections to parse domain structures, nested groups, and user account parameters.",
+    "has_image": false
+  },
+  {
+    "number": 156,
+    "domain": "Security Concepts",
+    "question": "Which feature tracks active IP-to-MAC state bindings built by DHCP Snooping to prevent IP address spoofing on untrusted ports?",
+    "options": [
+      { "letter": "A", "text": "IP Source Guard" },
+      { "letter": "B", "text": "Dynamic ARP Inspection" },
+      { "letter": "C", "text": "Port Security" },
+      { "letter": "D", "text": "Unicast RPF" }
+    ],
+    "answer": "QQ==",
+    "explanation": "IP Source Guard (IPSG) utilizes the DHCP Snooping database to automatically build dynamic port-level ACLs, dropping traffic on untrusted ports if the source IP or MAC address does not match the binding database.",
+    "has_image": false
+  },
+  {
+    "number": 157,
+    "domain": "Infrastructure Security",
+    "question": "Which mechanism ensures that traffic sourced from a spoofed IP address cannot transit a router interface by validating that a return route exists to the source IP via that interface?",
+    "options": [
+      { "letter": "A", "text": "Unicast Reverse Path Forwarding" },
+      { "letter": "B", "text": "IP Source Guard" },
+      { "letter": "C", "text": "Control Plane Policing" },
+      { "letter": "D", "text": "Access Control Lists" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Unicast Reverse Path Forwarding (uRPF) verifies whether IP source packets received on a router interface match the forwarding tables. In strict mode, the packet is dropped if the receiving interface is not the best return path.",
+    "has_image": false
+  },
+  {
+    "number": 158,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which cloud service delivers global real-time threat analysis to feed IP reputation lists, Snort rules, and malware definitions directly to Cisco security appliances?",
+    "options": [
+      { "letter": "A", "text": "Cisco Talos" },
+      { "letter": "B", "text": "Cisco DNA Spaces" },
+      { "letter": "C", "text": "Cisco vManage" },
+      { "letter": "D", "text": "Cisco Umbrella" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Talos is Cisco's elite threat intelligence organization, updating security intelligence dynamically across all firewalls, secure client instances, and web proxy gateways.",
+    "has_image": false
+  },
+  {
+    "number": 159,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which profile in Cisco ISE would you configure to define what specific permissions and VLAN an authenticated user is assigned?",
+    "options": [
+      { "letter": "A", "text": "Authorization Profile" },
+      { "letter": "B", "text": "Authentication Policy" },
+      { "letter": "C", "text": "Posture Policy" },
+      { "letter": "D", "text": "Identity Source Sequence" }
+    ],
+    "answer": "QQ==",
+    "explanation": "An Authorization Profile defines the results of a successful network connection—such as the target VLAN, downloadable ACLs (dACLs), security group tags (SGTs), or session redirect URLs.",
+    "has_image": false
+  },
+  {
+    "number": 160,
+    "domain": "Infrastructure Security",
+    "question": "What Cisco product protects workloads running across multi-cloud infrastructure by microsegmenting applications and tracking application baseline behavior?",
+    "options": [
+      { "letter": "A", "text": "Cisco Secure Workload" },
+      { "letter": "B", "text": "Cisco Secure Analytics" },
+      { "letter": "C", "text": "Cisco Secure Endpoint" },
+      { "letter": "D", "text": "Cisco DNA Center" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Workload (formerly Tetration) uses agent-based telemetries to provide continuous flow visibility, application dependency mapping, and dynamic microsegmentation policy enforcement across multi-cloud setups.",
+    "has_image": false
+  },
+  {
+    "number": 161,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "What does a Security Group Tag (SGT) represent in a Cisco TrustSec environment?",
+    "options": [
+      { "letter": "A", "text": "A 16-bit numerical tag appended to Layer 2 frames to define a user group context, allowing IP-independent segmentation." },
+      { "letter": "B", "text": "A standard VLAN configuration identifier." },
+      { "letter": "C", "text": "An encryption key used specifically for MACsec tunnels." },
+      { "letter": "D", "text": "An IP routing table tag used within VRF instances." }
+    ],
+    "answer": "QQ==",
+    "explanation": "TrustSec uses Security Group Tags (SGTs) to identify the security role/context of a device. Because switches perform filtering based on the SGT tag value, policy controls are independent of physical topological structures (like IP addresses).",
+    "has_image": false
+  },
+  {
+    "number": 162,
+    "domain": "Infrastructure Security",
+    "question": "What command on a Cisco ASA or FTD enables logging of configuration changes made by administrative users?",
+    "options": [
+      { "letter": "A", "text": "logging enable / logging console info" },
+      { "letter": "B", "text": "audit-trail tracking" },
+      { "letter": "C", "text": "snmp-server enable traps config" },
+      { "letter": "D", "text": "aaa authorization config-commands" }
+    ],
+    "answer": "QQ==",
+    "explanation": "To track admin configurations on Cisco security devices, you must enable syslog messaging ('logging enable'). For AAA logging specifically, 'aaa accounting' commands push session operations to external syslog/TACACS+ servers.",
+    "has_image": false
+  },
+  {
+    "number": 163,
+    "domain": "Security Concepts",
+    "question": "Which attack type utilizes spoofed ICMP Echo Requests targeting a broadcast network with the source address set to the targeted host, forcing all active hosts to flood the victim?",
+    "options": [
+      { "letter": "A", "text": "Smurf Attack" },
+      { "letter": "B", "text": "SYN Flood" },
+      { "letter": "C", "text": "Teardrop Attack" },
+      { "letter": "D", "text": "Buffer Overflow" }
+    ],
+    "answer": "QQ==",
+    "explanation": "A Smurf attack is a classic distributed denial-of-service attack where an adversary spoofs the source IP address of a target and sends ICMP echo requests to local IP broadcast addresses, triggering a coordinated amplification flood.",
+    "has_image": false
+  },
+  {
+    "number": 164,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which component in an 802.1X deployment acts as the supplicant?",
+    "options": [
+      { "letter": "A", "text": "The endpoint device running the 802.1X software client" },
+      { "letter": "B", "text": "The network access switch forwarding EAPOL frames" },
+      { "letter": "C", "text": "The RADIUS authentication server running Cisco ISE" },
+      { "letter": "D", "text": "The Active Directory database" }
+    ],
+    "answer": "QQ==",
+    "explanation": "In 802.1X terminology, the Supplicant is the software client running on the workstation or endpoint that initiates the authentication request.",
+    "has_image": false
+  },
+  {
+    "number": 165,
+    "domain": "Infrastructure Security",
+    "question": "Which technology allows multiple isolated routing tables to exist on a single physical router, preventing route leakage between different administrative contexts?",
+    "options": [
+      { "letter": "A", "text": "VRF-Lite" },
+      { "letter": "B", "text": "VLAN Trunking" },
+      { "letter": "C", "text": "Route Distinguishers" },
+      { "letter": "D", "text": "Policy-Based Routing" }
+    ],
+    "answer": "QQ==",
+    "explanation": "VRF-Lite (Virtual Routing and Forwarding) is used to segment and isolate routing instances across a single routing device, creating unique, isolated routing tables to separate traffic planes completely.",
+    "has_image": false
+  },
+  {
+    "number": 166,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which engine in Cisco Secure Endpoint analyzes executable code patterns before they run on the system to flag potential zero-day structural anomalies?",
+    "options": [
+      { "letter": "A", "text": "Spero Engine" },
+      { "letter": "B", "text": "Tetra Engine" },
+      { "letter": "C", "text": "Ethos Engine" },
+      { "letter": "D", "text": "Dynamic Analysis" }
+    ],
+    "answer": "QQ==",
+    "explanation": "The Spero Engine is a heuristic evaluation mechanism within Cisco Secure Endpoint that analyzes the physical characteristics and structural metadata of Windows executable files to block zero-day threats before execution.",
+    "has_image": false
+  },
+  {
+    "number": 167,
+    "domain": "Security Concepts",
+    "question": "What is the primary operational objective of implementing Zero Trust architecture across an enterprise?",
+    "options": [
+      { "letter": "A", "text": "To remove implicit trust assumptions and authenticate and authorize every user and device continuously." },
+      { "letter": "B", "text": "To eliminate the need for centralized firewalls." },
+      { "letter": "C", "text": "To enforce single-factor authentication on all administrative consoles." },
+      { "letter": "D", "text": "To route all user traffic through unencrypted hub-and-spoke gateways." }
+    ],
+    "answer": "QQ==",
+    "explanation": "Zero Trust operates under the core philosophy of 'never trust, always verify', demanding continuous validation of identity, posture, and context for all transactions.",
+    "has_image": false
+  },
+  {
+    "number": 168,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "What type of tunnel is used within Cisco SD-Access to transport data across the fabric network underlay?",
+    "options": [
+      { "letter": "A", "text": "VXLAN" },
+      { "letter": "B", "text": "GRE" },
+      { "letter": "C", "text": "IPSec" },
+      { "letter": "D", "text": "MPLS" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Software-Defined Access (SD-Access) utilizes VXLAN (Virtual Extensible LAN) encapsulation to carry data overlay traffic across the physical underlay networks, preserving Layer 2 structures and embedding Security Group Tags (SGTs) directly in the headers.",
+    "has_image": false
+  },
+  {
+    "number": 169,
+    "domain": "Infrastructure Security",
+    "question": "Which action does Cisco Secure Web Appliance take to process encrypted web sessions when decryption options are disabled?",
+    "options": [
+      { "letter": "A", "text": "It passes or blocks traffic based on the server certificate name, without inspecting the payload." },
+      { "letter": "B", "text": "It decrypts the payload anyway using self-signed keys." },
+      { "letter": "C", "text": "It automatically drops all HTTPS connections to protect the network." },
+      { "letter": "D", "text": "It downgrades the client browser to plain HTTP." }
+    ],
+    "answer": "QQ==",
+    "explanation": "If decryption is disabled, the Web Appliance (WSA) evaluates HTTPS connections by inspecting unencrypted handshakes (specifically SNI fields or server certificates) to block or permit categories, but cannot perform deep-packet payload scanning.",
+    "has_image": false
+  },
+  {
+    "number": 170,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which deployment profile on Cisco Secure Client limits connection profiles, preventing users from modifying VPN gateway settings?",
+    "options": [
+      { "letter": "A", "text": "Client Profile" },
+      { "letter": "B", "text": "Local Policy Profile" },
+      { "letter": "C", "text": "Posture Profile" },
+      { "letter": "D", "text": "Network Access Profile" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Client VPN profiles (XML files pushed from gateways) dictate interface behaviors, restrict user modifications, and define specific gateway addresses that users can connect to.",
+    "has_image": false
+  },
+  {
+    "number": 171,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which feature must be configured on a Cisco switch interface to drop frames when a client attempts to spoof a MAC address?",
+    "options": [
+      { "letter": "A", "text": "Port Security with a restrict or shutdown action" },
+      { "letter": "B", "text": "Dynamic ARP Inspection" },
+      { "letter": "C", "text": "Unicast RPF" },
+      { "letter": "D", "text": "802.1X only" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Port Security allows a switch to limit and track MAC addresses per port, transitioning the port to an err-disabled state or dropping frames if a device with a different MAC attempts to transmit.",
+    "has_image": false
+  },
+  {
+    "number": 172,
+    "domain": "Infrastructure Security",
+    "question": "Which protocol secures communication across wireless networks using cryptographic mechanisms, replacing WPA2?",
+    "options": [
+      { "letter": "A", "text": "WPA3" },
+      { "letter": "B", "text": "802.11b" },
+      { "letter": "C", "text": "TKIP" },
+      { "letter": "D", "text": "WEP" }
+    ],
+    "answer": "QQ==",
+    "explanation": "WPA3 is the latest standard for wireless network security, utilizing Simultaneous Authentication of Equals (SAE) to protect against brute-force password guessing attacks and offline dictionary cracking.",
+    "has_image": false
+  },
+  {
+    "number": 173,
+    "domain": "Security Concepts",
+    "question": "Which methodology helps mitigate SQL injection attacks on enterprise database platforms?",
+    "options": [
+      { "letter": "A", "text": "Parameterized Queries and Input Validation" },
+      { "letter": "B", "text": "Increasing physical database memory" },
+      { "letter": "C", "text": "Enabling database encryption-at-rest" },
+      { "letter": "D", "text": "Using cleartext transport channels" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Parameterized queries separate the application code from user-supplied input data, ensuring the database engine executes commands structurally without interpreting user input as raw SQL instructions.",
+    "has_image": false
+  },
+  {
+    "number": 174,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which operational mode is used to group Cisco switches dynamically into virtual stack topologies?",
+    "options": [
+      { "letter": "A", "text": "StackWise" },
+      { "letter": "B", "text": "VSS" },
+      { "letter": "C", "text": "vPC" },
+      { "letter": "D", "text": "LACP" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco StackWise technology allows physical Catalyst switches to be interconnected into a single logical device, simplifying network topology and managing configuration as a single entity.",
+    "has_image": false
+  },
+  {
+    "number": 175,
+    "domain": "Infrastructure Security",
+    "question": "Which system logs DNS requests dynamically to categorize and block user connections to malicious domains before IP-layer tunnels are built?",
+    "options": [
+      { "letter": "A", "text": "Cisco Umbrella" },
+      { "letter": "B", "text": "Cisco Secure Email" },
+      { "letter": "C", "text": "Cisco ISE" },
+      { "letter": "D", "text": "Cisco Secure Firepower" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Umbrella handles recursive DNS routing, intercepting DNS lookups to block connections to phishing, command-and-control, and malware-distribution domains in real time.",
+    "has_image": false
+  },
+  {
+    "number": 176,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which Cisco endpoint agent posture module checks physical registry keys, application files, and running services on client systems prior to granting full 802.1X access?",
+    "options": [
+      { "letter": "A", "text": "ISE Posture Module" },
+      { "letter": "B", "text": "AMP Enforcer" },
+      { "letter": "C", "text": "Umbrella Roaming Client" },
+      { "letter": "D", "text": "Duo Device Health" }
+    ],
+    "answer": "QQ==",
+    "explanation": "The Cisco Secure Client ISE Posture Module interacts with Cisco ISE to run system-level validation audits, verifying whether endpoints meet corporate security baseline requirements before they are authorized.",
+    "has_image": false
+  },
+  {
+    "number": 177,
+    "domain": "Security Concepts",
+    "question": "Which attack is characterized by sending malformed IP packets containing overlapping fragmentation values to crash target kernels?",
+    "options": [
+      { "letter": "A", "text": "Teardrop Attack" },
+      { "letter": "B", "text": "SYN Flood" },
+      { "letter": "C", "text": "Replay Attack" },
+      { "letter": "D", "text": "Smurf Attack" }
+    ],
+    "answer": "QQ==",
+    "explanation": "A Teardrop attack sends IP packets with overlapping fragment offset values. When the victim OS attempts to reassemble the fragments, a buffer overflow or crash occurs within the kernel driver logic.",
+    "has_image": false
+  },
+  {
+    "number": 178,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which network topology underlay describes a Cisco SD-Access configuration?",
+    "options": [
+      { "letter": "A", "text": "A standard IP routed network utilizing IS-IS or OSPF to guarantee loop-free connectivity across physical switches." },
+      { "letter": "B", "text": "A dynamic Layer 2 domain using Spanning Tree exclusively." },
+      { "letter": "C", "text": "A hub-and-spoke GRE tunnel environment." },
+      { "letter": "D", "text": "An unrouted Layer 2 segment." }
+    ],
+    "answer": "QQ==",
+    "explanation": "In SD-Access, the physical underlay is a robust Layer 3 routed network (commonly configured with IS-IS) that provides the high-performance transport path for fabric tunnels.",
+    "has_image": false
+  },
+  {
+    "number": 179,
+    "domain": "Infrastructure Security",
+    "question": "Which mechanism protects active Cisco IOS switch configurations from being modified via unauthenticated SNMP write parameters?",
+    "options": [
+      { "letter": "A", "text": "Configuring SNMPv3 with the authPriv security level" },
+      { "letter": "B", "text": "Using SNMPv1 with dynamic community strings" },
+      { "letter": "C", "text": "Enabling SNMPv2c traps universally" },
+      { "letter": "D", "text": "Implementing standard VTY access lists" }
+    ],
+    "answer": "QQ==",
+    "explanation": "SNMPv3 using 'authPriv' enforces robust user-level cryptographic authentication and payload encryption, preventing unauthorized configuration writes or metadata interception.",
+    "has_image": false
+  },
+  {
+    "number": 180,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which component manages malware policies, tracks system outbreaks, and initiates file retrospection searches across an entire Cisco Secure Endpoint deployment?",
+    "options": [
+      { "letter": "A", "text": "Cisco Secure Endpoint Console" },
+      { "letter": "B", "text": "Cisco Secure Web Appliance" },
+      { "letter": "C", "text": "Cisco Firepower Management Center" },
+      { "letter": "D", "text": "Cisco Secure Email Gateway" }
+    ],
+    "answer": "QQ==",
+    "explanation": "The Secure Endpoint cloud console handles policy adjustments, telemetry analysis, containment steps, and triggers retrospective threat analysis across all registered endpoints.",
+    "has_image": false
+  },
+  {
+    "number": 181,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which EAP protocol must be selected when deploying 802.1X environments requiring mutual authentication utilizing TLS certificates on both the endpoints and the authentication server?",
+    "options": [
+      { "letter": "A", "text": "EAP-TLS" },
+      { "letter": "B", "text": "PEAP-MSCHAPv2" },
+      { "letter": "C", "text": "EAP-FAST" },
+      { "letter": "D", "text": "EAP-MD5" }
+    ],
+    "answer": "QQ==",
+    "explanation": "EAP-TLS relies on client-side and server-side digital certificates to perform mutual cryptographic authentication, widely considered the most secure standard-based 802.1X method.",
+    "has_image": false
+  },
+  {
+    "number": 182,
+    "domain": "Infrastructure Security",
+    "question": "Which protocol secures point-to-point Layer 3 connections over WAN circuits, supporting multiprotocol encapsulation without encryption natively?",
+    "options": [
+      { "letter": "A", "text": "Generic Routing Encapsulation" },
+      { "letter": "B", "text": "IPsec" },
+      { "letter": "C", "text": "WPA3" },
+      { "letter": "D", "text": "MACsec" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Generic Routing Encapsulation (GRE) is a carrier protocol that encapsulates inner payloads (including routing protocols and multicast) inside point-to-point tunnels, although IPsec is typically applied if encryption is required.",
+    "has_image": false
+  },
+  {
+    "number": 183,
+    "domain": "Security Concepts",
+    "question": "Which mitigation strategy prevents attackers from sniffing cleartext data transmissions across local network switch segments?",
+    "options": [
+      { "letter": "A", "text": "Enabling SSH for device management and HTTPS for web portals" },
+      { "letter": "B", "text": "Applying DAI universally" },
+      { "letter": "C", "text": "Configuring Port Security restrict" },
+      { "letter": "D", "text": "Utilizing basic local VLANs" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Replacing legacy cleartext protocols (Telnet, HTTP) with modern encrypted standards (SSH, HTTPS) ensures that any intercepted packet payloads remain unreadable to unauthorized sniffers.",
+    "has_image": false
+  },
+  {
+    "number": 184,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which tool acts as the centralized point of identity control in a Cisco SD-Access environment?",
+    "options": [
+      { "letter": "A", "text": "Cisco Identity Services Engine" },
+      { "letter": "B", "text": "Cisco Catalyst Center" },
+      { "letter": "C", "text": "Active Directory" },
+      { "letter": "D", "text": "Cisco Prime Infrastructure" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco ISE acts as the unified policy engine in SD-Access topologies, evaluating host identities, verifying compliance posture, and passing Security Group Tags (SGTs) dynamically to Catalyst Center configurations.",
+    "has_image": false
+  },
+  {
+    "number": 185,
+    "domain": "Infrastructure Security",
+    "question": "Which firewall feature matches traffic flows based on a pre-established connection state database, avoiding the need to process packet headers through complete ACL checks sequentially?",
+    "options": [
+      { "letter": "A", "text": "Stateful Inspection Fastpath" },
+      { "letter": "B", "text": "Policy-Based Forwarding" },
+      { "letter": "C", "text": "Control Plane Protection" },
+      { "letter": "D", "text": "Application Control Engine" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Fastpath processing allows a stateful firewall to evaluate the first packet of a flow against policies. Once the session is approved, subsequent packets skip costly ACL lookups and are processed quickly using state database shortcuts.",
+    "has_image": false
+  },
+  {
+    "number": 186,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which deployment mechanism within Cisco Secure Endpoint performs deep behavioral analysis of threat payloads by executing them inside a secure dynamic virtual sandbox?",
+    "options": [
+      { "letter": "A", "text": "Dynamic Sandbox Analysis / Secure Malware Analytics" },
+      { "letter": "B", "text": "Spero Heuristics" },
+      { "letter": "C", "text": "Ethos File Analysis" },
+      { "letter": "D", "text": "Tetra Offline scanning" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Malware Analytics (formerly Threat Grid) executes files within isolated sandboxes to record real-time behavior, system changes, and outbound network traffic.",
+    "has_image": false
+  },
+  {
+    "number": 187,
+    "domain": "Security Concepts",
+    "question": "Which attack involves flooding local switch tables with spoofed source MAC addresses until the table is exhausted, forcing the switch to act like a hub and flood all traffic to all ports?",
+    "options": [
+      { "letter": "A", "text": "MAC Flooding" },
+      { "letter": "B", "text": "ARP Poisoning" },
+      { "letter": "C", "text": "DHCP Snooping bypass" },
+      { "letter": "D", "text": "VLAN Hopping" }
+    ],
+    "answer": "QQ==",
+    "explanation": "MAC address table exhaustion attacks (MAC Flooding) flood a switch with thousands of bogus MAC addresses. Once the table fills up, the switch fails open and starts flooding unicast packets to all switchports, enabling sniffing.",
+    "has_image": false
+  },
+  {
+    "number": 188,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which component in an 802.1X deployment receives EAPOL frames from a supplicant and translates them into RADIUS packets for the authentication server?",
+    "options": [
+      { "letter": "A", "text": "The Authenticator" },
+      { "letter": "B", "text": "The Supplicant" },
+      { "letter": "C", "text": "The Directory Service" },
+      { "letter": "D", "text": "The Gateway" }
+    ],
+    "answer": "QQ==",
+    "explanation": "The Authenticator (typically an enterprise switch or wireless controller) sits between the supplicant and authentication server, packaging Layer 2 EAPOL frames into IP-based RADIUS Access-Requests.",
+    "has_image": false
+  },
+  {
+    "number": 189,
+    "domain": "Infrastructure Security",
+    "question": "Which service acts as a secure local proxy, forwarding DNS requests from local endpoints securely to Cisco Umbrella resolvers using encryption?",
+    "options": [
+      { "letter": "A", "text": "Umbrella Virtual Appliance" },
+      { "letter": "B", "text": "Cisco Secure Web Appliance" },
+      { "letter": "C", "text": "DHCP Relay Agent" },
+      { "letter": "D", "text": "Cisco DNA Center" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Umbrella Virtual Appliances (VAs) run locally on internal virtual networks, acting as conditional DNS forwarders that append local network context metadata to queries before forwarding them securely to Umbrella Cloud systems.",
+    "has_image": false
+  },
+  {
+    "number": 190,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which configuration control allows administrators to whitelist internal custom tools, preventing signature-based anti-malware engines from quarantining them?",
+    "options": [
+      { "letter": "A", "text": "Allowed Applications list" },
+      { "letter": "B", "text": "Simple Custom Detections" },
+      { "letter": "C", "text": "Device Flow whitelisting" },
+      { "letter": "D", "text": "Network isolation policy" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Allowed Application lists within Outbreak Control let security teams define clean file hashes (SHA-256) or paths for custom internal utilities, avoiding disruptive false positives.",
+    "has_image": false
+  },
+  {
+    "number": 191,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which parameters are compared to evaluate active context conditions inside a Cisco ISE Authorization Rule?",
+    "options": [
+      { "letter": "A", "text": "User identity groups, network access device profiles, and client posture compliance status" },
+      { "letter": "B", "text": "Physical routing protocol process IDs" },
+      { "letter": "C", "text": "Switch backplane interface speeds" },
+      { "letter": "D", "text": "Local active directory schema versions" }
+    ],
+    "answer": "QQ==",
+    "explanation": "ISE evaluates multi-criteria authorization contexts—such as which user group belongs to the request, the type of hardware requesting access, and the current endpoint compliance posture.",
+    "has_image": false
+  },
+  {
+    "number": 192,
+    "domain": "Infrastructure Security",
+    "question": "Which protocol secures web traffic dynamically at the transport layer, verifying server endpoints using trusted public key certificates?",
+    "options": [
+      { "letter": "A", "text": "TLS" },
+      { "letter": "B", "text": "IPSec" },
+      { "letter": "C", "text": "SSH" },
+      { "letter": "D", "text": "SFTP" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Transport Layer Security (TLS) encrypts data streams at Layer 4, using public-key certificate validation to establish verified trust bounds between web browsers and servers.",
+    "has_image": false
+  },
+  {
+    "number": 193,
+    "domain": "Security Concepts",
+    "question": "Which vulnerability allows command-execution payloads to transit input fields to database targets due to poor input validation?",
+    "options": [
+      { "letter": "A", "text": "SQL Injection" },
+      { "letter": "B", "text": "Cross-Site Scripting" },
+      { "letter": "C", "text": "Buffer Overflow" },
+      { "letter": "D", "text": "Privilege Escalation" }
+    ],
+    "answer": "QQ==",
+    "explanation": "SQL Injection (SQLi) occurs when input sanitization is missing. As a result, input parameters containing SQL syntax are executed by the back-end SQL parser, giving adversaries unauthorized access to databases.",
+    "has_image": false
+  },
+  {
+    "number": 194,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which control plane element manages identity-to-location mapping policies inside a Cisco Software-Defined Access fabric?",
+    "options": [
+      { "letter": "A", "text": "The Control Plane Node running LISP" },
+      { "letter": "B", "text": "The Edge Node running VXLAN" },
+      { "letter": "C", "text": "The Underlay Layer running OSPF" },
+      { "letter": "D", "text": "The Fabric Border Node" }
+    ],
+    "answer": "QQ==",
+    "explanation": "SD-Access uses Locator/ID Separation Protocol (LISP) on control plane nodes, keeping a database that maps endpoint identifiers (EIDs) to the routing locators (RLOCs) of active fabric edge switches.",
+    "has_image": false
+  },
+  {
+    "number": 195,
+    "domain": "Infrastructure Security",
+    "question": "Which configuration element defines the security level of an interface on a Cisco ASA firewall, dictating implicit traffic flow permissions?",
+    "options": [
+      { "letter": "A", "text": "security-level (0 to 100)" },
+      { "letter": "B", "text": "ip access-group" },
+      { "letter": "C", "text": "failover lan interface" },
+      { "letter": "D", "text": "crypto map" }
+    ],
+    "answer": "QQ==",
+    "explanation": "ASA interfaces use a security-level from 0 (untrusted) to 100 (most trusted). By default, traffic flows freely from high-to-low levels, while low-to-high flows require an explicit ACL.",
+    "has_image": false
+  },
+  {
+    "number": 196,
+    "domain": "Endpoint Protection and Detection",
+    "question": "Which service analyzes executable behavior heuristic signatures across offline endpoints using an installed local database?",
+    "options": [
+      { "letter": "A", "text": "Tetra scanning engine" },
+      { "letter": "B", "text": "Spero heuristic analysis" },
+      { "letter": "C", "text": "Dynamic cloud sandbox" },
+      { "letter": "D", "text": "Ethos scanning" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cisco Secure Endpoint uses the Tetra scanning engine as a full, on-disk traditional antivirus component, allowing endpoints to detect and block threats locally even when they lose cloud connectivity.",
+    "has_image": false
+  },
+  {
+    "number": 197,
+    "domain": "Security Concepts",
+    "question": "Which vulnerability allows an attacker to inject client-side scripts into a web application, where they execute inside the browsers of other visiting users?",
+    "options": [
+      { "letter": "A", "text": "Cross-Site Scripting" },
+      { "letter": "B", "text": "SQL Injection" },
+      { "letter": "C", "text": "Buffer Overflow" },
+      { "letter": "D", "text": "Directory Traversal" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Cross-Site Scripting (XSS) occurs when malicious web scripts are injected into web apps, which are then processed and executed within the context of target users' active browser sessions.",
+    "has_image": false
+  },
+  {
+    "number": 198,
+    "domain": "Secure Network Access, Visibility, and Enforcement",
+    "question": "Which 802.1X deployment configuration allows multiple MAC addresses to authenticate individually on a single switchport, placing each into its respective VLAN?",
+    "options": [
+      { "letter": "A", "text": "Multi-domain / Multi-auth mode" },
+      { "letter": "B", "text": "Single-host mode" },
+      { "letter": "C", "text": "Multi-host mode" },
+      { "letter": "D", "text": "Port security mode" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Multi-auth (Multiple Authentication) mode allows multiple devices to connect to a single switchport. Each device is authenticated separately, and the switch places each into its respective configured VLAN or profile context.",
+    "has_image": false
+  },
+  {
+    "number": 199,
+    "domain": "Infrastructure Security",
+    "question": "Which ASA command configures a localized NAT mapping, mapping a specific internal server's private IP to a public routing address permanently?",
+    "options": [
+      { "letter": "A", "text": "Static NAT / nat (inside,outside) static" },
+      { "letter": "B", "text": "Dynamic PAT / global outside" },
+      { "letter": "C", "text": "Identity NAT / nat (any,any)" },
+      { "letter": "D", "text": "Dynamic NAT" }
+    ],
+    "answer": "QQ==",
+    "explanation": "Static NAT configurations create a permanent, one-to-one mapping between private and public IP addresses, commonly used to make internal corporate servers accessible from public networks.",
+    "has_image": false
+  },
+  {
+    "number": 200,
+    "domain": "Infrastructure Security",
+    "question": "Which VPN technology supports a multivendor secure site-to-site WAN environment using standard standards like IKEv2 and dynamic route-based profiles?",
+    "options": [
+      { "letter": "A", "text": "FlexVPN" },
+      { "letter": "B", "text": "DMVPN" },
+      { "letter": "C", "text": "GETVPN" },
+      { "letter": "D", "text": "AnyConnect SSL" }
+    ],
+    "answer": "QQ==",
+    "explanation": "FlexVPN is Cisco's unified, standards-based VPN solution. Since it is built on standard IKEv2 and Virtual Tunnel Interfaces (VTIs), it is highly compatible with third-party, multivendor firewalls and routers.",
+    "has_image": false
+  }
+]
+
+</script>
+<script>
+        const rawQuestions = JSON.parse(document.getElementById('quiz-data').textContent);
+        let currentIdx = 0;
+        let score = 0;
+
+        function base64Decode(str) { try { return atob(str); } catch (e) { return str; } }
+        function getAnswers(obfuscated) { return base64Decode(obfuscated).replace(/[^A-G]/gi, '').split(''); }
+        function isMultiSelect(questionText) { 
+            const text = questionText.toLowerCase();
+            return text.includes('(choose two)') || text.includes('(choose three)');
+        }
+
+        function buildQuiz() {
+            const quizArea = document.getElementById('quiz-area');
+            rawQuestions.forEach((q, idx) => {
+                const card = document.createElement('div');
+                card.className = `quiz-card ${idx === 0 ? 'active' : ''}`;
+                card.id = `card-${idx}`;
+                card.innerHTML = `<div class="domain-badge">Q${q.number} - ${q.domain}</div>
+                                  <div class="question-text">${q.question}</div>`;
+                
+                const multi = isMultiSelect(q.question);
+                q.options.forEach(opt => {
+                    const label = document.createElement('label');
+                    label.className = 'option-label';
+                    label.id = `label-${idx}-${opt.letter}`;
+                    label.innerHTML = `<input type="${multi ? 'checkbox' : 'radio'}" name="question-${idx}" value="${opt.letter}"> ${opt.letter}. ${opt.text}`;
+                    card.appendChild(label);
+                });
+
+                const explainDiv = document.createElement('div');
+                explainDiv.className = 'explanation';
+                explainDiv.id = `explain-${idx}`;
+                explainDiv.innerHTML = `<strong>Explanation:</strong><br>${q.explanation}`;
+                card.appendChild(explainDiv);
+                quizArea.appendChild(card);
+            });
+            updateNav();
+        }
+
+        function changeQuestion(dir) {
+            document.getElementById(`card-${currentIdx}`).classList.remove('active');
+            currentIdx += dir;
+            document.getElementById(`card-${currentIdx}`).classList.add('active');
+            updateNav();
+        }
+
+        function updateNav() {
+            document.getElementById('prev-btn').disabled = currentIdx === 0;
+            document.getElementById('next-btn').style.display = currentIdx === rawQuestions.length - 1 ? 'none' : 'inline-block';
+            document.getElementById('submit-btn').style.display = currentIdx === rawQuestions.length - 1 ? 'inline-block' : 'none';
+            // Finish button is hidden only after the quiz is submitted (handled by action-container styling in gradeQuiz)[cite: 1]
+            document.getElementById('finish-btn').style.display = currentIdx === rawQuestions.length - 1 ? 'none' : 'inline-block';
+        }
+
+        function gradeQuiz() {
+            score = 0;
+            rawQuestions.forEach((q, idx) => {
+                const correctAnswers = getAnswers(q.answer);
+                const selected = Array.from(document.querySelectorAll(`input[name="question-${idx}"]:checked`)).map(el => el.value);
+                const explainDiv = document.getElementById(`explain-${idx}`);
+                let isCorrect = selected.length === correctAnswers.length && selected.every(val => correctAnswers.includes(val));
+                
+                q.options.forEach(opt => {
+                    const label = document.getElementById(`label-${idx}-${opt.letter}`);
+                    if (correctAnswers.includes(opt.letter)) label.classList.add('right-ans');
+                    else if (selected.includes(opt.letter)) label.classList.add('wrong-ans');
+                });
+                explainDiv.style.display = 'block';
+                if (isCorrect) score++;
+            });
+            document.querySelectorAll('.quiz-card').forEach(card => card.classList.add('active'));
+            document.querySelector('.action-container').style.display = 'none';
+            alert(`Module 3 Completed!\nScore: ${score} / ${rawQuestions.length}`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        buildQuiz();
+    </script>
+</body>
+</html>
